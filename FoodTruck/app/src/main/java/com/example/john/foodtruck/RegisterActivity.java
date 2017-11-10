@@ -97,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         // 연결 HttpClient 객체 생성
         HttpClient httpClient= new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://143.248.199.68:8081/sign_in");
+        HttpPost httpPost = new HttpPost("http://143.248.244.24:8081/sign_in");
 
         // 객체 연결 설정 부분, 연결 최대시간 등등
         //HttpParams params = client.getParams();
@@ -110,7 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
         try {
             UrlEncodedFormEntity entity = new UrlEncodedFormEntity(registerInfo, "UTF-8");
             httpPost.setEntity(entity);
-            httpClient.execute(httpPost);
+            //httpClient.execute(httpPost);
 
             HttpResponse response = httpClient.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
@@ -133,79 +133,3 @@ public class RegisterActivity extends AppCompatActivity {
         return -1;
     }
 }
-   /*
-    final EditText idText = (EditText) findViewById(R.id.idText);
-        final EditText passwordText = (EditText) findViewById(R.id.passwordText);
-        final EditText nameText = (EditText) findViewById(R.id.nameText);
-        final EditText numberText = (EditText) findViewById(R.id.numberText);
-
-        final RadioGroup rg = (RadioGroup) findViewById(R.id.rg);
-
-        final Button registerButton = (Button) findViewById(R.id.registerButton);
-
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-
-                String userID = idText.getText().toString();
-                String userPassword = passwordText.getText().toString();
-                String userName = nameText.getText().toString();
-                String userNumber = numberText.getText().toString();
-
-                String userType="";
-                int id = rg.getCheckedRadioButtonId();
-                RadioButton rb = (RadioButton) findViewById(id);
-
-                switch (rb.getText().toString()) {
-                    case "판매자":
-                        //userType = "Seller";
-                        break;
-                    case "구매자":
-                        //userType = "Purchaser";
-                        break;
-                }
-
-                Response.Listener<String> responseListener = new Response.Listener<String>(){
-                    @Override
-                    public void onResponse(String response){
-                        try{
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
-                            if(success){
-                                AlertDialog.Builder builder=new AlertDialog.Builder(RegisterActivity.this);
-                                builder.setMessage("회원 등록 성공")
-                                        .setPositiveButton("확인", null)
-                                        .create()
-                                        .show();
-                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                RegisterActivity.this.startActivity(intent);
-                            }
-                            else{
-                                AlertDialog.Builder builder=new AlertDialog.Builder(RegisterActivity.this);
-                                builder.setMessage("회원 등록 실패")
-                                        .setNegativeButton("다시시도", null)
-                                        .create()
-                                        .show();
-                            }
-                        }
-                        catch (JSONException e){
-                            e.printStackTrace();
-                        }
-                    }
-                };
-
-                RegisterRequest registerRequest = new RegisterRequest(userID, userPassword, userName, userNumber, userType, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
-                queue.add(registerRequest);
-
-            }
-        });
-
-    }
-
-
-}
-*/
-
