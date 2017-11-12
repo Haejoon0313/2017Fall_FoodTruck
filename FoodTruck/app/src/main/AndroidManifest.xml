@@ -24,7 +24,8 @@
         <activity android:name=".FT_MenuModifyActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".NoticeActivity" />
-        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".Main2Activity"></activity>
     </application>
 
 </manifest>
