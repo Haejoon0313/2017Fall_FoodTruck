@@ -21,12 +21,21 @@ public class LoginActivity extends AppCompatActivity {
 
         Button loginButton = (Button) findViewById(R.id.loginButton);
         Button registerButton = (Button) findViewById(R.id.registerButton);
+        Button skipButton = (Button) findViewById(R.id.skipButton);
 
         registerButton.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view) {
                 Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
                 LoginActivity.this.startActivity(registerIntent);
+            }
+        });
+
+       skipButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent skipIntent = new Intent(LoginActivity.this, MainActivity.class);
+                LoginActivity.this.startActivity(skipIntent);
             }
         });
     }
