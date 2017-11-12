@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import org.apache.http.HttpResponse;
@@ -101,7 +100,13 @@ public class FT_CreateActivity extends AppCompatActivity {
 
         // 연결 HttpClient 객체 생성
         HttpClient httpClient= new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://143.248.244.24:8081/sign_in");
+
+        // server url 받기
+        /*String serverURL = getResources().getString(R.string.serverURL);
+
+        HttpPost httpPost = new HttpPost(serverURL + "/foodtruck_enroll");*/
+
+        HttpPost httpPost = new HttpPost("http://143.248.244.24:8081/foodtruck_enroll");
 
         // 객체 연결 설정 부분, 연결 최대시간 등등
         //HttpParams params = client.getParams();
