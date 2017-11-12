@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="areaSpinnerArray">
+        <item>[주 활동 지역 선택]</item>
+        <item>서울/경기</item>
+        <item>부산/울산/경남</item>
+        <item>대구/경북</item>
+        <item>대전/충남</item>
+        <item>충북</item>
+        <item>광주/전남</item>
+        <item>전북</item>
+        <item>강원</item>
+        <item>제주</item>
+    </string-array>
+</resources>

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         FTButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent FTcreateIntent = new Intent(MainActivity.this, RegisterActivity.class);
+                Intent FTcreateIntent = new Intent(MainActivity.this, FT_CreateActivity.class);
                 MainActivity.this.startActivity(FTcreateIntent);
             }
         });

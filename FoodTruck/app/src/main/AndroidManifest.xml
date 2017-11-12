@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".FT_CreateActivity"></activity>
+        <activity android:name=".FT_CreateActivity" />
+        <activity android:name=".FT_MenuModifyActivity"></activity>
     </application>
 
 </manifest>
