@@ -13,13 +13,40 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button searchButton = (Button) findViewById(R.id.searchButton);
         Button FTButton = (Button) findViewById(R.id.FT_create);
+        Button noticeButton = (Button) findViewById(R.id.noticeButton);
+        Button settingButton = (Button) findViewById(R.id.settingButton);
+
+        searchButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent searchIntent = new Intent(MainActivity.this, SearchActivity.class);
+                MainActivity.this.startActivity(searchIntent);
+            }
+        });
 
         FTButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Intent FTcreateIntent = new Intent(MainActivity.this, FT_CreateActivity.class);
                 MainActivity.this.startActivity(FTcreateIntent);
+            }
+        });
+
+        noticeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent noticeIntent = new Intent(MainActivity.this, NoticeActivity.class);
+                MainActivity.this.startActivity(noticeIntent);
+            }
+        });
+
+        settingButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
+                MainActivity.this.startActivity(settingIntent);
             }
         });
     }

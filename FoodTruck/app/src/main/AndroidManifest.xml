@@ -21,7 +21,10 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".FT_CreateActivity" />
-        <activity android:name=".FT_MenuModifyActivity"></activity>
+        <activity android:name=".FT_MenuModifyActivity" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".NoticeActivity" />
+        <activity android:name=".SettingActivity"></activity>
     </application>
 
 </manifest>

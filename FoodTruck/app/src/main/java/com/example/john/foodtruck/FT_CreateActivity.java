@@ -135,7 +135,7 @@ public class FT_CreateActivity extends AppCompatActivity {
                             dialog.dismiss();     //닫기
                         }
                     });
-                    alert.setMessage("모든 칸을 채워 주십시오.");
+                    alert.setMessage("모든 칸을 입력하여 주십시오.");
                     alert.show();
                     break;
             }
@@ -176,16 +176,16 @@ public class FT_CreateActivity extends AppCompatActivity {
             String responseString = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
 
             if (responseString.contains("0")) {
-                Log.d("성", responseString);
+                //Log.d("성", responseString);
                 return 0;
             } else if (responseString.contains("1")) {
-                Log.d("휴대폰", responseString);
+                //Log.d("휴대폰", responseString);
                 return 1;
             } else if (responseString.contains("2")) {
-                Log.d("지역", responseString);
+                //Log.d("지역", responseString);
                 return 2;
             } else if (responseString.contains("3")) {
-                Log.d("빈칸", responseString);
+                //Log.d("빈칸", responseString);
                 return 3;
             } else {
                 Log.d("Unknown Error", responseString);
