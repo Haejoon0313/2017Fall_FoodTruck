@@ -89,9 +89,10 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Integer result) {
             AlertDialog.Builder builder;
+            Intent intent;
             switch (result){
                 case 0 :
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent = new Intent(LoginActivity.this, MainActivity.class);
                     LoginActivity.this.startActivity(intent);
                     break;
                 case 1 :
@@ -114,6 +115,10 @@ public class LoginActivity extends AppCompatActivity {
                             .setNegativeButton("확인", null)
                             .create()
                             .show();
+                    break;
+                case 4 :
+                    intent = new Intent(LoginActivity.this, Main2Activity.class);
+                    LoginActivity.this.startActivity(intent);
                     break;
             }
         }
