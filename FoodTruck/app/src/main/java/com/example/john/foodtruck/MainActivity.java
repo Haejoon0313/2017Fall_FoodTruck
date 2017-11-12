@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button searchButton = (Button) findViewById(R.id.searchButton);
-        Button FTButton = (Button) findViewById(R.id.FT_create);
+        Button favoriteButton = (Button) findViewById(R.id.FT_create);
         Button noticeButton = (Button) findViewById(R.id.noticeButton);
         Button settingButton = (Button) findViewById(R.id.settingButton);
 
@@ -26,11 +26,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        FTButton.setOnClickListener(new View.OnClickListener(){
+        favoriteButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent FTcreateIntent = new Intent(MainActivity.this, FT_CreateActivity.class);
-                MainActivity.this.startActivity(FTcreateIntent);
+                Intent favoriteIntent = new Intent(MainActivity.this, favoriteActivity.class);
+                MainActivity.this.startActivity(favoriteIntent);
             }
         });
 
