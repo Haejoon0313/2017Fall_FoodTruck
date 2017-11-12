@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
             switch (result){
                 case 0 :
                     builder = new AlertDialog.Builder(RegisterActivity.this);
-                    builder.setMessage("회원 등록 성공")
+                    builder.setMessage("회원 등록에 성공하셨습니다.")
                             .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -111,21 +111,21 @@ public class RegisterActivity extends AppCompatActivity {
                     break;
                 case 1 :
                     builder = new AlertDialog.Builder(RegisterActivity.this);
-                    builder.setMessage("빈 칸")
+                    builder.setMessage("모든 칸을 입력해주십시오.")
                             .setNegativeButton("확인", null)
                             .create()
                             .show();
                     break;
                 case 2 :
                     builder = new AlertDialog.Builder(RegisterActivity.this);
-                    builder.setMessage("아이디 중복")
+                    builder.setMessage("중복된 아이디입니다.")
                             .setNegativeButton("확인", null)
                             .create()
                             .show();
                     break;
                 case 3 :
                     builder = new AlertDialog.Builder(RegisterActivity.this);
-                    builder.setMessage("이름+전화번호 중복")
+                    builder.setMessage("이미 등록된 사용자입니다.")
                             .setNegativeButton("확인", null)
                             .create()
                             .show();
@@ -166,19 +166,15 @@ public class RegisterActivity extends AppCompatActivity {
             String responseString = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
 
             if (responseString.contains("0")){
-                Log.d("성공", responseString);
                 return 0;
             }
             else if (responseString.contains("1")){
-                Log.d("빈 칸", responseString);
                 return 1;
             }
             else if (responseString.contains("2")){
-                Log.d("아이디 중복", responseString);
                 return 2;
             }
             else{
-                Log.d("이름+전화번호 중복", responseString);
                 return 3;
             }
 
