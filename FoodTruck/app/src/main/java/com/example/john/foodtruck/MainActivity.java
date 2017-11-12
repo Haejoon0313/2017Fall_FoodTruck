@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button searchButton = (Button) findViewById(R.id.searchButton);
-        Button favoriteButton = (Button) findViewById(R.id.FT_create);
+        Button favoriteButton = (Button) findViewById(R.id.FT_createButton);
         Button noticeButton = (Button) findViewById(R.id.noticeButton);
         Button settingButton = (Button) findViewById(R.id.settingButton);
 

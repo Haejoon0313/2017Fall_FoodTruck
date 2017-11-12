@@ -162,8 +162,14 @@ public class LoginActivity extends AppCompatActivity {
             else if (responseString.contains("2")){
                 return 2;
             }
-            else{
+            else if (responseString.contains("3")){
                 return 3;
+            }
+            else if (responseString.contains("4")){
+                return 4;
+            }
+            else{
+                return -1;
             }
 
         } catch (ClientProtocolException e) {

@@ -11,10 +11,10 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
 
         Button searchButton = (Button) findViewById(R.id.searchButton);
-        Button FTButton = (Button) findViewById(R.id.FT_create);
+        Button FT_createButton = (Button) findViewById(R.id.FT_createButton);
         Button noticeButton = (Button) findViewById(R.id.noticeButton);
         Button settingButton = (Button) findViewById(R.id.settingButton);
 
@@ -26,11 +26,11 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
-        FTButton.setOnClickListener(new View.OnClickListener(){
+        FT_createButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent FTcreateIntent = new Intent(Main2Activity.this, FT_CreateActivity.class);
-                Main2Activity.this.startActivity(FTcreateIntent);
+                Intent FT_createIntent = new Intent(Main2Activity.this, FT_CreateActivity.class);
+                Main2Activity.this.startActivity(FT_createIntent);
             }
         });
 
