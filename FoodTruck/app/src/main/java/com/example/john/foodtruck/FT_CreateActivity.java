@@ -1,6 +1,7 @@
 package com.example.john.foodtruck;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -94,22 +95,46 @@ public class FT_CreateActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Integer result) {
             AlertDialog.Builder alert = new AlertDialog.Builder(FT_CreateActivity.this);
-            alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();     //닫기
-                }
-            });
+
             switch (result){
+                case 0 :
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(FT_CreateActivity.this, MainActivity.class);
+                            FT_CreateActivity.this.startActivity(intent);
+                        }
+                    });
+                    alert.setMessage("푸드트럭 정보가 저장되었습니다.");
+                    alert.show();
+                    break;
                 case 1:
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();     //닫기
+                        }
+                    });
                     alert.setMessage("이미 등록된 매장 번호입니다.");
                     alert.show();
                     break;
                 case 2:
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();     //닫기
+                        }
+                    });
                     alert.setMessage("주 활동 지역을 선택하여 주십시오.");
                     alert.show();
                     break;
                 case 3:
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();     //닫기
+                        }
+                    });
                     alert.setMessage("모든 칸을 채워 주십시오.");
                     alert.show();
                     break;
