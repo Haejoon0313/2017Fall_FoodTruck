@@ -86,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
             return r;
         }
     }
-    public static int postJsonToServer(String id,String pw,String name,String phone,String type) throws IOException {
+    public int postJsonToServer(String id, String pw, String name, String phone, String type) throws IOException {
 
         ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
         registerInfo.add(new BasicNameValuePair("id", id));
@@ -97,7 +97,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         // 연결 HttpClient 객체 생성
         HttpClient httpClient= new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost("http://143.248.244.24:8081/sign_in");
+
+        // server url 받기
+        String serverURL = getResources().getString(R.string.serverURL);
+        HttpPost httpPost = new HttpPost(serverURL + "/sign_in");
 
         // 객체 연결 설정 부분, 연결 최대시간 등등
         //HttpParams params = client.getParams();

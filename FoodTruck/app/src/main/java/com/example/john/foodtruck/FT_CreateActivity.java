@@ -50,7 +50,6 @@ public class FT_CreateActivity extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ftArea = String.valueOf(position);
-                        Log.d("msg", String.valueOf(position));
                     }
 
                     @Override
@@ -90,7 +89,7 @@ public class FT_CreateActivity extends AppCompatActivity {
             return r;
         }
     }
-    public static int postJsonToServer(String name,String phone,String area,String introduction) throws IOException {
+    public int postJsonToServer(String name, String phone, String area, String introduction) throws IOException {
 
         ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
         registerInfo.add(new BasicNameValuePair("name", name));
@@ -102,11 +101,10 @@ public class FT_CreateActivity extends AppCompatActivity {
         HttpClient httpClient= new DefaultHttpClient();
 
         // server url 받기
-        /*String serverURL = getResources().getString(R.string.serverURL);
+        String serverURL = getResources().getString(R.string.serverURL);
+        HttpPost httpPost = new HttpPost(serverURL + "/foodtruck_enroll");
 
-        HttpPost httpPost = new HttpPost(serverURL + "/foodtruck_enroll");*/
-
-        HttpPost httpPost = new HttpPost("http://143.248.244.24:8081/foodtruck_enroll");
+        //HttpPost httpPost = new HttpPost("http://143.248.199.31:8081/foodtruck_enroll");
 
         // 객체 연결 설정 부분, 연결 최대시간 등등
         //HttpParams params = client.getParams();
@@ -124,13 +122,25 @@ public class FT_CreateActivity extends AppCompatActivity {
             HttpResponse response = httpClient.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
 
-            if (responseString.contains("2")){
+            if (responseString.contains("0")){
 
                 Log.d("성", responseString);
-                return 1;
+                return 0;
+            }
+            else if (responseString.contains("1")){
+                Log.d("휴대폰", responseString);
+                return -1;
+            }
+            else if (responseString.contains("2")){
+                Log.d("지역", responseString);
+                return -1;
+            }
+            else if (responseString.contains("3")){
+                Log.d("빈칸", responseString);
+                return -1;
             }
             else{
-                Log.d("실", responseString);
+                Log.d("머지", responseString);
                 return -1;
             }
 
