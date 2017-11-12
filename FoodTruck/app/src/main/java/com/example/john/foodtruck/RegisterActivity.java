@@ -1,6 +1,9 @@
 package com.example.john.foodtruck;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +25,7 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,6 +47,8 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText nameText = (EditText) findViewById(R.id.nameText);
         final EditText numberText = (EditText) findViewById(R.id.numberText);
         final RadioGroup rg = (RadioGroup) findViewById(R.id.rg);
+        final RadioButton sellerbutton = (RadioButton) findViewById(R.id.seller);
+        rg.check(sellerbutton.getId());
 
         Button registerBtn = (Button) findViewById(R.id.registerButton);
         registerBtn.setOnClickListener(new Button.OnClickListener() {
@@ -53,6 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                 userNumber = numberText.getText().toString();
                 int id = rg.getCheckedRadioButtonId();
                 RadioButton rb = (RadioButton) findViewById(id);
+
 
                 switch (rb.getText().toString()) {
                     case "판매자":
@@ -84,6 +91,46 @@ public class RegisterActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             return r;
+        }
+        @Override
+        protected void onPostExecute(Integer result) {
+            AlertDialog.Builder builder;
+            switch (result){
+                case 0 :
+                    builder = new AlertDialog.Builder(RegisterActivity.this);
+                    builder.setMessage("회원 등록 성공")
+                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                    RegisterActivity.this.startActivity(intent);
+                                }
+                            })
+                            .create()
+                            .show();
+                    break;
+                case 1 :
+                    builder = new AlertDialog.Builder(RegisterActivity.this);
+                    builder.setMessage("빈 칸")
+                            .setNegativeButton("확인", null)
+                            .create()
+                            .show();
+                    break;
+                case 2 :
+                    builder = new AlertDialog.Builder(RegisterActivity.this);
+                    builder.setMessage("아이디 중복")
+                            .setNegativeButton("확인", null)
+                            .create()
+                            .show();
+                    break;
+                case 3 :
+                    builder = new AlertDialog.Builder(RegisterActivity.this);
+                    builder.setMessage("이름+전화번호 중복")
+                            .setNegativeButton("확인", null)
+                            .create()
+                            .show();
+                    break;
+                }
         }
     }
     public int postJsonToServer(String id, String pw, String name, String phone, String type) throws IOException {
@@ -118,14 +165,21 @@ public class RegisterActivity extends AppCompatActivity {
             HttpResponse response = httpClient.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
 
-            if (responseString.contains("2")){
-
-                Log.d("성", responseString);
+            if (responseString.contains("0")){
+                Log.d("성공", responseString);
+                return 0;
+            }
+            else if (responseString.contains("1")){
+                Log.d("빈 칸", responseString);
                 return 1;
             }
+            else if (responseString.contains("2")){
+                Log.d("아이디 중복", responseString);
+                return 2;
+            }
             else{
-                Log.d("실", responseString);
-                return -1;
+                Log.d("이름+전화번호 중복", responseString);
+                return 3;
             }
 
         } catch (ClientProtocolException e) {
