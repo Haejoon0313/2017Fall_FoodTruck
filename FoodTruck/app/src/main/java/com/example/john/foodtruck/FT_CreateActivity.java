@@ -1,6 +1,8 @@
 package com.example.john.foodtruck;
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,10 +28,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FT_CreateActivity extends AppCompatActivity {
-    String ftName="";
-    String ftPhone="";
-    String ftArea="";
-    String ftIntro="";
+    String ftName = "";
+    String ftPhone = "";
+    String ftArea = "";
+    String ftIntro = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +90,33 @@ public class FT_CreateActivity extends AppCompatActivity {
             }
             return r;
         }
+
+        @Override
+        protected void onPostExecute(Integer result) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(FT_CreateActivity.this);
+            alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();     //닫기
+                }
+            });
+            switch (result){
+                case 1:
+                    alert.setMessage("이미 등록된 매장 번호입니다.");
+                    alert.show();
+                    break;
+                case 2:
+                    alert.setMessage("주 활동 지역을 선택하여 주십시오.");
+                    alert.show();
+                    break;
+                case 3:
+                    alert.setMessage("모든 칸을 채워 주십시오.");
+                    alert.show();
+                    break;
+            }
+        }
     }
+
     public int postJsonToServer(String name, String phone, String area, String introduction) throws IOException {
 
         ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
@@ -98,7 +126,7 @@ public class FT_CreateActivity extends AppCompatActivity {
         registerInfo.add(new BasicNameValuePair("introduction", introduction));
 
         // 연결 HttpClient 객체 생성
-        HttpClient httpClient= new DefaultHttpClient();
+        HttpClient httpClient = new DefaultHttpClient();
 
         // server url 받기
         String serverURL = getResources().getString(R.string.serverURL);
@@ -122,25 +150,20 @@ public class FT_CreateActivity extends AppCompatActivity {
             HttpResponse response = httpClient.execute(httpPost);
             String responseString = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
 
-            if (responseString.contains("0")){
-
+            if (responseString.contains("0")) {
                 Log.d("성", responseString);
                 return 0;
-            }
-            else if (responseString.contains("1")){
+            } else if (responseString.contains("1")) {
                 Log.d("휴대폰", responseString);
-                return -1;
-            }
-            else if (responseString.contains("2")){
+                return 1;
+            } else if (responseString.contains("2")) {
                 Log.d("지역", responseString);
-                return -1;
-            }
-            else if (responseString.contains("3")){
+                return 2;
+            } else if (responseString.contains("3")) {
                 Log.d("빈칸", responseString);
-                return -1;
-            }
-            else{
-                Log.d("머지", responseString);
+                return 3;
+            } else {
+                Log.d("Unknown Error", responseString);
                 return -1;
             }
 
@@ -152,3 +175,5 @@ public class FT_CreateActivity extends AppCompatActivity {
         return -1;
     }
 }
+
+
