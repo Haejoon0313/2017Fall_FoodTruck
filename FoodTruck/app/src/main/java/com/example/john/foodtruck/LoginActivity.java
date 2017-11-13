@@ -1,6 +1,6 @@
 package com.example.john.foodtruck;
 
-import android.app.Application;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -32,12 +32,12 @@ public class LoginActivity extends AppCompatActivity {
     String userID= "";
     String userPassword="";
 
-    MyApplication myApp = (MyApplication) getApplication();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        final MyApplication myApp = (MyApplication) getApplication();
 
         final EditText idText = (EditText) findViewById(R.id.idText);
         final EditText passwordText = (EditText) findViewById(R.id.passwordText);
@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 userID = idText.getText().toString();
                 userPassword = passwordText.getText().toString();
+                myApp.setcurrentID(userID);
                 new lTask().execute();
             }
         });
@@ -69,6 +70,8 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.startActivity(skipIntent);
             }
         });
+
+
     }
 
     private class lTask extends AsyncTask<String, Void, Integer> {

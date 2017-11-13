@@ -24,8 +24,6 @@ import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity {
 
-    MyApplication myApp = (MyApplication) getApplication();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -78,6 +76,7 @@ public class Main2Activity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
+            MyApplication myApp = (MyApplication) getApplication();
             try {
                 result = postJsonToServer(myApp.getcurrentID());
             } catch (IOException e) {
