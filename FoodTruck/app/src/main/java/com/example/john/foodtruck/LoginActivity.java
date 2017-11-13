@@ -1,5 +1,6 @@
 package com.example.john.foodtruck;
 
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -36,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        final MyApplication myApp = (MyApplication) getApplication();
+
         final EditText idText = (EditText) findViewById(R.id.idText);
         final EditText passwordText = (EditText) findViewById(R.id.passwordText);
 
@@ -47,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 userID = idText.getText().toString();
                 userPassword = passwordText.getText().toString();
+                myApp.setcurrentID(userID);
                 new lTask().execute();
             }
         });
@@ -66,9 +70,12 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.startActivity(skipIntent);
             }
         });
+
+
     }
 
     private class lTask extends AsyncTask<String, Void, Integer> {
+
         int r = -1;
 
         @Override
@@ -86,12 +93,14 @@ public class LoginActivity extends AppCompatActivity {
             return r;
         }
 
+
         @Override
         protected void onPostExecute(Integer result) {
             AlertDialog.Builder builder;
             Intent intent;
             switch (result){
                 case 0 :
+                    //myApp.setcurrentID(userID);
                     intent = new Intent(LoginActivity.this, MainActivity.class);
                     LoginActivity.this.startActivity(intent);
                     break;
@@ -117,6 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                             .show();
                     break;
                 case 4 :
+                    //myApp.setcurrentID(userID);
                     intent = new Intent(LoginActivity.this, Main2Activity.class);
                     LoginActivity.this.startActivity(intent);
                     break;
@@ -125,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public int postJsonToServer(String id, String pw) throws IOException {
+
 
         ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
         registerInfo.add(new BasicNameValuePair("id", id));
@@ -179,4 +190,5 @@ public class LoginActivity extends AppCompatActivity {
         }
         return -1;
     }
+
 }
