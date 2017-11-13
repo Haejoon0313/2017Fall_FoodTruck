@@ -2,8 +2,8 @@ package com.example.john.foodtruck;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,51 +20,32 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONArray;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Main2Activity extends AppCompatActivity {
+public class FT_InfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_ft__info);
 
-        Button searchButton = (Button) findViewById(R.id.searchButton);
-        Button FT_createButton = (Button) findViewById(R.id.FT_createButton);
-        Button noticeButton = (Button) findViewById(R.id.noticeButton);
-        Button settingButton = (Button) findViewById(R.id.settingButton);
+        Button myMenuButton = (Button) findViewById(R.id.myMenuButton);
+        Button FT_editButton = (Button) findViewById(R.id.FT_editButton);
 
-        searchButton.setOnClickListener(new View.OnClickListener(){
+        myMenuButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent searchIntent = new Intent(Main2Activity.this, SearchActivity.class);
-                Main2Activity.this.startActivity(searchIntent);
+                Intent searchIntent = new Intent(FT_InfoActivity.this, FT_MenuModifyActivity.class);
+                FT_InfoActivity.this.startActivity(searchIntent);
             }
         });
 
-        FT_createButton.setOnClickListener(new Button.OnClickListener(){
+        FT_editButton.setOnClickListener(new View.OnClickListener(){
+            @Override
             public void onClick(View view) {
                 new cTask().execute();
-            }
-        });
-
-        noticeButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent noticeIntent = new Intent(Main2Activity.this, NoticeActivity.class);
-                Main2Activity.this.startActivity(noticeIntent);
-            }
-        });
-
-        settingButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent settingIntent = new Intent(Main2Activity.this, SettingActivity.class);
-                Main2Activity.this.startActivity(settingIntent);
             }
         });
     }
@@ -93,37 +74,33 @@ public class Main2Activity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             Intent intent;
 
-            String status = "";
+            String name = "";
+            String phone = "";
+            String area = "";
+            String introduction = "";
 
             JSONObject obj = null;
             try {
                 obj = new JSONObject(result);
 
-                status = obj.getString("status");
+                name = obj.getString("name");
+                phone = obj.getString("phone");
+                area = obj.getString("area");
+                introduction = obj.getString("introduction");
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            // 등록된 푸드트럭 있을 시, 기존 정보를 합친 페이지를 수정으로 열기
 
-            switch (status){
-                case "0":
-                    // 등록된 푸드트럭 있을 시, 기존 정보 불러오기
-                    //Log.d("case 0", "동일한 푸드트럭");
-                    intent = new Intent(Main2Activity.this, FT_InfoActivity.class);
-                    Main2Activity.this.startActivity(intent);
-                    break;
-                case "-1":
-                    // 등록된 푸드트럭 없을 시, 새로 등록 페이지 오픈
-                    //Log.d("case -1", "노존재");
-                    intent = new Intent(Main2Activity.this, FT_CreateActivity.class);
-                    Main2Activity.this.startActivity(intent);
-                    break;
-                default:
-                    //Log.d("case 42234234", "망");
-                    intent = new Intent(Main2Activity.this, FT_CreateActivity.class);
-                    Main2Activity.this.startActivity(intent);
-                    break;
-            }
+            Log.d("case", name);
+            Log.d("case", phone);
+            Log.d("case", area);
+            Log.d("case", introduction);
+            intent = new Intent(FT_InfoActivity.this, FT_CreateActivity.class);
+            FT_InfoActivity.this.startActivity(intent);
+
+
         }
     }
 
