@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent;
             switch (result){
                 case 0 :
-                    myApp.setcurrentID(userID);
+                    //myApp.setcurrentID(userID);
                     intent = new Intent(LoginActivity.this, MainActivity.class);
                     LoginActivity.this.startActivity(intent);
                     break;
@@ -123,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                             .show();
                     break;
                 case 4 :
+                    //myApp.setcurrentID(userID);
                     intent = new Intent(LoginActivity.this, Main2Activity.class);
                     LoginActivity.this.startActivity(intent);
                     break;
