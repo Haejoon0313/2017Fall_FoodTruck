@@ -33,15 +33,20 @@ public class FT_CreateActivity extends AppCompatActivity {
     String ftPhone = "";
     String ftArea = "";
     String ftIntro = "";
+    String currentID="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ft__create);
 
+        final MyApplication myApp = (MyApplication) getApplication();
+
         final EditText nameText = (EditText) findViewById(R.id.nameText);
         final EditText phoneText = (EditText) findViewById(R.id.phoneText);
         final EditText introText = (EditText) findViewById(R.id.introText);
+
+        currentID = myApp.getcurrentID();
 
         String[] tempArea = getResources().getStringArray(R.array.areaSpinnerArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tempArea);
@@ -85,7 +90,7 @@ public class FT_CreateActivity extends AppCompatActivity {
         @Override
         protected Integer doInBackground(String... strings) {
             try {
-                r = postJsonToServer(ftName, ftPhone, ftArea, ftIntro);
+                r = postJsonToServer(ftName, ftPhone, ftArea, ftIntro, currentID);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -101,7 +106,7 @@ public class FT_CreateActivity extends AppCompatActivity {
                     alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(FT_CreateActivity.this, MainActivity.class);
+                            Intent intent = new Intent(FT_CreateActivity.this, Main2Activity.class);
                             FT_CreateActivity.this.startActivity(intent);
                         }
                     });
@@ -142,13 +147,14 @@ public class FT_CreateActivity extends AppCompatActivity {
         }
     }
 
-    public int postJsonToServer(String name, String phone, String area, String introduction) throws IOException {
+    public int postJsonToServer(String name, String phone, String area, String introduction, String currentID) throws IOException {
 
         ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
         registerInfo.add(new BasicNameValuePair("name", name));
         registerInfo.add(new BasicNameValuePair("phone", phone));
         registerInfo.add(new BasicNameValuePair("area", area));
         registerInfo.add(new BasicNameValuePair("introduction", introduction));
+        registerInfo.add(new BasicNameValuePair("id", currentID));
 
         // 연결 HttpClient 객체 생성
         HttpClient httpClient = new DefaultHttpClient();
