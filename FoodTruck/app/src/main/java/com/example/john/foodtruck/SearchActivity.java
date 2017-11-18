@@ -1,6 +1,7 @@
 package com.example.john.foodtruck;
 
 import android.app.SearchableInfo;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -94,30 +95,14 @@ public class SearchActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             return r;
+
         }
         @Override
         protected void onPostExecute(String result) {
-            try {
-                JSONObject resultJson = new JSONObject(result);
 
-                String sta = resultJson.getString("status");
-                JSONArray arr = resultJson.getJSONArray("data");
-
-                for (int i = 0; i < arr.length(); i++){
-                    String area = arr.getJSONObject(i).getString("area");
-                    String id = arr.getJSONObject(i).getString("id");
-                    String intro= arr.getJSONObject(i).getString("introduction");
-                    String name= arr.getJSONObject(i).getString("name");
-                    String phone= arr.getJSONObject(i).getString("phone");
-                    Log.d("호잇",sta+" "+area+" "+id+" "+intro+" "+name+" "+phone);
-                }
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
+            Intent intent = new Intent(SearchActivity.this, SearchResultActivity.class);
+            intent.putExtra("결과",result);
+            startActivity(intent);
         }
     }
     public String postJsonToServer(String location, String keyword) throws IOException {

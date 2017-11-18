@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/areaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="지역" />
+    <TextView
+        android:id="@+id/idText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#135792"
+        android:textSize="40dp"
+        app:layout_constraintTop_toBottomOf="@id/areaText"
+        android:text="아이디" />
+
+    <TextView
+        android:id="@+id/introText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#920022"
+        android:textSize="30dp"
+        app:layout_constraintTop_toBottomOf="@id/idText"
+        android:text="소개" />
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#139402"
+        android:textSize="10dp"
+        app:layout_constraintTop_toBottomOf="@id/introText"
+        android:text="이름" />
+
+    <TextView
+        android:id="@+id/phoneText"
+        app:layout_constraintTop_toBottomOf="@id/nameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#F4A49A"
+        android:textSize="20dp"
+        android:text="전화번호" />
+</android.support.constraint.ConstraintLayout>

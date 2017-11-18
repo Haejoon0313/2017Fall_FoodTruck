@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".SearchResultActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".FT_CreateActivity" />
         <activity android:name=".FT_MenuModifyActivity" />
