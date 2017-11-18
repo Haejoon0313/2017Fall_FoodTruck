@@ -46,11 +46,11 @@ public class SearchResultAdapter extends BaseAdapter {
         TextView nameText = (TextView) v.findViewById(R.id.nameText);
         TextView phoneText = (TextView) v.findViewById(R.id.phoneText);
 
-        areaText.setText(resultList.get(i).getArea());
-        idText.setText(resultList.get(i).getId());
-        introText.setText(resultList.get(i).getIntro());
-        nameText.setText(resultList.get(i).getName());
-        phoneText.setText(resultList.get(i).getPhone());
+        areaText.setText("지역 : "+resultList.get(i).getArea());
+        idText.setText("아이디 : "+resultList.get(i).getId());
+        introText.setText("소개 : "+resultList.get(i).getIntro());
+        nameText.setText("이름 : "+resultList.get(i).getName());
+        phoneText.setText("전화번호 : "+resultList.get(i).getPhone());
 
         return v;
     }
