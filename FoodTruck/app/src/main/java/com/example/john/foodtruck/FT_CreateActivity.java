@@ -32,6 +32,7 @@ public class FT_CreateActivity extends AppCompatActivity {
     String ftName = "";
     String ftPhone = "";
     String ftArea = "";
+    String ftCtg = "";
     String ftIntro = "";
     String currentID="";
 
@@ -46,6 +47,12 @@ public class FT_CreateActivity extends AppCompatActivity {
         final EditText phoneText = (EditText) findViewById(R.id.phoneText);
         final EditText introText = (EditText) findViewById(R.id.introText);
 
+        if(myApp.getTempFTphone().equals("-1")){
+            nameText.setText(myApp.getTempFTname());
+            phoneText.setText(myApp.getTempFTphone());
+            introText.setText(myApp.getTempFTarea());
+        }
+
         currentID = myApp.getcurrentID();
 
         String[] tempArea = getResources().getStringArray(R.array.areaSpinnerArray);
@@ -53,11 +60,38 @@ public class FT_CreateActivity extends AppCompatActivity {
         final Spinner areaSpinner = (Spinner) findViewById(R.id.areaSpinner);
         areaSpinner.setAdapter(adapter);
 
+        if(myApp.getTempFTphone().equals("-1")){
+            areaSpinner.setSelection(myApp.getTempFTarea());
+        }
+
         areaSpinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         ftArea = String.valueOf(position);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                }
+        );
+
+        String[] tempCtg = getResources().getStringArray(R.array.ctgSpinnerArray);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, tempCtg);
+        final Spinner ctgSpinner = (Spinner) findViewById(R.id.ctgSpinner);
+        ctgSpinner.setAdapter(adapter2);
+
+        if(myApp.getTempFTphone().equals("-1")){
+            ctgSpinner.setSelection(myApp.getTempFTctg());
+        }
+
+        ctgSpinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        ftCtg = String.valueOf(position);
                     }
 
                     @Override
@@ -90,7 +124,7 @@ public class FT_CreateActivity extends AppCompatActivity {
         @Override
         protected Integer doInBackground(String... strings) {
             try {
-                r = postJsonToServer(ftName, ftPhone, ftArea, ftIntro, currentID);
+                r = postJsonToServer(ftName, ftPhone, ftArea, ftCtg, ftIntro, currentID);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -143,16 +177,27 @@ public class FT_CreateActivity extends AppCompatActivity {
                     alert.setMessage("모든 칸을 입력하여 주십시오.");
                     alert.show();
                     break;
+                case 4:
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();     //닫기
+                        }
+                    });
+                    alert.setMessage("카테고리를 선택하여 주십시오.");
+                    alert.show();
+                    break;
             }
         }
     }
 
-    public int postJsonToServer(String name, String phone, String area, String introduction, String currentID) throws IOException {
+    public int postJsonToServer(String name, String phone, String area, String ctg, String introduction, String currentID) throws IOException {
 
         ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
         registerInfo.add(new BasicNameValuePair("name", name));
         registerInfo.add(new BasicNameValuePair("phone", phone));
         registerInfo.add(new BasicNameValuePair("area", area));
+        registerInfo.add(new BasicNameValuePair("ctg", ctg));
         registerInfo.add(new BasicNameValuePair("introduction", introduction));
         registerInfo.add(new BasicNameValuePair("id", currentID));
 
@@ -193,6 +238,9 @@ public class FT_CreateActivity extends AppCompatActivity {
             } else if (responseString.contains("3")) {
                 //Log.d("빈칸", responseString);
                 return 3;
+            } else if (responseString.contains("4")) {
+                //Log.d("카테고리", responseString);
+                return 4;
             } else {
                 Log.d("Unknown Error", responseString);
                 return -1;

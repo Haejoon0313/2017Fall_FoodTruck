@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
        skipButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent skipIntent = new Intent(LoginActivity.this, MainActivity.class);
+                Intent skipIntent = new Intent(LoginActivity.this, Main2Activity.class);
                 LoginActivity.this.startActivity(skipIntent);
             }
         });

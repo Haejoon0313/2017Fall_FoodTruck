@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ctgSpinnerArray">
+        <item>[카테고리 선택]</item>
+        <item>큐브스테이크</item>
+        <item>김요한</item>
+        <item>닭꼬치</item>
+        <item>정해준</item>
+        <item>커피</item>
+        <item>박채훈</item>
+    </string-array>
+</resources>

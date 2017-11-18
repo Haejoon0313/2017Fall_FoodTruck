@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -20,7 +19,6 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONArray;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,7 +32,7 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         Button searchButton = (Button) findViewById(R.id.searchButton);
-        Button FT_createButton = (Button) findViewById(R.id.FT_createButton);
+        Button FT_mytruckButton = (Button) findViewById(R.id.FT_mytruckButton);
         Button noticeButton = (Button) findViewById(R.id.noticeButton);
         Button settingButton = (Button) findViewById(R.id.settingButton);
 
@@ -46,7 +44,7 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
-        FT_createButton.setOnClickListener(new Button.OnClickListener(){
+        FT_mytruckButton.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View view) {
                 new cTask().execute();
             }
@@ -94,12 +92,24 @@ public class Main2Activity extends AppCompatActivity {
             Intent intent;
 
             String status = "";
+            String name = "";
+            String phone = "";
+            String area = "";
+            String ctg = "";
+            String introduction = "";
+
+            final MyApplication myApp = (MyApplication) getApplication();
 
             JSONObject obj = null;
             try {
                 obj = new JSONObject(result);
 
                 status = obj.getString("status");
+                name = obj.getString("name");
+                phone = obj.getString("phone");
+                area = obj.getString("area");
+                ctg = obj.getString("ctg");
+                introduction = obj.getString("introduction");
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -107,20 +117,26 @@ public class Main2Activity extends AppCompatActivity {
 
             switch (status){
                 case "0":
-                    // 등록된 푸드트럭 있을 시, 기존 정보 불러오기
+                    // 등록된 푸드트럭 있을 시, 기존 정보 global 저장
                     //Log.d("case 0", "동일한 푸드트럭");
+                    myApp.setTempFTname(name);
+                    myApp.setTempFTphone(phone);
+                    myApp.setTempFTarea(area);
+                    myApp.setTempFTctg(ctg);
+                    myApp.setTempFTintro(introduction);
+
                     intent = new Intent(Main2Activity.this, FT_InfoActivity.class);
                     Main2Activity.this.startActivity(intent);
                     break;
                 case "-1":
-                    // 등록된 푸드트럭 없을 시, 새로 등록 페이지 오픈
+                    // 등록된 푸드트럭 없을 시, 새로 등록 페이지 오픈, globla 전화번호 -1인 상태 유지
                     //Log.d("case -1", "노존재");
                     intent = new Intent(Main2Activity.this, FT_CreateActivity.class);
                     Main2Activity.this.startActivity(intent);
                     break;
-                default:
+                default: // 차후 삭제 예정
                     //Log.d("case 42234234", "망");
-                    intent = new Intent(Main2Activity.this, FT_CreateActivity.class);
+                    intent = new Intent(Main2Activity.this, FT_InfoActivity.class);
                     Main2Activity.this.startActivity(intent);
                     break;
             }
