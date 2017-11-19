@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,12 +57,28 @@ public class SearchResultActivity extends AppCompatActivity {
                 name= arr.getJSONObject(i).getString("name");
                 phone= arr.getJSONObject(i).getString("phone");
 
-                resultList.add(new SearchResult("지역 : "+area,"아이디 : "+id,"소개 : "+intro,"이름 : "+name,"전화번호 : "+phone));
+                resultList.add(new SearchResult(area,id,intro,name,phone));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         adapter = new SearchResultAdapter(getApplicationContext(),resultList);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(SearchResultActivity.this,SearchFTInfoActivity.class); // 다음넘어갈 화면
+
+                intent.putExtra("area", resultList.get(position).getArea());
+                intent.putExtra("id", resultList.get(position).getId());
+                intent.putExtra("introduction", resultList.get(position).getIntro());
+                intent.putExtra("name", resultList.get(position).getName());
+                intent.putExtra("phone", resultList.get(position).getPhone());
+
+                startActivity(intent);
+
+            }
+        });
     }
 }

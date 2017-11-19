@@ -31,7 +31,10 @@
         <activity android:name=".SettingActivity" />
         <activity android:name=".favoriteActivity" />
         <activity android:name=".Main2Activity" />
-        <activity android:name=".FT_InfoActivity"></activity>
+        <activity android:name=".FT_InfoActivity" />
+        <activity android:name=".SearchFTInfoActivity" />
+        <activity android:name=".FTInfoTabActivity" />
+        <activity android:name=".FTReviewTabActivity"></activity>
     </application>
 
 </manifest>
