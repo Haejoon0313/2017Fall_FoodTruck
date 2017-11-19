@@ -47,10 +47,10 @@ public class FT_CreateActivity extends AppCompatActivity {
         final EditText phoneText = (EditText) findViewById(R.id.phoneText);
         final EditText introText = (EditText) findViewById(R.id.introText);
 
-        if(myApp.getTempFTphone().equals("-1")){
+        if(!myApp.getTempFTphone().equals("-1")){
             nameText.setText(myApp.getTempFTname());
             phoneText.setText(myApp.getTempFTphone());
-            introText.setText(myApp.getTempFTarea());
+            introText.setText(myApp.getTempFTintro());
         }
 
         currentID = myApp.getcurrentID();
@@ -60,7 +60,7 @@ public class FT_CreateActivity extends AppCompatActivity {
         final Spinner areaSpinner = (Spinner) findViewById(R.id.areaSpinner);
         areaSpinner.setAdapter(adapter);
 
-        if(myApp.getTempFTphone().equals("-1")){
+        if(!myApp.getTempFTphone().equals("-1")){
             areaSpinner.setSelection(myApp.getTempFTarea());
         }
 
@@ -83,7 +83,7 @@ public class FT_CreateActivity extends AppCompatActivity {
         final Spinner ctgSpinner = (Spinner) findViewById(R.id.ctgSpinner);
         ctgSpinner.setAdapter(adapter2);
 
-        if(myApp.getTempFTphone().equals("-1")){
+        if(!myApp.getTempFTphone().equals("-1")){
             ctgSpinner.setSelection(myApp.getTempFTctg());
         }
 

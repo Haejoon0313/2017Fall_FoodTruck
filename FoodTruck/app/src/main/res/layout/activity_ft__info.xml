@@ -21,10 +21,12 @@
         android:id="@+id/FT_info_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:text="매장 전화번호"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="91dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FT_info_1" />
 
     <TextView
         android:id="@+id/FT_info_3"
@@ -91,7 +93,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="34dp"
         android:layout_marginTop="24dp"
         android:text="지역지역"
         android:textAppearance="@style/TextAppearance.AppCompat"
@@ -105,7 +107,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="34dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:text="카아테고리이"
         android:textAppearance="@style/TextAppearance.AppCompat"
@@ -119,7 +121,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="24dp"
         android:text="소개소개소개"
         android:textAppearance="@style/TextAppearance.AppCompat"

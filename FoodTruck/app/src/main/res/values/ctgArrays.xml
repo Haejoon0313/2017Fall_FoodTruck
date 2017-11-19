@@ -2,11 +2,15 @@
 <resources>
     <string-array name="ctgSpinnerArray">
         <item>[카테고리 선택]</item>
-        <item>큐브스테이크</item>
-        <item>김요한</item>
-        <item>닭꼬치</item>
-        <item>정해준</item>
-        <item>커피</item>
-        <item>박채훈</item>
+        <item>꼬치</item>
+        <item>튀김</item>
+        <item>피자</item>
+        <item>치킨</item>
+        <item>분식</item>
+        <item>면 요리</item>
+        <item>철판</item>
+        <item>패스트푸드</item>
+        <item>라이스</item>
+        <item>기타</item>
     </string-array>
 </resources>
