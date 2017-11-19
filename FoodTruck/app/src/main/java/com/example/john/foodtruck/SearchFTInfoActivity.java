@@ -9,37 +9,50 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class SearchFTInfoActivity extends TabActivity{
-    TabHost mTab;
+public class SearchFTInfoActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_foodtruck_info);
 
-        Intent intent = getIntent(); // 보내온 Intent를 얻는다
-        String a=intent.getStringExtra("area");
-        String b=intent.getStringExtra("name");
-        String c=intent.getStringExtra("id");
-        String d=intent.getStringExtra("introduction");
-        String e=intent.getStringExtra("phone");
+        Intent intent = getIntent();
+        String area=intent.getStringExtra("area");
+        String name=intent.getStringExtra("name");
+        String id=intent.getStringExtra("id");
+        String intro=intent.getStringExtra("introduction");
+        String phone=intent.getStringExtra("phone");
 
-        Toast.makeText(getApplicationContext(), a+"/"+b+"/"+c+"/"+d+"/"+e, Toast.LENGTH_LONG).show();
+        TextView title = (TextView) findViewById(R.id.FTTitle);
+        title.setText(name);
 
-        mTab = getTabHost();
-        TabHost.TabSpec spec;
-        Intent intent1;
+        TabHost tabHost1 = (TabHost) findViewById(android.R.id.tabhost);
+
+        tabHost1.setup() ;
+        TabHost.TabSpec ts1 = tabHost1.newTabSpec("Tab Spec 1") ;
+        ts1.setContent(R.id.FTInfo) ;
+        ts1.setIndicator("상세정보") ;
+
+        //상세정보 탭 관련 내용
+        TextView area1 = (TextView) findViewById(R.id.areaText);
+        TextView phone1 = (TextView) findViewById(R.id.phoneText);
+        TextView id1 = (TextView) findViewById(R.id.idText);
+        TextView intro1 = (TextView) findViewById(R.id.introText);
+
+        area1.setText("지역"+area);
+        phone1.setText("전화번호"+phone);
+        id1.setText("아이디"+id);
+        intro1.setText("소개"+intro);
 
 
-        intent1 = new Intent(this,FTInfoTabActivity.class);
-        spec = mTab.newTabSpec("FirstTab").setIndicator("상세정보")
-                .setContent(intent);
-        mTab.addTab(spec);
+        tabHost1.addTab(ts1) ;
+        TabHost.TabSpec ts2 = tabHost1.newTabSpec("Tab Spec 2") ;
+        ts2.setContent(R.id.FTReview) ;
+        ts2.setIndicator("리뷰") ;
+        tabHost1.addTab(ts2) ;
 
-        intent1 = new Intent(this,FTReviewTabActivity.class);
-        spec = mTab.newTabSpec("SecondTab").setIndicator("리뷰")
-                .setContent(intent);
-        mTab.addTab(spec);
+        //리뷰 탭 관련 내용
     }
 }

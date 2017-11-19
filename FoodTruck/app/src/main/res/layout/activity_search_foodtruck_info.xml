@@ -12,13 +12,17 @@
     tools:context="com.example.john.foodtruck.SearchFTInfoActivity">
 
     <TextView
-
-        android:id="@+id/FTInfo"
+        android:id="@+id/FTTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="푸드트럭 정보"
         android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@id/FTInfo"
+        android:gravity="center"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        app:layout_constraintBottom_toTopOf="@id/FTTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/FTInfo">
+        app:layout_constraintTop_toBottomOf="@id/FTTitle">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,7 +49,84 @@
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent" >
+
+                <LinearLayout
+                    android:id="@+id/FTInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/areaText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="지역"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                            <TextView
+                                android:id="@+id/idText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="아이디"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/areaText" />
+                            <TextView
+                                android:id="@+id/introText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="소개"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/idText" />
+                            <TextView
+                                android:id="@+id/nameText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="이름"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/introText" />
+                            <TextView
+                                android:id="@+id/phoneText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="전화번호"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/nameText" />
+                        </LinearLayout>
+                    </ScrollView>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/FTReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#8BC34A"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="TAB CONTENT 2" />
+                </LinearLayout>
+            </FrameLayout>
         </LinearLayout>
     </TabHost>
 </android.support.constraint.ConstraintLayout>

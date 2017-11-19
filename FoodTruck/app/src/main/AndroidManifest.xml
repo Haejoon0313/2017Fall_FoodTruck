@@ -33,8 +33,6 @@
         <activity android:name=".Main2Activity" />
         <activity android:name=".FT_InfoActivity" />
         <activity android:name=".SearchFTInfoActivity" />
-        <activity android:name=".FTInfoTabActivity" />
-        <activity android:name=".FTReviewTabActivity"></activity>
     </application>
 
 </manifest>

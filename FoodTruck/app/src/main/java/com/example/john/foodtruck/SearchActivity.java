@@ -96,7 +96,7 @@ public class SearchActivity extends AppCompatActivity {
             }
             return r;
 */
-            return "{\"status\": 3,\"data\": [{\"area\": \"1\",\"id\": \"ddehun1\",\"introduction\": \"이건푸드트럭1\",\"name\":\"박채훈의 푸드트럭1\",\"phone\": \"06123432435123\"},{\"area\": \"2\",\"id\": \"ddehun2\",\"introduction\": \"이건푸키키드트럭2\",\"name\": \"김요한의 푸드트럭2\",\"phone\": \"06133242345234\"},{\"area\": \"3\",\"id\": \"ddehun3\",\"introduction\": \"이건푸키키드트럭3\",\"name\": \"김요한의 푸드트럭3\",\"phone\": \"06133242345345\"}]}";
+            return "{\"status\": 3,\"data\": [{\"area\": \"1\",\"id\": \"ddehun1\",\"introduction\": \"이건푸드트럭1\",\"name\":\"박채훈의 푸드트럭1\",\"phone\": \"06123432435123\"},{\"area\": \"2\",\"id\": \"ddehun2\",\"introduction\": \"이건푸키키드트럭2\",\"name\": \"김요한의 푸드트럭2\",\"phone\": \"06133242345234\"},{\"area\": \"3\",\"id\": \"ddehun3\",\"introduction\": \"이건푸키키드트럭3\",\"name\": \"김요한의 푸드트럭3\",\"phone\": \"06133242345345\"},{\"area\": \"1\",\"id\": \"ddehun1\",\"introduction\": \"이건푸드트럭1\",\"name\":\"박채훈의 푸드트럭1\",\"phone\": \"06123432435123\"},{\"area\": \"1\",\"id\": \"ddehun1\",\"introduction\": \"이건푸드트럭1\",\"name\":\"박채훈의 푸드트럭1\",\"phone\": \"06123432435123\"},{\"area\": \"1\",\"id\": \"ddehun1\",\"introduction\": \"이건푸드트럭1\",\"name\":\"박채훈의 푸드트럭1\",\"phone\": \"06123432435123\"},{\"area\": \"1\",\"id\": \"ddehun1\",\"introduction\": \"이건푸드트럭1\",\"name\":\"박채훈의 푸드트럭1\",\"phone\": \"06123432435123\"},{\"area\": \"1\",\"id\": \"ddehun1\",\"introduction\": \"이건푸드트럭1\",\"name\":\"박채훈의 푸드트럭1\",\"phone\": \"06123432435123\"}]}";
         }
         @Override
         protected void onPostExecute(String result) {
