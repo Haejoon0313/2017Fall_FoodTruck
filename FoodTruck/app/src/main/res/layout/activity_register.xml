@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/idText" />
 
     <EditText
-        android:id="@+id/reviewDetail"
+        android:id="@+id/nameText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -57,7 +57,7 @@
         android:inputType="phone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reviewDetail" />
+        app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
     <RadioGroup
 

@@ -55,7 +55,7 @@ public class FT_ReviewCreateActivity extends AppCompatActivity {
             }
         });
 
-        final EditText reviewDetailText = (EditText) findViewById(R.id.reviewDetail);
+        final EditText reviewDetailText = (EditText) findViewById(R.id.nameText);
 
         final MyApplication myApp = (MyApplication) getApplication();
         reviewWriter = myApp.getcurrentID();
