@@ -71,7 +71,7 @@ public class SearchFTInfoActivity extends AppCompatActivity{
         tabHost1.addTab(ts2) ;
 
         //리뷰 탭 관련 내용
-        /*FT_reviewview_list = (ListView) findViewById(R.id.FT_reviewview_list);
+        FT_reviewview_list = (ListView) findViewById(R.id.FT_reviewview_list);
         reviewList = new ArrayList<FT_ReviewList>();
 
         try {
@@ -91,7 +91,7 @@ public class SearchFTInfoActivity extends AppCompatActivity{
         }
 
         adapter = new ReviewAdapter(getApplicationContext(), reviewList);
-        FT_reviewview_list.setAdapter(adapter);*/
+        FT_reviewview_list.setAdapter(adapter);
 
         Button FT_reviewview_enroll = (Button) findViewById(R.id.FT_reviewview_enroll);
 

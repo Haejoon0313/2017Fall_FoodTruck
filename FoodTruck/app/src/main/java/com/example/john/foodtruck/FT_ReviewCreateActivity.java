@@ -40,11 +40,18 @@ public class FT_ReviewCreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ft__review_create);
 
+        final Intent intent = getIntent();
+
+        final String id=intent.getStringExtra("id");
+
+        foodtruckID = id;
+
         final RatingBar reviewRatingBar = (RatingBar) findViewById(R.id.reviewRating);
         reviewRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                reviewRating = String.valueOf(v);
+                int i = (int) v;
+                reviewRating = String.valueOf(i);
             }
         });
 
@@ -155,7 +162,7 @@ public class FT_ReviewCreateActivity extends AppCompatActivity {
 
         // server url 받기
         String serverURL = getResources().getString(R.string.serverURL);
-        HttpPost httpPost = new HttpPost(serverURL + "/menu_enroll");
+        HttpPost httpPost = new HttpPost(serverURL + "/review_write");
 
         //HttpPost httpPost = new HttpPost("http://143.248.199.31:8081/foodtruck_enroll");
 

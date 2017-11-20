@@ -37,8 +37,8 @@ public class SearchResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String result = intent.getStringExtra("결과");
 
-        /*String menulist="";
-        String reviewlist="";*/
+        String menulist="";
+        String reviewlist="";
 
         listView = (ListView) findViewById(R.id.searchResult);
         resultCount = (TextView) findViewById(R.id.resultCount);
@@ -60,11 +60,11 @@ public class SearchResultActivity extends AppCompatActivity {
                 name= arr.getJSONObject(i).getString("name");
                 phone= arr.getJSONObject(i).getString("phone");
 
-                /*JSONArray menuarr  = arr.getJSONObject(i).getJSONArray("menulist");
+                JSONArray menuarr  = arr.getJSONObject(i).getJSONArray("menulist");
                 menulist = menuarr.toString();
 
                 JSONArray reviewarr  = arr.getJSONObject(i).getJSONArray("reviewlist");
-                reviewlist = reviewarr.toString();*/
+                reviewlist = reviewarr.toString();
 
                 resultList.add(new SearchResult(area,id,intro,name,phone));
             }
@@ -74,8 +74,8 @@ public class SearchResultActivity extends AppCompatActivity {
         adapter = new SearchResultAdapter(getApplicationContext(),resultList);
         listView.setAdapter(adapter);
 
-        /*final String finalMenulist = menulist;
-        final String finalReviewlist = reviewlist;*/
+        final String finalMenulist = menulist;
+        final String finalReviewlist = reviewlist;
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -88,8 +88,8 @@ public class SearchResultActivity extends AppCompatActivity {
                 intent.putExtra("name", resultList.get(position).getName());
                 intent.putExtra("phone", resultList.get(position).getPhone());
 
-                /*intent.putExtra("MenuList", finalMenulist);
-                intent.putExtra("ReviewList", finalReviewlist);*/
+                intent.putExtra("MenuList", finalMenulist);
+                intent.putExtra("ReviewList", finalReviewlist);
 
                 startActivity(intent);
 
