@@ -153,7 +153,7 @@ public class GpsInfo extends Service implements LocationListener {
         alertDialog = new AlertDialog.Builder(mContext);
 
         alertDialog.setTitle("GPS 사용유무셋팅");
-        alertDialog.setMessage("GPS 셋팅이 되지 않았을수도 있습니다.\n설정창으로 가시겠습니까?");
+        alertDialog.setMessage("위치 기능을 사용 설정하시고 잠시 후 다시 버튼을 클릭하세요.");
 
                 // OK 를 누르게 되면 설정창으로 이동합니다.
                 alertDialog.setPositiveButton("Settings",

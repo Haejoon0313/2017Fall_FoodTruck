@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,6 +35,14 @@
         <activity android:name=".SearchFTInfoActivity" />
         <activity android:name=".FT_ReviewCreateActivity" />
         <activity android:name=".FT_MenuViewActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAmfMbrcPM6vR0IgNYNSNEs4MqZ-bl8ZHI" />
+
+        <uses-library android:name="com.google.android.maps" />
+
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

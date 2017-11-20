@@ -1,5 +1,10 @@
 package com.example.john.foodtruck;
 
+import android.app.FragmentManager;
+import android.graphics.Point;
+import android.location.Location;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
 import android.app.SearchableInfo;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -10,6 +15,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -29,54 +44,74 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class SearchActivity extends AppCompatActivity {
-    private GpsInfo gps;
-
-    double latitude = 0;
-    double longitude = 0;
+public class SearchActivity extends AppCompatActivity implements OnMapReadyCallback{
+    GoogleMap mMap;
+    double latitude;
+    double longitude;
     String keyword="";
     String location = "";
     String lat = "";
     String lon = "";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
         final EditText keywordText = (EditText) findViewById(R.id.keywordText);
         final Button searchButton = (Button) findViewById(R.id.searchButton);
 
-        // GPS 정보를 보여주기 위한 이벤트 클래스 등록
+        FragmentManager fragmentManager = getFragmentManager();
+        MapFragment mapFragment = (MapFragment)fragmentManager
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+        Intent intent = getIntent();
+
+        latitude=intent.getDoubleExtra("latitude",100);
+        longitude=intent.getDoubleExtra("longitude",100);
+
         searchButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                gps = new GpsInfo(SearchActivity.this);
-                // GPS 사용유무 가져오기
-                if (gps.isGetLocation()) {
-
-                    double latitude = gps.getLatitude();
-                    double longitude = gps.getLongitude();
-/*
-                    Toast.makeText(
-                            getApplicationContext(),
-                            "당신의 위치 - \n위도: " + latitude + "\n경도: " + longitude,
-                            Toast.LENGTH_LONG).show();
-                            */
-                } else {
-                    // GPS 를 사용할수 없으므로
-                    gps.showSettingsAlert();
-                }
-
                 lat = Double.toString(latitude);
                 lon = Double.toString(longitude);
                 location="("+lat+","+lon+")";
-
                 keyword = keywordText.getText().toString();
                 new sTask().execute();
             }
         });
     }
+
+    @Override
+    public void onMapReady(final GoogleMap map) {
+        Marker marker1;
+        mMap=map;
+        LatLng location = new LatLng(latitude,longitude );
+
+        final MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(location);
+        markerOptions.title("현재 위치 주변 검색");
+        marker1=mMap.addMarker(markerOptions);
+        marker1.showInfoWindow();
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                Marker marker1;
+                Point screenPt = mMap.getProjection().
+                        toScreenLocation(latLng);
+                LatLng a = mMap.getProjection().
+                        fromScreenLocation(screenPt);
+                mMap.clear();
+                markerOptions.position(a) ;
+                markerOptions.title("변경된 위치 주변 검색");
+                marker1=mMap.addMarker(markerOptions);
+                marker1.showInfoWindow();
+                latitude=a.latitude;
+                longitude=a.longitude;
+            }
+        });
+    }
+
 
     private class sTask extends AsyncTask<String, Void, String> {
         String r = null;
@@ -88,15 +123,12 @@ public class SearchActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-/*
             try {
                 r = postJsonToServer(location,keyword);
             } catch (IOException e) {
                 e.printStackTrace();
             }
             return r;
-*/
-            return "{\"status\": 3,\"data\": [{\"area\": \"1\",\"id\": \"ddehun1\",\"introduction\": \"이건푸드트럭1\",\"name\":\"박채훈의 푸드트럭1\",\"phone\": \"06123432435123\"},{\"area\": \"2\",\"id\": \"ddehun2\",\"introduction\": \"이건푸키키드트럭2\",\"name\": \"김요한의 푸드트럭2\",\"phone\": \"06133242345234\"},{\"area\": \"3\",\"id\": \"ddehun3\",\"introduction\": \"이건푸키키드트럭3\",\"name\": \"김요한의 푸드트럭3\",\"phone\": \"06133242345345\"},{\"area\": \"1\",\"id\": \"ddehun1\",\"introduction\": \"이건푸드트럭1\",\"name\":\"박채훈의 푸드트럭1\",\"phone\": \"06123432435123\"},{\"area\": \"1\",\"id\": \"ddehun1\",\"introduction\": \"이건푸드트럭1\",\"name\":\"박채훈의 푸드트럭1\",\"phone\": \"06123432435123\"},{\"area\": \"1\",\"id\": \"ddehun1\",\"introduction\": \"이건푸드트럭1\",\"name\":\"박채훈의 푸드트럭1\",\"phone\": \"06123432435123\"},{\"area\": \"1\",\"id\": \"ddehun1\",\"introduction\": \"이건푸드트럭1\",\"name\":\"박채훈의 푸드트럭1\",\"phone\": \"06123432435123\"},{\"area\": \"1\",\"id\": \"ddehun1\",\"introduction\": \"이건푸드트럭1\",\"name\":\"박채훈의 푸드트럭1\",\"phone\": \"06123432435123\"}]}";
         }
         @Override
         protected void onPostExecute(String result) {
