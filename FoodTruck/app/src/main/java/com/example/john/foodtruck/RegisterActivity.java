@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,11 +20,8 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         final EditText idText = (EditText) findViewById(R.id.idText);
         final EditText passwordText = (EditText) findViewById(R.id.passwordText);
-        final EditText nameText = (EditText) findViewById(R.id.nameText);
+        final EditText nameText = (EditText) findViewById(R.id.reviewDetail);
         final EditText numberText = (EditText) findViewById(R.id.numberText);
         final RadioGroup rg = (RadioGroup) findViewById(R.id.rg);
         final RadioButton sellerbutton = (RadioButton) findViewById(R.id.seller);

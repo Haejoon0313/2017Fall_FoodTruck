@@ -43,7 +43,7 @@ public class SearchResultAdapter extends BaseAdapter {
         TextView areaText = (TextView) v.findViewById(R.id.areaText);
         TextView idText = (TextView) v.findViewById(R.id.idText);
         TextView introText = (TextView) v.findViewById(R.id.introText);
-        TextView nameText = (TextView) v.findViewById(R.id.nameText);
+        TextView nameText = (TextView) v.findViewById(R.id.reviewDetail);
         TextView phoneText = (TextView) v.findViewById(R.id.phoneText);
 
         areaText.setText("지역 : "+resultList.get(i).getArea());

@@ -42,7 +42,7 @@ public class MenuAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = View.inflate(context, R.layout.foodtruck_menu, null);
 
-        TextView FT_menu_name = (TextView) v.findViewById(R.id.FT_menu_name);
+        TextView FT_menu_name = (TextView) v.findViewById(R.id.FT_review_detail);
         TextView FT_menu_price = (TextView) v.findViewById(R.id.FT_menu_price);
         TextView FT_menu_ingredients = (TextView) v.findViewById(R.id.FT_menu_ingredients);
 
