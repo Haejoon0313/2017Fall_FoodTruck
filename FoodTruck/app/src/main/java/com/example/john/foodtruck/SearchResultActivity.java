@@ -13,7 +13,6 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +45,9 @@ public class SearchResultActivity extends AppCompatActivity {
 
             String sta = resultJson.getString("status");
             JSONArray arr = resultJson.getJSONArray("data");
-
-            String area,id,intro,name,phone;
+            String area,id,intro,name,phone,ctg;
+            String reviewlist="";
+            String menulist="";
             resultCount.setText("결과 : "+sta+" 개");
 
             for (int i = 0; i < arr.length(); i++){
@@ -56,8 +56,12 @@ public class SearchResultActivity extends AppCompatActivity {
                 intro= arr.getJSONObject(i).getString("introduction");
                 name= arr.getJSONObject(i).getString("name");
                 phone= arr.getJSONObject(i).getString("phone");
+                ctg= arr.getJSONObject(i).getString("ctg");
 
-                resultList.add(new SearchResult(area,id,intro,name,phone));
+                menulist=arr.getJSONObject(i).getJSONArray("menulist").toString();
+                reviewlist=arr.getJSONObject(i).getJSONArray("reviewlist").toString();
+
+                resultList.add(new SearchResult(area,id,intro,name,phone, ctg, menulist,reviewlist));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -69,12 +73,14 @@ public class SearchResultActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(SearchResultActivity.this,SearchFTInfoActivity.class); // 다음넘어갈 화면
-
                 intent.putExtra("area", resultList.get(position).getArea());
                 intent.putExtra("id", resultList.get(position).getId());
                 intent.putExtra("introduction", resultList.get(position).getIntro());
                 intent.putExtra("name", resultList.get(position).getName());
                 intent.putExtra("phone", resultList.get(position).getPhone());
+                intent.putExtra("ctg", resultList.get(position).getCtg());
+                intent.putExtra("reviewlist", resultList.get(position).getReviewlist());
+                intent.putExtra("menulist", resultList.get(position).getMenulist());
 
                 startActivity(intent);
 

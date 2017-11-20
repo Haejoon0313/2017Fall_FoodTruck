@@ -40,15 +40,12 @@ public class SearchResultAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = View.inflate(context, R.layout.search_result, null);
-        TextView areaText = (TextView) v.findViewById(R.id.areaText);
-        TextView idText = (TextView) v.findViewById(R.id.idText);
-        TextView introText = (TextView) v.findViewById(R.id.introText);
+        TextView ctgText = (TextView) v.findViewById(R.id.ctgText);
         TextView nameText = (TextView) v.findViewById(R.id.nameText);
         TextView phoneText = (TextView) v.findViewById(R.id.phoneText);
 
-        areaText.setText("지역 : "+resultList.get(i).getArea());
-        idText.setText("아이디 : "+resultList.get(i).getId());
-        introText.setText("소개 : "+resultList.get(i).getIntro());
+
+        ctgText.setText("카테고리 : "+resultList.get(i).getCtg());
         nameText.setText("이름 : "+resultList.get(i).getName());
         phoneText.setText("전화번호 : "+resultList.get(i).getPhone());
 
