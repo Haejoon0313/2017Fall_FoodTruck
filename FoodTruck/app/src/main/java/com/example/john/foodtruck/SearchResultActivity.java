@@ -59,16 +59,13 @@ public class SearchResultActivity extends AppCompatActivity {
                 phone= arr.getJSONObject(i).getString("phone");
                 ctg= arr.getJSONObject(i).getString("ctg");
 
-                menulist=arr.getJSONObject(i).getJSONArray("menulist").toString();
-                reviewlist=arr.getJSONObject(i).getJSONArray("reviewlist").toString();
-
                 JSONArray menuarr  = arr.getJSONObject(i).getJSONArray("menulist");
                 menulist = menuarr.toString();
 
                 JSONArray reviewarr  = arr.getJSONObject(i).getJSONArray("reviewlist");
                 reviewlist = reviewarr.toString();
 
-                resultList.add(new SearchResult(area,id,intro,name,phone, ctg));
+                resultList.add(new SearchResult(area,id,intro,name,phone, ctg,menulist,reviewlist));
             }
         } catch (JSONException e) {
             e.printStackTrace();
