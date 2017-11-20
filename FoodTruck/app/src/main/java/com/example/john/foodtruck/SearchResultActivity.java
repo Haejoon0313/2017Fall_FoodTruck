@@ -36,6 +36,9 @@ public class SearchResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String result = intent.getStringExtra("결과");
 
+        String menulist="";
+        String reviewlist="";
+
         listView = (ListView) findViewById(R.id.searchResult);
         resultCount = (TextView) findViewById(R.id.resultCount);
         resultList = new ArrayList<SearchResult>();
@@ -61,13 +64,26 @@ public class SearchResultActivity extends AppCompatActivity {
                 menulist=arr.getJSONObject(i).getJSONArray("menulist").toString();
                 reviewlist=arr.getJSONObject(i).getJSONArray("reviewlist").toString();
 
+<<<<<<< HEAD
                 resultList.add(new SearchResult(area,id,intro,name,phone, ctg, menulist,reviewlist));
+=======
+                JSONArray menuarr  = arr.getJSONObject(i).getJSONArray("menulist");
+                menulist = menuarr.toString();
+
+                JSONArray reviewarr  = arr.getJSONObject(i).getJSONArray("reviewlist");
+                reviewlist = reviewarr.toString();
+
+                resultList.add(new SearchResult(area,id,intro,name,phone));
+>>>>>>> eb07e254c32f3fcf5714411587ac82b19c0d47fa
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         adapter = new SearchResultAdapter(getApplicationContext(),resultList);
         listView.setAdapter(adapter);
+
+        final String finalMenulist = menulist;
+        final String finalReviewlist = reviewlist;
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -81,6 +97,9 @@ public class SearchResultActivity extends AppCompatActivity {
                 intent.putExtra("ctg", resultList.get(position).getCtg());
                 intent.putExtra("reviewlist", resultList.get(position).getReviewlist());
                 intent.putExtra("menulist", resultList.get(position).getMenulist());
+
+                intent.putExtra("MenuList", finalMenulist);
+                intent.putExtra("ReviewList", finalReviewlist);
 
                 startActivity(intent);
 

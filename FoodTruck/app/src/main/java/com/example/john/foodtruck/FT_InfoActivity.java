@@ -3,9 +3,7 @@ package com.example.john.foodtruck;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import android.widget.ListView;
@@ -13,7 +11,6 @@ import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +39,7 @@ public class FT_InfoActivity extends AppCompatActivity {
         final TextView FT_info_phone = (TextView) findViewById(R.id.FT_info_phone);
         final TextView FT_info_area = (TextView) findViewById(R.id.FT_info_area);
         final TextView FT_info_ctg = (TextView) findViewById(R.id.FT_info_ctg);
-        final TextView FT_info_intro = (TextView) findViewById(R.id.FT_menu_name);
+        final TextView FT_info_intro = (TextView) findViewById(R.id.FT_review_detail);
 
         FT_info_name.setText(myApp.getTempFTname());
         FT_info_phone.setText(myApp.getTempFTphone());

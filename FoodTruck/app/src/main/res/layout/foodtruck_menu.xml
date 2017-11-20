@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/FT_menu_name"
+        android:id="@+id/FT_review_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="메뉴 이름"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="메뉴 가격"
         android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@+id/FT_menu_name" />
+        app:layout_constraintTop_toBottomOf="@+id/FT_review_detail" />
 
     <TextView
         android:id="@+id/FT_menu_ingredients"

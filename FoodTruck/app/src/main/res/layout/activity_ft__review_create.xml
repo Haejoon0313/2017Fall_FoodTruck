@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     tools:context="com.example.john.foodtruck.FT_MenuModifyActivity">
 
+    <RatingBar
+        android:id="@+id/reviewRating"
+        android:layout_width="240dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:isIndicator="false"
+        android:max="5"
+        android:numStars="5"
+        android:rating="5"
+        android:stepSize="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/reviewDetail"
         android:layout_width="0dp"
@@ -14,42 +30,13 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="메뉴 이름"
-        android:inputType="textPersonName"
+        android:hint="리뷰 내용"
+        android:inputType="textMultiLine"
+        android:singleLine="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/priceText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="가격"
-        android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reviewDetail" />
-
-    <EditText
-        android:id="@+id/ingredientsText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="주 재료  (ex. 닭고기, 오이 등)"
-        android:inputType="textLongMessage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priceText" />
+        app:layout_constraintTop_toBottomOf="@+id/reviewRating" />
 
     <Button
         android:id="@+id/registerButton"

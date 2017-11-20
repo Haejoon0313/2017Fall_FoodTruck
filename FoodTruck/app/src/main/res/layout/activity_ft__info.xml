@@ -128,7 +128,7 @@
         app:layout_constraintTop_toBottomOf="@+id/FT_info_area" />
 
     <TextView
-        android:id="@+id/FT_menu_name"
+        android:id="@+id/FT_review_detail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -150,7 +150,7 @@
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/FT_info_6"
-        app:layout_constraintTop_toBottomOf="@+id/FT_menu_name" />
+        app:layout_constraintTop_toBottomOf="@+id/FT_review_detail" />
 
     <Button
         android:id="@+id/myMenuButton"
@@ -162,7 +162,7 @@
         android:text="메뉴 추가"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FT_menu_name" />
+        app:layout_constraintTop_toBottomOf="@+id/FT_review_detail" />
 
     <Button
         android:id="@+id/FT_editButton"

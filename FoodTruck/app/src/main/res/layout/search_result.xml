@@ -21,7 +21,11 @@
         android:text="이름" />
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/ctgText"
+=======
+        android:id="@+id/reviewDetail"
+>>>>>>> eb07e254c32f3fcf5714411587ac82b19c0d47fa
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -35,6 +39,10 @@
 
     <TextView
         android:id="@+id/phoneText"
+<<<<<<< HEAD
+=======
+        app:layout_constraintTop_toBottomOf="@id/reviewDetail"
+>>>>>>> eb07e254c32f3fcf5714411587ac82b19c0d47fa
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

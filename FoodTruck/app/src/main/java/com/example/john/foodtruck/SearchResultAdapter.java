@@ -40,8 +40,15 @@ public class SearchResultAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = View.inflate(context, R.layout.search_result, null);
+<<<<<<< HEAD
         TextView ctgText = (TextView) v.findViewById(R.id.ctgText);
         TextView nameText = (TextView) v.findViewById(R.id.nameText);
+=======
+        TextView areaText = (TextView) v.findViewById(R.id.areaText);
+        TextView idText = (TextView) v.findViewById(R.id.idText);
+        TextView introText = (TextView) v.findViewById(R.id.introText);
+        TextView nameText = (TextView) v.findViewById(R.id.reviewDetail);
+>>>>>>> eb07e254c32f3fcf5714411587ac82b19c0d47fa
         TextView phoneText = (TextView) v.findViewById(R.id.phoneText);
 
 

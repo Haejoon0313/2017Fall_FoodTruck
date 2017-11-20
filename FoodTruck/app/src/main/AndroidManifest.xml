@@ -33,6 +33,8 @@
         <activity android:name=".Main2Activity" />
         <activity android:name=".FT_InfoActivity" />
         <activity android:name=".SearchFTInfoActivity" />
+        <activity android:name=".FT_ReviewCreateActivity" />
+        <activity android:name=".FT_MenuViewActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -40,7 +42,6 @@
 
         <uses-library android:name="com.google.android.maps" />
 
-        <activity android:name=".FT_MenuViewActivity" />
         <activity android:name=".LoginActivity"></activity>
     </application>
 
