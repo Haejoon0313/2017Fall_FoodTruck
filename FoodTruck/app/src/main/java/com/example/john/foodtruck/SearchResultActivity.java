@@ -49,8 +49,6 @@ public class SearchResultActivity extends AppCompatActivity {
             String sta = resultJson.getString("status");
             JSONArray arr = resultJson.getJSONArray("data");
             String area,id,intro,name,phone,ctg;
-            String reviewlist="";
-            String menulist="";
             resultCount.setText("결과 : "+sta+" 개");
 
             for (int i = 0; i < arr.length(); i++){
@@ -64,17 +62,14 @@ public class SearchResultActivity extends AppCompatActivity {
                 menulist=arr.getJSONObject(i).getJSONArray("menulist").toString();
                 reviewlist=arr.getJSONObject(i).getJSONArray("reviewlist").toString();
 
-<<<<<<< HEAD
-                resultList.add(new SearchResult(area,id,intro,name,phone, ctg, menulist,reviewlist));
-=======
+                resultList.add(new SearchResult(area,id,intro,name,phone, ctg));
                 JSONArray menuarr  = arr.getJSONObject(i).getJSONArray("menulist");
                 menulist = menuarr.toString();
 
                 JSONArray reviewarr  = arr.getJSONObject(i).getJSONArray("reviewlist");
                 reviewlist = reviewarr.toString();
 
-                resultList.add(new SearchResult(area,id,intro,name,phone));
->>>>>>> eb07e254c32f3fcf5714411587ac82b19c0d47fa
+                resultList.add(new SearchResult(area,id,intro,name,phone, ctg));
             }
         } catch (JSONException e) {
             e.printStackTrace();

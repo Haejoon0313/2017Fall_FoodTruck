@@ -54,15 +54,13 @@ public class SearchResult {
         this.phone = phone;
     }
 
-    public SearchResult(String area, String id, String intro, String name, String phone, String ctg, String menulist, String reviewlist) {
+    public SearchResult(String area, String id, String intro, String name, String phone, String ctg) {
         this.area = area;
         this.id = id;
         this.intro = intro;
         this.name = name;
         this.phone = phone;
         this.ctg = ctg;
-        this.menulist = menulist;
-        this.reviewlist = reviewlist;
     }
 
     public String getMenulist() {

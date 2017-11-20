@@ -51,28 +51,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/FTReview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:id="@+id/FT_reviewview_enroll"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="24dp"
-                        android:text="리뷰 작성"
-                        app:layout_constraintBottom_toBottomOf="@+id/FT_reviewview_list"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <ListView
-                        android:id="@+id/FT_reviewview_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        tools:layout_editor_absoluteY="72dp" />
-                </android.support.constraint.ConstraintLayout>
-
                 <LinearLayout
                     android:id="@+id/FTInfo"
                     android:layout_width="match_parent"
@@ -139,6 +117,28 @@
 
 
                 </LinearLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/FTReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/FT_reviewview_enroll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:text="리뷰 작성"
+                        app:layout_constraintBottom_toBottomOf="@+id/FT_reviewview_list"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ListView
+                        android:id="@+id/FT_reviewview_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:layout_editor_absoluteY="72dp" />
+                </android.support.constraint.ConstraintLayout>
 
             </FrameLayout>
         </LinearLayout>
