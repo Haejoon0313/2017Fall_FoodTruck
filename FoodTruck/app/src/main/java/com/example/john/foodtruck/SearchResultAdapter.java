@@ -42,9 +42,6 @@ public class SearchResultAdapter extends BaseAdapter {
         View v = View.inflate(context, R.layout.search_result, null);
         TextView ctgText = (TextView) v.findViewById(R.id.ctgText);
         TextView nameText = (TextView) v.findViewById(R.id.nameText);
-        TextView areaText = (TextView) v.findViewById(R.id.areaText);
-        TextView idText = (TextView) v.findViewById(R.id.idText);
-        TextView introText = (TextView) v.findViewById(R.id.introText);
         TextView phoneText = (TextView) v.findViewById(R.id.phoneText);
 
 
