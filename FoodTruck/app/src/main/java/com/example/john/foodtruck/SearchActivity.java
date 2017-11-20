@@ -82,18 +82,21 @@ public class SearchActivity extends AppCompatActivity implements OnMapReadyCallb
 
     @Override
     public void onMapReady(final GoogleMap map) {
+        Marker marker1;
         mMap=map;
         LatLng location = new LatLng(latitude,longitude );
 
         final MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(location);
         markerOptions.title("현재 위치 주변 검색");
-        mMap.addMarker(markerOptions);
+        marker1=mMap.addMarker(markerOptions);
+        marker1.showInfoWindow();
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
+                Marker marker1;
                 Point screenPt = mMap.getProjection().
                         toScreenLocation(latLng);
                 LatLng a = mMap.getProjection().
@@ -101,7 +104,8 @@ public class SearchActivity extends AppCompatActivity implements OnMapReadyCallb
                 mMap.clear();
                 markerOptions.position(a) ;
                 markerOptions.title("변경된 위치 주변 검색");
-                mMap.addMarker(markerOptions);
+                marker1=mMap.addMarker(markerOptions);
+                marker1.showInfoWindow();
                 latitude=a.latitude;
                 longitude=a.longitude;
             }

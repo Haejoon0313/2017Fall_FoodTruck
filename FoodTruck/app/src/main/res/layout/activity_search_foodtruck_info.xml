@@ -52,6 +52,17 @@
                 android:layout_height="match_parent" >
 
                 <LinearLayout
+                    android:id="@+id/FTReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/FTInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -65,6 +76,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
+
                             <TextView
                                 android:id="@+id/areaText"
                                 android:layout_width="wrap_content"
@@ -75,6 +87,7 @@
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
+
                             <TextView
                                 android:id="@+id/idText"
                                 android:layout_width="wrap_content"
@@ -83,6 +96,7 @@
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/areaText" />
+
                             <TextView
                                 android:id="@+id/introText"
                                 android:layout_width="wrap_content"
@@ -91,6 +105,7 @@
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/idText" />
+
                             <TextView
                                 android:id="@+id/nameText"
                                 android:layout_width="wrap_content"
@@ -99,6 +114,7 @@
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/introText" />
+
                             <TextView
                                 android:id="@+id/phoneText"
                                 android:layout_width="wrap_content"
@@ -112,20 +128,7 @@
 
 
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/FTReview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#8BC34A"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:text="TAB CONTENT 2" />
-                </LinearLayout>
             </FrameLayout>
         </LinearLayout>
     </TabHost>

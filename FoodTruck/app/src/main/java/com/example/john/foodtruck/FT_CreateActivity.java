@@ -34,7 +34,7 @@ public class FT_CreateActivity extends AppCompatActivity {
     String ftArea = "";
     String ftCtg = "";
     String ftIntro = "";
-    String currentID="";
+    String currentID = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

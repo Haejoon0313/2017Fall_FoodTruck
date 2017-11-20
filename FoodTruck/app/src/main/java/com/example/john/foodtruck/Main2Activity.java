@@ -18,6 +18,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -112,6 +113,7 @@ public class Main2Activity extends AppCompatActivity {
             String area = "";
             String ctg = "";
             String introduction = "";
+            String menulist = "";
 
             final MyApplication myApp = (MyApplication) getApplication();
 
@@ -125,6 +127,9 @@ public class Main2Activity extends AppCompatActivity {
                 area = obj.getString("area");
                 ctg = obj.getString("ctg");
                 introduction = obj.getString("introduction");
+
+                JSONArray arr  = obj.getJSONArray("menulist");
+                menulist = arr.toString();
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -141,17 +146,13 @@ public class Main2Activity extends AppCompatActivity {
                     myApp.setTempFTintro(introduction);
 
                     intent = new Intent(Main2Activity.this, FT_InfoActivity.class);
+                    intent.putExtra("MenuList", menulist);
                     Main2Activity.this.startActivity(intent);
                     break;
                 case "-1":
-                    // 등록된 푸드트럭 없을 시, 새로 등록 페이지 오픈, globla 전화번호 -1인 상태 유지
+                    // 등록된 푸드트럭 없을 시, 새로 등록 페이지 오픈, global 전화번호 -1인 상태 유지
                     //Log.d("case -1", "노존재");
                     intent = new Intent(Main2Activity.this, FT_CreateActivity.class);
-                    Main2Activity.this.startActivity(intent);
-                    break;
-                default: // 차후 삭제 예정
-                    //Log.d("case 42234234", "망");
-                    intent = new Intent(Main2Activity.this, FT_InfoActivity.class);
                     Main2Activity.this.startActivity(intent);
                     break;
             }

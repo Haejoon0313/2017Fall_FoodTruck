@@ -11,6 +11,8 @@
         <item>철판</item>
         <item>패스트푸드</item>
         <item>라이스</item>
+        <item>디저트</item>
+        <item>음료</item>
         <item>기타</item>
     </string-array>
 </resources>
