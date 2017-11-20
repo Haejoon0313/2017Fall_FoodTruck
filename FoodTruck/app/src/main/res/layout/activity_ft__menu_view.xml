@@ -6,24 +6,49 @@
     android:layout_height="match_parent"
     tools:context="com.example.john.foodtruck.FT_MenuViewActivity">
 
+    <TextView
+        android:id="@+id/menuText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="Menu"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/FT_menuview_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ListView
         android:id="@+id/FT_menuview_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/FT_menuview_enroll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/menuText" />
 
     <Button
         android:id="@+id/FT_menuview_enroll"
         android:layout_width="0dp"
         android:layout_height="47dp"
-        android:layout_marginBottom="24dp"
         android:layout_marginEnd="100dp"
         android:layout_marginStart="100dp"
         android:text="메뉴 추가"
-        app:layout_constraintBottom_toBottomOf="@+id/FT_menuview_list"
+        app:layout_constraintBottom_toTopOf="@+id/successButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/successButton"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="8dp"
+        android:text="완료"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
