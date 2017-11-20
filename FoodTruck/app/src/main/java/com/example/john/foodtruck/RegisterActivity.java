@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         final EditText idText = (EditText) findViewById(R.id.idText);
         final EditText passwordText = (EditText) findViewById(R.id.passwordText);
-        final EditText nameText = (EditText) findViewById(R.id.reviewDetail);
+        final EditText nameText = (EditText) findViewById(R.id.nameText);
         final EditText numberText = (EditText) findViewById(R.id.numberText);
         final RadioGroup rg = (RadioGroup) findViewById(R.id.rg);
         final RadioButton sellerbutton = (RadioButton) findViewById(R.id.seller);

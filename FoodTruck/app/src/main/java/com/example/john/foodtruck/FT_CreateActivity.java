@@ -43,7 +43,7 @@ public class FT_CreateActivity extends AppCompatActivity {
 
         final MyApplication myApp = (MyApplication) getApplication();
 
-        final EditText nameText = (EditText) findViewById(R.id.reviewDetail);
+        final EditText nameText = (EditText) findViewById(R.id.nameText);
         final EditText phoneText = (EditText) findViewById(R.id.phoneText);
         final EditText introText = (EditText) findViewById(R.id.introText);
 

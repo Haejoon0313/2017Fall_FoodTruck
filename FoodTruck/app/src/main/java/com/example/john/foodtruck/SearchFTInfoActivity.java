@@ -22,6 +22,10 @@ import java.util.List;
 
 public class SearchFTInfoActivity extends AppCompatActivity{
 
+    private ListView FT_menuview_list;
+    private MenuAdapter adapter2;
+    private List<FT_MenuList> menuList;
+
     private ListView FT_reviewview_list;
     private ReviewAdapter adapter;
     private List<FT_ReviewList> reviewList;
@@ -54,15 +58,38 @@ public class SearchFTInfoActivity extends AppCompatActivity{
         //상세정보 탭 관련 내용
         TextView area1 = (TextView) findViewById(R.id.areaText);
         TextView phone1 = (TextView) findViewById(R.id.phoneText);
-        TextView id1 = (TextView) findViewById(R.id.idText);
         TextView intro1 = (TextView) findViewById(R.id.introText);
 
-        area1.setText("지역"+area);
-        phone1.setText("전화번호"+phone);
-        id1.setText("아이디"+id);
-        intro1.setText("소개"+intro);
+        String[] tempArea = getResources().getStringArray(R.array.areaSpinnerArray);
+
+        area1.setText("지역          "+tempArea[Integer.parseInt(area)]);
+        phone1.setText("전화번호    "+phone);
+        intro1.setText("소개          "+intro);
 
         // 메뉴 목록 추가해야함
+
+
+        FT_menuview_list = (ListView) findViewById(R.id.menuList);
+        menuList = new ArrayList<FT_MenuList>();
+
+        try {
+            JSONArray menuarr = new JSONArray(FT_menulist);
+
+            String menu_name, menu_price, menu_ingredients;
+
+            for (int i = 0; i < menuarr.length(); i++){
+                menu_name = menuarr.getJSONObject(i).getString("name");
+                menu_price = menuarr.getJSONObject(i).getString("price");
+                menu_ingredients= menuarr.getJSONObject(i).getString("ingredients");
+
+                menuList.add(new FT_MenuList(menu_name, menu_price, menu_ingredients));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        adapter2 = new MenuAdapter(getApplicationContext(), menuList);
+        FT_menuview_list.setAdapter(adapter2);
 
         tabHost1.addTab(ts1) ;
         TabHost.TabSpec ts2 = tabHost1.newTabSpec("Tab Spec 2") ;

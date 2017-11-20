@@ -39,7 +39,7 @@ public class FT_MenuModifyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ft__menu_modify);
 
-        final EditText nameText = (EditText) findViewById(R.id.reviewDetail);
+        final EditText nameText = (EditText) findViewById(R.id.nameText);
         final EditText priceText = (EditText) findViewById(R.id.priceText);
         final EditText ingredientsText = (EditText) findViewById(R.id.ingredientsText);
 
