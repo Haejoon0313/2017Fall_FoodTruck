@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -33,6 +34,12 @@
         <activity android:name=".Main2Activity" />
         <activity android:name=".FT_InfoActivity" />
         <activity android:name=".SearchFTInfoActivity" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAmfMbrcPM6vR0IgNYNSNEs4MqZ-bl8ZHI" />
+        <uses-library android:name="com.google.android.maps" />
     </application>
+
+
 
 </manifest>

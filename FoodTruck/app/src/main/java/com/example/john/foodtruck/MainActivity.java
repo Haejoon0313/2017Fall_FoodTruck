@@ -3,11 +3,14 @@ package com.example.john.foodtruck;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-
+    private GpsInfo gps;
+    double latitude ;
+    double longitude ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,8 +24,20 @@ public class MainActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent searchIntent = new Intent(MainActivity.this, SearchActivity.class);
-                MainActivity.this.startActivity(searchIntent);
+                gps = new GpsInfo(MainActivity.this);
+                // GPS 사용유무 가져오기
+                latitude = gps.getLatitude();
+                longitude = gps.getLongitude();
+                if (gps.isGetLocation() && latitude>30 && latitude<45 && longitude>120 && longitude<135 ) {
+                    Intent searchIntent = new Intent(MainActivity.this, SearchActivity.class);
+                    searchIntent.putExtra("latitude", latitude);
+                    searchIntent.putExtra("longitude", longitude);
+                    MainActivity.this.startActivity(searchIntent);
+                } else {
+                    // GPS 를 사용할수 없으므로
+                    gps.showSettingsAlert();
+                }
+
             }
         });
 

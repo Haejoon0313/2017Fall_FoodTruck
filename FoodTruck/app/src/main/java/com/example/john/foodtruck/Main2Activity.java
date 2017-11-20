@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -24,6 +25,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity {
+    private GpsInfo gps;
+    double latitude ;
+    double longitude ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +43,19 @@ public class Main2Activity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent searchIntent = new Intent(Main2Activity.this, SearchActivity.class);
-                Main2Activity.this.startActivity(searchIntent);
+                gps = new GpsInfo(Main2Activity.this);
+                // GPS 사용유무 가져오기
+                latitude = gps.getLatitude();
+                longitude = gps.getLongitude();
+                if (gps.isGetLocation() && latitude>30 && latitude<45 && longitude>120 && longitude<135 ) {
+                    Intent searchIntent = new Intent(Main2Activity.this, SearchActivity.class);
+                    searchIntent.putExtra("latitude", latitude);
+                    searchIntent.putExtra("longitude", longitude);
+                    Main2Activity.this.startActivity(searchIntent);
+                } else {
+                    // GPS 를 사용할수 없으므로
+                    gps.showSettingsAlert();
+                }
             }
         });
 
