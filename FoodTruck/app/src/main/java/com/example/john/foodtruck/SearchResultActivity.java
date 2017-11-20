@@ -62,7 +62,6 @@ public class SearchResultActivity extends AppCompatActivity {
                 menulist=arr.getJSONObject(i).getJSONArray("menulist").toString();
                 reviewlist=arr.getJSONObject(i).getJSONArray("reviewlist").toString();
 
-                resultList.add(new SearchResult(area,id,intro,name,phone, ctg));
                 JSONArray menuarr  = arr.getJSONObject(i).getJSONArray("menulist");
                 menulist = menuarr.toString();
 
