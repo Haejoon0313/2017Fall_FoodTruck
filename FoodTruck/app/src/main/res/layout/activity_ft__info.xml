@@ -6,174 +6,233 @@
     android:layout_height="match_parent"
     tools:context="com.example.john.foodtruck.FT_InfoActivity">
 
-    <TextView
-        android:id="@+id/FT_info_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
-        android:text="푸드트럭 이름"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/FT_info_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="매장 전화번호"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FT_info_1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/FT_info_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
-        android:text="지     역"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FT_info_2" />
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/FT_info_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="24dp"
-        android:text="카테고리"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FT_info_3" />
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/FT_info_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
-        android:text="소     개"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FT_info_4" />
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/FT_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/FT_info_6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
-        android:text="메     뉴"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FT_info_5" />
+                    <Button
+                        android:id="@+id/myMenuButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="메뉴 수정"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/FT_editButton" />
 
-    <TextView
-        android:id="@+id/FT_info_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:text="이름이름"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/FT_info_1"
-        app:layout_constraintTop_toTopOf="parent" />
+                    <Button
+                        android:id="@+id/FT_editButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="푸드트럭 정보 수정"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/myMenuButton"
+                        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/FT_info_phone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="123"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/FT_info_2"
-        app:layout_constraintTop_toBottomOf="@+id/FT_info_name" />
+                    <ToggleButton
+                        android:id="@+id/FT_startButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="ToggleButton"
+                        android:textOff="영업 종료"
+                        android:textOn="영업 개시"
+                        app:layout_constraintBottom_toTopOf="@+id/FT_editButton"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/FT_info_area"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="24dp"
-        android:text="지역지역"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toEndOf="@+id/FT_info_3"
-        app:layout_constraintTop_toBottomOf="@+id/FT_info_phone" />
+                    <TextView
+                        android:id="@+id/FT_info_phone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
+                        android:text="123"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/FT_info_2"
+                        app:layout_constraintTop_toBottomOf="@+id/FT_info_name" />
 
-    <TextView
-        android:id="@+id/FT_info_ctg"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:text="카아테고리이"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/FT_info_4"
-        app:layout_constraintTop_toBottomOf="@+id/FT_info_area" />
+                    <TextView
+                        android:id="@+id/FT_info_area"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="34dp"
+                        android:layout_marginTop="24dp"
+                        android:text="지역지역"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.8"
+                        app:layout_constraintStart_toEndOf="@+id/FT_info_3"
+                        app:layout_constraintTop_toBottomOf="@+id/FT_info_phone" />
 
-    <TextView
-        android:id="@+id/FT_review_detail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="24dp"
-        android:text="소개소개소개"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/FT_info_5"
-        app:layout_constraintTop_toBottomOf="@+id/FT_info_ctg" />
+                    <TextView
+                        android:id="@+id/FT_info_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="24dp"
+                        android:text="소     개"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/FT_info_4" />
 
-    <ListView
-        android:id="@+id/FT_info_menu"
-        android:layout_width="0dp"
-        android:layout_height="106dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/FT_info_6"
-        app:layout_constraintTop_toBottomOf="@+id/FT_review_detail" />
+                    <TextView
+                        android:id="@+id/FT_info_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="24dp"
+                        android:text="지     역"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/FT_info_2" />
 
-    <Button
-        android:id="@+id/myMenuButton"
-        android:layout_width="238dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="150dp"
-        android:text="메뉴 수정"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FT_review_detail" />
+                    <ListView
+                        android:id="@+id/FT_info_menu"
+                        android:layout_width="0dp"
+                        android:layout_height="106dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/FT_info_6"
+                        app:layout_constraintTop_toBottomOf="@+id/FT_info_intro" />
 
-    <Button
-        android:id="@+id/FT_editButton"
-        android:layout_width="238dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:text="푸드트럭 정보 수정"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myMenuButton" />
+                    <TextView
+                        android:id="@+id/FT_info_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:text="매장 전화번호"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/FT_info_1" />
+
+                    <TextView
+                        android:id="@+id/FT_info_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="48dp"
+                        android:text="푸드트럭 이름"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/FT_info_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="24dp"
+                        android:text="메     뉴"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/FT_info_5" />
+
+                    <TextView
+                        android:id="@+id/FT_info_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="24dp"
+                        android:text="카테고리"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/FT_info_3" />
+
+                    <TextView
+                        android:id="@+id/FT_info_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="48dp"
+                        android:text="이름이름"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/FT_info_1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/FT_info_ctg"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="24dp"
+                        android:text="카아테고리이"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/FT_info_4"
+                        app:layout_constraintTop_toBottomOf="@+id/FT_info_area" />
+
+                    <TextView
+                        android:id="@+id/FT_info_intro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="24dp"
+                        android:text="소개소개소개"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/FT_info_5"
+                        app:layout_constraintTop_toBottomOf="@+id/FT_info_ctg" />
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/FT_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ListView
+                        android:id="@+id/FT_info_review"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
 
 </android.support.constraint.ConstraintLayout>
