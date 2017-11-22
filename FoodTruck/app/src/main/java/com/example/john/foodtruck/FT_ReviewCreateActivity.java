@@ -130,8 +130,8 @@ public class FT_ReviewCreateActivity extends AppCompatActivity {
                     editIntent.putExtra("introduction", intro);
                     editIntent.putExtra("phone", phone);
 
-                    editIntent.putExtra("MenuList", FT_menulist);
-                    editIntent.putExtra("ReviewList", reviewlist);
+                    editIntent.putExtra("menulist", FT_menulist);
+                    editIntent.putExtra("reviewlist", reviewlist);
 
                     FT_ReviewCreateActivity.this.startActivity(editIntent);
                     break;
