@@ -61,9 +61,11 @@ public class SearchResultActivity extends AppCompatActivity {
 
                 JSONArray menuarr  = arr.getJSONObject(i).getJSONArray("menulist");
                 menulist = menuarr.toString();
+                Log.d("menu", menulist);
 
                 JSONArray reviewarr  = arr.getJSONObject(i).getJSONArray("reviewlist");
                 reviewlist = reviewarr.toString();
+                Log.d("review", reviewlist);
 
                 resultList.add(new SearchResult(area,id,intro,name,phone, ctg,menulist,reviewlist));
             }
@@ -73,8 +75,6 @@ public class SearchResultActivity extends AppCompatActivity {
         adapter = new SearchResultAdapter(getApplicationContext(),resultList);
         listView.setAdapter(adapter);
 
-        final String finalMenulist = menulist;
-        final String finalReviewlist = reviewlist;
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -89,8 +89,6 @@ public class SearchResultActivity extends AppCompatActivity {
                 intent.putExtra("reviewlist", resultList.get(position).getReviewlist());
                 intent.putExtra("menulist", resultList.get(position).getMenulist());
 
-                intent.putExtra("MenuList", finalMenulist);
-                intent.putExtra("ReviewList", finalReviewlist);
 
                 startActivity(intent);
 

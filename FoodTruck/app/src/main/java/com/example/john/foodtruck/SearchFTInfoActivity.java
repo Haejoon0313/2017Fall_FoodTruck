@@ -42,8 +42,8 @@ public class SearchFTInfoActivity extends AppCompatActivity{
         final String intro=intent.getStringExtra("introduction");
         final String phone=intent.getStringExtra("phone");
 
-        final String FT_menulist = intent.getStringExtra("MenuList");
-        final String FT_reviewlist = intent.getStringExtra("ReviewList");
+        final String FT_menulist = intent.getStringExtra("menulist");
+        final String FT_reviewlist = intent.getStringExtra("reviewlist");
 
         TextView title = (TextView) findViewById(R.id.FTTitle);
         title.setText(name);
