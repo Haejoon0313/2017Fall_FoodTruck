@@ -46,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
 
         final Button loginButton = (Button) findViewById(R.id.loginButton);
         final Button registerButton = (Button) findViewById(R.id.registerButton);
-        final Button skipButton = (Button) findViewById(R.id.skipButton);
 
         loginButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -62,15 +61,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
                 LoginActivity.this.startActivity(registerIntent);
-            }
-        });
-
-       skipButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent skipIntent = new Intent(LoginActivity.this, Main2Activity.class);
-                LoginActivity.this.startActivity(skipIntent);
-                finish();
             }
         });
 

@@ -45,7 +45,7 @@ public class ReviewAdapter extends BaseAdapter {
 
         TextView FT_review_writer = (TextView) v.findViewById(R.id.FT_review_writer);
         RatingBar FT_review_star = (RatingBar) v.findViewById(R.id.FT_review_rating);
-        TextView FT_review_detail = (TextView) v.findViewById(R.id.FT_review_detail);
+        TextView FT_review_detail = (TextView) v.findViewById(R.id.FT_info_intro);
 
         FT_review_writer.setText("ID: "+reviewList.get(i).getW_id());
         FT_review_star.setRating(Integer.parseInt(reviewList.get(i).getRating()));

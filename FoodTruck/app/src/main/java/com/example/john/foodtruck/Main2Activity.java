@@ -133,6 +133,7 @@ public class Main2Activity extends AppCompatActivity {
             String ctg = "";
             String introduction = "";
             String menulist = "";
+            String reviewlist = "";
 
             final MyApplication myApp = (MyApplication) getApplication();
 
@@ -147,8 +148,11 @@ public class Main2Activity extends AppCompatActivity {
                 ctg = obj.getString("ctg");
                 introduction = obj.getString("introduction");
 
-                JSONArray arr  = obj.getJSONArray("menulist");
-                menulist = arr.toString();
+                JSONArray menuarr  = obj.getJSONArray("menulist");
+                menulist = menuarr.toString();
+
+                JSONArray reviewarr  = obj.getJSONArray("reviewlist");
+                reviewlist = reviewarr.toString();
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -166,6 +170,7 @@ public class Main2Activity extends AppCompatActivity {
 
                     intent = new Intent(Main2Activity.this, FT_InfoActivity.class);
                     intent.putExtra("MenuList", menulist);
+                    intent.putExtra("ReviewList", reviewlist);
                     Main2Activity.this.startActivity(intent);
                     break;
                 case "-1":
