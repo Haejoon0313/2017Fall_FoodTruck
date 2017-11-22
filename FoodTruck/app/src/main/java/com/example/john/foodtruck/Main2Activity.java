@@ -168,12 +168,25 @@ public class Main2Activity extends AppCompatActivity {
                     myApp.setTempFTctg(ctg);
                     myApp.setTempFTintro(introduction);
 
-                    intent = new Intent(Main2Activity.this, FT_InfoActivity.class);
-                    intent.putExtra("MenuList", menulist);
-                    intent.putExtra("ReviewList", reviewlist);
-                    intent.putExtra("latitude", latitude);
-                    intent.putExtra("longitude", longitude);
-                    Main2Activity.this.startActivity(intent);
+                    gps = new GpsInfo(Main2Activity.this);
+                    // GPS 사용유무 가져오기
+                    latitude = gps.getLatitude();
+                    longitude = gps.getLongitude();
+                    if (gps.isGetLocation() && latitude>30 && latitude<45 && longitude>120 && longitude<135 ) {
+                        intent = new Intent(Main2Activity.this, FT_InfoActivity.class);
+                        intent.putExtra("MenuList", menulist);
+                        intent.putExtra("ReviewList", reviewlist);
+                        intent.putExtra("latitude", latitude);
+                        intent.putExtra("longitude", longitude);
+
+                        intent.putExtra("latitude", latitude);
+                        intent.putExtra("longitude", longitude);
+
+                        Main2Activity.this.startActivity(intent);
+                    } else {
+                        // GPS 를 사용할수 없으므로
+                        gps.showSettingsAlert();
+                    }
                     break;
                 case "-1":
                     // 등록된 푸드트럭 없을 시, 새로 등록 페이지 오픈, global 전화번호 -1인 상태 유지
