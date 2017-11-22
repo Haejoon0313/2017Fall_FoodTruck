@@ -69,6 +69,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
 
     private class rTask extends AsyncTask<String, Void, Integer> {

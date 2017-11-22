@@ -79,6 +79,10 @@ public class SearchActivity extends AppCompatActivity implements OnMapReadyCallb
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
     @Override
     public void onMapReady(final GoogleMap map) {

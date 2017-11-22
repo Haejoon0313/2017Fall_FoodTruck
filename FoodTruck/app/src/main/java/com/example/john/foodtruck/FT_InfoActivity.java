@@ -90,4 +90,8 @@ public class FT_InfoActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

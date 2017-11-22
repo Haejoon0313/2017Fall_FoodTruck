@@ -70,6 +70,10 @@ public class FT_ReviewCreateActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
     private class rTask extends AsyncTask<String, Void, String> {
         String r;
@@ -132,7 +136,7 @@ public class FT_ReviewCreateActivity extends AppCompatActivity {
 
                     editIntent.putExtra("MenuList", FT_menulist);
                     editIntent.putExtra("ReviewList", reviewlist);
-
+                    finish();
                     FT_ReviewCreateActivity.this.startActivity(editIntent);
                     break;
                 case "1":

@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    private long pressedTime;
     private GpsInfo gps;
     double latitude ;
     double longitude ;
@@ -64,5 +66,22 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(settingIntent);
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+
+        if (pressedTime==0){
+            Toast.makeText(MainActivity.this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_LONG).show();
+            pressedTime=System.currentTimeMillis();
+        }
+        else{
+            int seconds = (int)(System.currentTimeMillis()-pressedTime);
+            if(seconds>2000){
+                pressedTime=0;
+            }
+            else{
+                finish();
+            }
+        }
     }
 }

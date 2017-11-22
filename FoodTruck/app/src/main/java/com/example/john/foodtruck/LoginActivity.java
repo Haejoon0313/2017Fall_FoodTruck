@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -29,6 +30,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
+    private long pressedTime;
     String userID= "";
     String userPassword="";
 
@@ -68,10 +70,29 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent skipIntent = new Intent(LoginActivity.this, Main2Activity.class);
                 LoginActivity.this.startActivity(skipIntent);
+                finish();
             }
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (pressedTime==0){
+            Toast.makeText(LoginActivity.this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_LONG).show();
+            pressedTime=System.currentTimeMillis();
+        }
+        else{
+            int seconds = (int)(System.currentTimeMillis()-pressedTime);
+            if(seconds>2000){
+                pressedTime=0;
+            }
+            else{
+                finish();
+            }
+        }
     }
 
     private class lTask extends AsyncTask<String, Void, Integer> {
@@ -103,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                     //myApp.setcurrentID(userID);
                     intent = new Intent(LoginActivity.this, MainActivity.class);
                     LoginActivity.this.startActivity(intent);
+                    finish();
                     break;
                 case 1 :
                     builder = new AlertDialog.Builder(LoginActivity.this);
@@ -129,6 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                     //myApp.setcurrentID(userID);
                     intent = new Intent(LoginActivity.this, Main2Activity.class);
                     LoginActivity.this.startActivity(intent);
+                    finish();
                     break;
             }
         }

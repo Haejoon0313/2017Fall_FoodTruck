@@ -140,4 +140,8 @@ public class SearchFTInfoActivity extends AppCompatActivity{
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

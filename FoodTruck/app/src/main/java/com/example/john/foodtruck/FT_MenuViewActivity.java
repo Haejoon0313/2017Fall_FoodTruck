@@ -84,9 +84,10 @@ public class FT_MenuViewActivity extends AppCompatActivity {
         successButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 Intent editIntent = new Intent(FT_MenuViewActivity.this, Main2Activity.class);
                 FT_MenuViewActivity.this.startActivity(editIntent);
-                Toast.makeText(getApplicationContext(),"메뉴 추가가 완료되었습니다",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"메뉴 수정이 완료되었습니다",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -125,6 +126,13 @@ public class FT_MenuViewActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent editIntent = new Intent(FT_MenuViewActivity.this, Main2Activity.class);
+        FT_MenuViewActivity.this.startActivity(editIntent);
+        Toast.makeText(getApplicationContext(),"메뉴 수정이 완료되었습니다",Toast.LENGTH_LONG).show();
     }
     private class sTask extends AsyncTask<String, Void, Void> {
         String r = null;

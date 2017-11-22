@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity {
+    private long pressedTime;
     private GpsInfo gps;
     double latitude ;
     double longitude ;
@@ -81,6 +83,23 @@ public class Main2Activity extends AppCompatActivity {
                 Main2Activity.this.startActivity(settingIntent);
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+
+        if (pressedTime==0){
+            Toast.makeText(Main2Activity.this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_LONG).show();
+            pressedTime=System.currentTimeMillis();
+        }
+        else{
+            int seconds = (int)(System.currentTimeMillis()-pressedTime);
+            if(seconds>2000){
+                pressedTime=0;
+            }
+            else{
+                finish();
+            }
+        }
     }
 
     private class cTask extends AsyncTask<String, Void, String> {

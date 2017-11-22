@@ -112,6 +112,10 @@ public class FT_CreateActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
     private class rTask extends AsyncTask<String, Void, Integer> {
         int r = -1;
@@ -140,12 +144,14 @@ public class FT_CreateActivity extends AppCompatActivity {
                     alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            finish();
                             Intent intent = new Intent(FT_CreateActivity.this, Main2Activity.class);
                             FT_CreateActivity.this.startActivity(intent);
                         }
                     });
                     alert.setMessage("푸드트럭 정보가 저장되었습니다.");
                     alert.show();
+
                     break;
                 case 1:
                     alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {

@@ -58,6 +58,10 @@ public class FT_MenuModifyActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
     private class rTask extends AsyncTask<String, Void, String> {
         String r;
@@ -103,6 +107,7 @@ public class FT_MenuModifyActivity extends AppCompatActivity {
                     intent = new Intent(FT_MenuModifyActivity.this, FT_MenuViewActivity.class);
                     intent.putExtra("MenuList", menulist);
                     FT_MenuModifyActivity.this.startActivity(intent);
+                    finish();
                     break;
                 case "1":
                     alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
