@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -39,10 +41,13 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 public class SearchActivity extends AppCompatActivity implements OnMapReadyCallback{
     GoogleMap mMap;
@@ -50,15 +55,21 @@ public class SearchActivity extends AppCompatActivity implements OnMapReadyCallb
     double longitude;
     String keyword="";
     String location = "";
+    String distance="";
     String lat = "";
     String lon = "";
-
+    int updatedValue = 500;
+    TextView distanceText;
+    SeekBar distanceSeekbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         final EditText keywordText = (EditText) findViewById(R.id.keywordText);
         final Button searchButton = (Button) findViewById(R.id.searchButton);
+        distanceSeekbar = (SeekBar) findViewById(R.id.seekBar);
+        distanceText = (TextView) findViewById(R.id.distanceText);
+        distanceText.setText("주변 "+initSeekbar(distanceSeekbar)+"M 검색");
 
         FragmentManager fragmentManager = getFragmentManager();
         MapFragment mapFragment = (MapFragment)fragmentManager
@@ -75,6 +86,7 @@ public class SearchActivity extends AppCompatActivity implements OnMapReadyCallb
                 lon = Double.toString(longitude);
                 location="("+lat+","+lon+")";
                 keyword = keywordText.getText().toString();
+                distance = Integer.toString(initSeekbar(distanceSeekbar));
                 new sTask().execute();
             }
         });
@@ -128,7 +140,7 @@ public class SearchActivity extends AppCompatActivity implements OnMapReadyCallb
         @Override
         protected String doInBackground(String... strings) {
             try {
-                r = postJsonToServer(location,keyword);
+                r = postJsonToServer(location,keyword,distance);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -142,11 +154,36 @@ public class SearchActivity extends AppCompatActivity implements OnMapReadyCallb
             startActivity(intent);
         }
     }
-    public String postJsonToServer(String location, String keyword) throws IOException {
+
+    public int initSeekbar(SeekBar seekbar){
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                if (b) {
+                    if (i <= 4) {
+                        updatedValue = (i * 100) + 100;
+                    } else {
+                        updatedValue = (i - 3) * 500;
+                    }
+                }
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                distanceText.setText("주변 "+initSeekbar(distanceSeekbar)+"M 검색");
+            }
+        });
+        return updatedValue;
+    }
+    public String postJsonToServer(String location, String keyword, String distance) throws IOException {
 
         ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
         registerInfo.add(new BasicNameValuePair("location", location));
         registerInfo.add(new BasicNameValuePair("keyword", keyword));
+        registerInfo.add(new BasicNameValuePair("distance", distance));
 
         // 연결 HttpClient 객체 생성
         HttpClient httpClient= new DefaultHttpClient();

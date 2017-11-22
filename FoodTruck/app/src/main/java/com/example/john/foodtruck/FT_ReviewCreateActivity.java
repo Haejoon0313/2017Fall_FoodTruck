@@ -29,6 +29,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FT_ReviewCreateActivity extends AppCompatActivity {
+    SearchFTInfoActivity infoActivity = (SearchFTInfoActivity) SearchFTInfoActivity.InfoActivity;
+
 
     String reviewWriter = "";
     String foodtruckID = "";
@@ -136,8 +138,9 @@ public class FT_ReviewCreateActivity extends AppCompatActivity {
 
                     editIntent.putExtra("menulist", FT_menulist);
                     editIntent.putExtra("reviewlist", reviewlist);
-
+                    infoActivity.finish();
                     finish();
+
                     FT_ReviewCreateActivity.this.startActivity(editIntent);
                     break;
                 case "1":
