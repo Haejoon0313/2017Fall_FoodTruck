@@ -1,5 +1,6 @@
 package com.example.john.foodtruck;
 
+import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchFTInfoActivity extends AppCompatActivity{
+    public static Activity InfoActivity;
 
     private ListView FT_menuview_list;
     private MenuAdapter adapter2;
@@ -34,6 +36,8 @@ public class SearchFTInfoActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_foodtruck_info);
+
+        InfoActivity=SearchFTInfoActivity.this;
 
         final Intent intent = getIntent();
         final String area=intent.getStringExtra("area");
