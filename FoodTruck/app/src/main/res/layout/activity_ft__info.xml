@@ -31,6 +31,44 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <Button
+                        android:id="@+id/myMenuButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="메뉴 수정"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/FT_editButton" />
+
+                    <Button
+                        android:id="@+id/FT_editButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="푸드트럭 정보 수정"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/myMenuButton"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ToggleButton
+                        android:id="@+id/FT_startButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="ToggleButton"
+                        android:textOff="영업 종료"
+                        android:textOn="영업 개시"
+                        app:layout_constraintBottom_toTopOf="@+id/FT_editButton"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
                     <TextView
                         android:id="@+id/FT_info_phone"
                         android:layout_width="0dp"
@@ -44,18 +82,6 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/FT_info_2"
                         app:layout_constraintTop_toBottomOf="@+id/FT_info_name" />
-
-                    <Button
-                        android:id="@+id/myMenuButton"
-                        android:layout_width="238dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="150dp"
-                        android:text="메뉴 수정"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/FT_info_intro" />
 
                     <TextView
                         android:id="@+id/FT_info_area"
@@ -114,18 +140,6 @@
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/FT_info_1" />
-
-                    <Button
-                        android:id="@+id/FT_editButton"
-                        android:layout_width="238dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="10dp"
-                        android:text="푸드트럭 정보 수정"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/myMenuButton" />
 
                     <TextView
                         android:id="@+id/FT_info_1"

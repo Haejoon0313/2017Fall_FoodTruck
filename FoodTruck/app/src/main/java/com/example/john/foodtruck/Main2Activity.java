@@ -171,6 +171,8 @@ public class Main2Activity extends AppCompatActivity {
                     intent = new Intent(Main2Activity.this, FT_InfoActivity.class);
                     intent.putExtra("MenuList", menulist);
                     intent.putExtra("ReviewList", reviewlist);
+                    intent.putExtra("latitude", latitude);
+                    intent.putExtra("longitude", longitude);
                     Main2Activity.this.startActivity(intent);
                     break;
                 case "-1":
