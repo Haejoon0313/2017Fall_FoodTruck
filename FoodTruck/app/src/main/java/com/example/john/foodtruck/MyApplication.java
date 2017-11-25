@@ -14,6 +14,7 @@ public class MyApplication extends Application {
     private int tempFTarea;
     private int tempFTctg;
     private String tempFTintro;
+    private String tempFTphoto;
 
     // 타 class에서 MyApplication class를 통해 해당 variable 값을 참조
     public String getcurrentID(){
@@ -63,5 +64,13 @@ public class MyApplication extends Application {
 
     public void setTempFTintro(String newFTintro){
         this.tempFTintro = newFTintro;
+    }
+
+    public String getTempFTphoto() {
+        return tempFTphoto;
+    }
+
+    public void setTempFTphoto(String tempFTphoto) {
+        this.tempFTphoto = tempFTphoto;
     }
 }

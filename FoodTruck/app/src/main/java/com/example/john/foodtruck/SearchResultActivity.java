@@ -48,7 +48,7 @@ public class SearchResultActivity extends AppCompatActivity {
 
             String sta = resultJson.getString("status");
             JSONArray arr = resultJson.getJSONArray("data");
-            String area,id,intro,name,phone,ctg;
+            String area,id,intro,name,phone,ctg,photo;
             resultCount.setText("결과 : "+sta+" 개");
 
             for (int i = 0; i < arr.length(); i++){
@@ -58,6 +58,7 @@ public class SearchResultActivity extends AppCompatActivity {
                 name= arr.getJSONObject(i).getString("name");
                 phone= arr.getJSONObject(i).getString("phone");
                 ctg= arr.getJSONObject(i).getString("ctg");
+                photo= arr.getJSONObject(i).getString("photo");
 
                 JSONArray menuarr  = arr.getJSONObject(i).getJSONArray("menulist");
                 menulist = menuarr.toString();
@@ -67,7 +68,7 @@ public class SearchResultActivity extends AppCompatActivity {
                 reviewlist = reviewarr.toString();
                 Log.d("review", reviewlist);
 
-                resultList.add(new SearchResult(area,id,intro,name,phone, ctg,menulist,reviewlist));
+                resultList.add(new SearchResult(area,id,intro,name,phone, ctg,menulist,reviewlist,photo));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -88,6 +89,7 @@ public class SearchResultActivity extends AppCompatActivity {
                 intent.putExtra("ctg", resultList.get(position).getCtg());
                 intent.putExtra("reviewlist", resultList.get(position).getReviewlist());
                 intent.putExtra("menulist", resultList.get(position).getMenulist());
+                intent.putExtra("photo", resultList.get(position).getPhoto());
 
 
                 startActivity(intent);

@@ -2,16 +2,24 @@ package com.example.john.foodtruck;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
+import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import org.apache.http.HttpResponse;
@@ -25,6 +33,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -35,9 +45,21 @@ public class FT_CreateActivity extends AppCompatActivity {
     String ftCtg = "";
     String ftIntro = "";
     String currentID = "";
+    String ftPhoto="";
+    Bitmap photo;
+    private ImageView fd_photo;
+
+    int id_view;
+    private Uri mImageCaptureUri;
+    private static final int PICK_FROM_CAMERA = 0;
+    private static final int PICK_FROM_ALBUM = 1;
+    private static final int CROP_FROM_IMAGE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ft__create);
 
@@ -46,11 +68,16 @@ public class FT_CreateActivity extends AppCompatActivity {
         final EditText nameText = (EditText) findViewById(R.id.nameText);
         final EditText phoneText = (EditText) findViewById(R.id.phoneText);
         final EditText introText = (EditText) findViewById(R.id.introText);
+        fd_photo = (ImageView) findViewById(R.id.imageView);
 
         if(!myApp.getTempFTphone().equals("-1")){
             nameText.setText(myApp.getTempFTname());
             phoneText.setText(myApp.getTempFTphone());
             introText.setText(myApp.getTempFTintro());
+
+            byte[] encodebytearray = Base64.decode(myApp.getTempFTphoto(),Base64.DEFAULT);
+            Bitmap encodebitmap = BitmapFactory.decodeByteArray(encodebytearray,0,encodebytearray.length);
+            fd_photo.setImageBitmap(encodebitmap);
         }
 
         currentID = myApp.getcurrentID();
@@ -108,10 +135,119 @@ public class FT_CreateActivity extends AppCompatActivity {
                 ftPhone = phoneText.getText().toString();
                 ftIntro = introText.getText().toString();
 
+                ByteArrayOutputStream byteArrayOS = new ByteArrayOutputStream();
+                photo.compress(Bitmap.CompressFormat.PNG,100,byteArrayOS);
+                byte[] byteArray = byteArrayOS.toByteArray();
+                ftPhoto = Base64.encodeToString(byteArray,Base64.DEFAULT);
+
                 new rTask().execute();
             }
         });
+
+        fd_photo.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                id_view = v.getId();
+                if (id_view == R.id.imageView){
+                    DialogInterface.OnClickListener cameraListener = new DialogInterface.OnClickListener(){
+
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+                            Log.d("camera_dialog_click", String.valueOf(123));
+                            doTakePhotoAction();
+                        }
+                    };
+
+                    DialogInterface.OnClickListener albumListener = new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+                            doTakeAlbumAction();
+                        }
+                    };
+
+                    DialogInterface.OnClickListener cancelListener = new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+                            dialogInterface.dismiss();
+                        }
+                    };
+
+                    new AlertDialog.Builder(FT_CreateActivity.this)
+                            .setTitle("푸드트럭 사진 선택")
+                            .setPositiveButton("사진촬영",cameraListener)
+                            .setNeutralButton("앨범선택",albumListener)
+                            .setNegativeButton("취소",cancelListener)
+                            .show(); //여기서 보여줌~
+                }
+            }
+        });
     }
+
+    private void doTakeAlbumAction() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
+        startActivityForResult(intent,PICK_FROM_ALBUM);
+    }
+
+    private void doTakePhotoAction() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        String url = "tmp_" + String.valueOf(System.currentTimeMillis()) + ".jpg";
+        mImageCaptureUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(),url));
+        intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, mImageCaptureUri);
+        startActivityForResult(intent,PICK_FROM_CAMERA);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
+        if(resultCode != RESULT_OK)
+            return;
+
+        switch(requestCode){
+            case PICK_FROM_ALBUM:
+            {
+                mImageCaptureUri = data.getData();
+                Log.d("SmartWheel",mImageCaptureUri.getPath().toString());
+            }
+
+            case PICK_FROM_CAMERA:
+            {
+                Intent intent = new Intent("com.android.camera.action.CROP");
+                intent.setDataAndType(mImageCaptureUri,"image/");
+
+                intent.putExtra("outputX",200);
+                intent.putExtra("outputY",150);
+                intent.putExtra("aspectX",4);
+                intent.putExtra("aspectY",3);
+                intent.putExtra("scale",true);
+                intent.putExtra("return-data",true);
+                startActivityForResult(intent,CROP_FROM_IMAGE);
+                break;
+            }
+
+            case CROP_FROM_IMAGE:
+            {//crop 이후의 이미지를 받는다.
+
+                if (resultCode != RESULT_OK){
+                    return;
+                }
+                final Bundle extras = data.getExtras();
+
+                String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                        "/SmartWheel/" + System.currentTimeMillis()+".jpg";
+
+                if (extras != null)
+                {
+
+                    photo  = extras.getParcelable("data");
+                    fd_photo.setImageBitmap(photo);
+
+                    break;
+                }
+            }
+        }
+    }
+
     @Override
     public void onBackPressed() {
         finish();
@@ -128,7 +264,7 @@ public class FT_CreateActivity extends AppCompatActivity {
         @Override
         protected Integer doInBackground(String... strings) {
             try {
-                r = postJsonToServer(ftName, ftPhone, ftArea, ftCtg, ftIntro, currentID);
+                r = postJsonToServer(ftName, ftPhone, ftArea, ftCtg, ftIntro, currentID, ftPhoto);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -193,11 +329,21 @@ public class FT_CreateActivity extends AppCompatActivity {
                     alert.setMessage("카테고리를 선택하여 주십시오.");
                     alert.show();
                     break;
+                case 5:
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();     //닫기
+                        }
+                    });
+                    alert.setMessage("사진을 등록해 주십시오.");
+                    alert.show();
+                    break;
             }
         }
     }
 
-    public int postJsonToServer(String name, String phone, String area, String ctg, String introduction, String currentID) throws IOException {
+    public int postJsonToServer(String name, String phone, String area, String ctg, String introduction, String currentID, String photo) throws IOException {
 
         ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
         registerInfo.add(new BasicNameValuePair("name", name));
@@ -206,6 +352,8 @@ public class FT_CreateActivity extends AppCompatActivity {
         registerInfo.add(new BasicNameValuePair("ctg", ctg));
         registerInfo.add(new BasicNameValuePair("introduction", introduction));
         registerInfo.add(new BasicNameValuePair("id", currentID));
+        registerInfo.add(new BasicNameValuePair("photo", photo));
+
 
         // 연결 HttpClient 객체 생성
         HttpClient httpClient = new DefaultHttpClient();
@@ -247,6 +395,9 @@ public class FT_CreateActivity extends AppCompatActivity {
             } else if (responseString.contains("4")) {
                 //Log.d("카테고리", responseString);
                 return 4;
+            } else if (responseString.contains("5")) {
+                //Log.d("사진", responseString);
+                return 5;
             } else {
                 Log.d("Unknown Error", responseString);
                 return -1;

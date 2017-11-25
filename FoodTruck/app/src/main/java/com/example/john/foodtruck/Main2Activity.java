@@ -134,6 +134,7 @@ public class Main2Activity extends AppCompatActivity {
             String introduction = "";
             String menulist = "";
             String reviewlist = "";
+            String photo = "";
 
             final MyApplication myApp = (MyApplication) getApplication();
 
@@ -147,6 +148,7 @@ public class Main2Activity extends AppCompatActivity {
                 area = obj.getString("area");
                 ctg = obj.getString("ctg");
                 introduction = obj.getString("introduction");
+                photo = obj.getString("photo");
 
                 JSONArray menuarr  = obj.getJSONArray("menulist");
                 menulist = menuarr.toString();
@@ -166,6 +168,7 @@ public class Main2Activity extends AppCompatActivity {
                     myApp.setTempFTphone(phone);
                     myApp.setTempFTarea(area);
                     myApp.setTempFTctg(ctg);
+                    myApp.setTempFTphoto(photo);
                     myApp.setTempFTintro(introduction);
 
                     gps = new GpsInfo(Main2Activity.this);

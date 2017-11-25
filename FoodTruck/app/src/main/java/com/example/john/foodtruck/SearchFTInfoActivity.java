@@ -3,13 +3,17 @@ package com.example.john.foodtruck;
 import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -45,6 +49,7 @@ public class SearchFTInfoActivity extends AppCompatActivity{
         final String id=intent.getStringExtra("id");
         final String intro=intent.getStringExtra("introduction");
         final String phone=intent.getStringExtra("phone");
+        final String photo=intent.getStringExtra("photo");
 
         final String FT_menulist = intent.getStringExtra("menulist");
         final String FT_reviewlist = intent.getStringExtra("reviewlist");
@@ -52,8 +57,12 @@ public class SearchFTInfoActivity extends AppCompatActivity{
         TextView title = (TextView) findViewById(R.id.FTTitle);
         title.setText(name);
 
-        TabHost tabHost1 = (TabHost) findViewById(android.R.id.tabhost);
+        ImageView ftphoto=(ImageView) findViewById(R.id.ftphoto);
+        byte[] encodebytearray = Base64.decode(photo,Base64.DEFAULT);
+        Bitmap encodebitmap = BitmapFactory.decodeByteArray(encodebytearray,0,encodebytearray.length);
+        ftphoto.setImageBitmap(encodebitmap);
 
+        TabHost tabHost1 = (TabHost) findViewById(android.R.id.tabhost);
         tabHost1.setup() ;
         TabHost.TabSpec ts1 = tabHost1.newTabSpec("Tab Spec 1") ;
         ts1.setContent(R.id.FTInfo) ;

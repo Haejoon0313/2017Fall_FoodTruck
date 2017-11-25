@@ -13,6 +13,7 @@ public class SearchResult {
     private String ctg;
     private String menulist;
     private String reviewlist;
+    private String photo;
 
     public String getArea() {
         return area;
@@ -54,7 +55,7 @@ public class SearchResult {
         this.phone = phone;
     }
 
-    public SearchResult(String area, String id, String intro, String name, String phone, String ctg, String menulist, String reviewlist) {
+    public SearchResult(String area, String id, String intro, String name, String phone, String ctg, String menulist, String reviewlist, String photo) {
         this.area = area;
         this.id = id;
         this.intro = intro;
@@ -63,6 +64,7 @@ public class SearchResult {
         this.ctg = ctg;
         this.menulist=menulist;
         this.reviewlist=reviewlist;
+        this.photo=photo;
     }
 
     public String getMenulist() {
@@ -87,6 +89,14 @@ public class SearchResult {
 
     public void setCtg(String ctg) {
         this.ctg = ctg;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }
 

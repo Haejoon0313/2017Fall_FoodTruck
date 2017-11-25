@@ -2,14 +2,18 @@ package com.example.john.foodtruck;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -56,6 +60,7 @@ public class FT_InfoActivity extends AppCompatActivity {
         final TextView FT_info_area = (TextView) findViewById(R.id.FT_info_area);
         final TextView FT_info_ctg = (TextView) findViewById(R.id.FT_info_ctg);
         final TextView FT_info_intro = (TextView) findViewById(R.id.FT_info_intro);
+        final ImageView FT_info_photo = (ImageView) findViewById(R.id.FTImage);
 
         // 상세정보 탭
 
@@ -73,6 +78,10 @@ public class FT_InfoActivity extends AppCompatActivity {
 
         String[] tempCtg = getResources().getStringArray(R.array.ctgSpinnerArray);
         FT_info_ctg.setText(tempCtg[myApp.getTempFTctg()]);
+
+        byte[] encodebytearray = Base64.decode(myApp.getTempFTphoto(),Base64.DEFAULT);
+        Bitmap encodebitmap = BitmapFactory.decodeByteArray(encodebytearray,0,encodebytearray.length);
+        FT_info_photo.setImageBitmap(encodebitmap);
 
         try {
             JSONArray menuarr = new JSONArray(FT_info_menulist);

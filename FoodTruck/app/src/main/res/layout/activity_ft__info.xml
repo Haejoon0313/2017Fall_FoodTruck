@@ -31,6 +31,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+
+
                     <Button
                         android:id="@+id/myMenuButton"
                         android:layout_width="0dp"
@@ -55,13 +57,34 @@
                         app:layout_constraintEnd_toStartOf="@+id/myMenuButton"
                         app:layout_constraintStart_toStartOf="parent" />
 
+                    <ImageView
+                        android:id="@+id/FTImage"
+                        android:layout_width="200dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_height="150dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@mipmap/ic_launcher" />
+
+                    <TextView
+                        android:id="@+id/FT_info_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="12dp"
+                        android:text="푸드트럭 이름"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/FTImage" />
+
                     <TextView
                         android:id="@+id/FT_info_phone"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="12dp"
                         android:text="123"
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="34dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="12dp"
                         android:text="지역지역"
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="12dp"
                         android:text="소     개"
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         app:layout_constraintStart_toStartOf="parent"
@@ -99,7 +122,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="12dp"
                         android:text="지     역"
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +134,7 @@
                         android:layout_height="106dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="12dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/FT_info_6"
                         app:layout_constraintTop_toBottomOf="@+id/FT_info_intro" />
@@ -121,29 +144,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="12dp"
                         android:text="매장 전화번호"
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/FT_info_1" />
 
-                    <TextView
-                        android:id="@+id/FT_info_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="48dp"
-                        android:text="푸드트럭 이름"
-                        android:textAppearance="@style/TextAppearance.AppCompat"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+
 
                     <TextView
                         android:id="@+id/FT_info_6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="12dp"
                         android:text="메     뉴"
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         app:layout_constraintStart_toStartOf="parent"
@@ -154,7 +168,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="36dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="12dp"
                         android:text="카테고리"
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         app:layout_constraintStart_toStartOf="parent"
@@ -166,12 +180,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="48dp"
+                        android:layout_marginTop="12dp"
                         android:text="이름이름"
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/FT_info_1"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/FTImage" />
 
                     <TextView
                         android:id="@+id/FT_info_ctg"
@@ -179,7 +193,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="32dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="12dp"
                         android:text="카아테고리이"
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -193,7 +207,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="36dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="12dp"
                         android:text="소개소개소개"
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         app:layout_constraintEnd_toEndOf="parent"
