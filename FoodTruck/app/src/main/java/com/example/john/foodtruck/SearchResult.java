@@ -15,6 +15,7 @@ public class SearchResult {
     private String reviewlist;
     private String photo;
 
+
     public String getArea() {
         return area;
     }

@@ -37,6 +37,7 @@ public class Main2Activity extends AppCompatActivity {
     String lon;
     String location;
     String status;
+    String result2="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +153,7 @@ public class Main2Activity extends AppCompatActivity {
             MyApplication myApp = (MyApplication) getApplication();
             try {
                 result = postJsonToServer(myApp.getcurrentID());
+                result2 = postJsonToServer3(myApp.getcurrentID());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -173,11 +175,16 @@ public class Main2Activity extends AppCompatActivity {
             String reviewlist = "";
             String photo = "";
 
+            String saleslist="";
+
             final MyApplication myApp = (MyApplication) getApplication();
 
             JSONObject obj = null;
+            JSONObject obj2 = null;
+
             try {
                 obj = new JSONObject(result);
+                obj2 = new JSONObject(result2);
 
                 status = obj.getString("status");
                 name = obj.getString("name");
@@ -192,6 +199,9 @@ public class Main2Activity extends AppCompatActivity {
 
                 JSONArray reviewarr  = obj.getJSONArray("reviewlist");
                 reviewlist = reviewarr.toString();
+
+                JSONArray salearr  = obj2.getJSONArray("salelist");
+                saleslist=salearr.toString();
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -218,7 +228,7 @@ public class Main2Activity extends AppCompatActivity {
                         intent.putExtra("ReviewList", reviewlist);
                         intent.putExtra("latitude", latitude);
                         intent.putExtra("longitude", longitude);
-
+                        intent.putExtra("saleslist", saleslist);
 
                         Main2Activity.this.startActivity(intent);
                     } else {
@@ -372,6 +382,46 @@ public class Main2Activity extends AppCompatActivity {
         // server url 받기
         String serverURL = getResources().getString(R.string.serverURL);
         HttpPost httpPost = new HttpPost(serverURL + "/sale_state");
+
+        // 객체 연결 설정 부분, 연결 최대시간 등등
+        //HttpParams params = client.getParams();
+        //HttpConnectionParams.setConnectionTimeout(params, 5000);
+        //HttpConnectionParams.setSoTimeout(params, 5000);
+
+        // Post객체 생성
+
+
+        try {
+            UrlEncodedFormEntity entity = new UrlEncodedFormEntity(registerInfo, "UTF-8");
+            httpPost.setEntity(entity);
+            //httpClient.execute(httpPost);
+
+            HttpResponse response = httpClient.execute(httpPost);
+            String responseString;
+            responseString = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
+
+            return responseString;
+
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+    public String postJsonToServer3(String currentID) throws IOException {
+
+
+        ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
+        registerInfo.add(new BasicNameValuePair("id", currentID));
+
+        // 연결 HttpClient 객체 생성
+        HttpClient httpClient= new DefaultHttpClient();
+
+        // server url 받기
+        String serverURL = getResources().getString(R.string.serverURL);
+        HttpPost httpPost = new HttpPost(serverURL + "/sale_list");
 
         // 객체 연결 설정 부분, 연결 최대시간 등등
         //HttpParams params = client.getParams();

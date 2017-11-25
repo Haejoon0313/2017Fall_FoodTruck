@@ -104,7 +104,7 @@ public class FT_ReviewCreateActivity extends AppCompatActivity {
             final String id=intent.getStringExtra("id");
             final String intro=intent.getStringExtra("introduction");
             final String phone=intent.getStringExtra("phone");
-
+            final String photo=intent.getStringExtra("photo");
             final String FT_menulist = intent.getStringExtra("MenuList");
 
             Intent editIntent;
@@ -135,7 +135,7 @@ public class FT_ReviewCreateActivity extends AppCompatActivity {
                     editIntent.putExtra("id", id);
                     editIntent.putExtra("introduction", intro);
                     editIntent.putExtra("phone", phone);
-
+                    editIntent.putExtra("photo", photo);
                     editIntent.putExtra("menulist", FT_menulist);
                     editIntent.putExtra("reviewlist", reviewlist);
                     infoActivity.finish();

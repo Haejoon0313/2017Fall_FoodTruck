@@ -18,8 +18,19 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,6 +47,10 @@ public class FT_InfoActivity extends AppCompatActivity {
     private ReviewAdapter adapter2;
     private List<FT_ReviewList> reviewList;
 
+    private ListView FT_info_sales;
+    private SalesAdapter adapter3;
+    private List<SalesList> salesList;
+
     String currentID = "";
 
     @Override
@@ -46,7 +61,7 @@ public class FT_InfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String FT_info_menulist = intent.getStringExtra("MenuList");
         final String FT_info_reviewlist = intent.getStringExtra("ReviewList");
-
+        final String FT_info_saleslist = intent.getStringExtra("saleslist");
         final MyApplication myApp = (MyApplication) getApplication();
         currentID = myApp.getcurrentID();
 
@@ -61,6 +76,8 @@ public class FT_InfoActivity extends AppCompatActivity {
         final TextView FT_info_ctg = (TextView) findViewById(R.id.FT_info_ctg);
         final TextView FT_info_intro = (TextView) findViewById(R.id.FT_info_intro);
         final ImageView FT_info_photo = (ImageView) findViewById(R.id.FTImage);
+
+
 
         // 상세정보 탭
 
@@ -122,12 +139,11 @@ public class FT_InfoActivity extends AppCompatActivity {
             }
         });
 
-
+        tabHost1.addTab(ts1) ;
 
 
         // 리뷰 탭
 
-        tabHost1.addTab(ts1) ;
         TabHost.TabSpec ts2 = tabHost1.newTabSpec("Tab Spec 2") ;
         ts2.setContent(R.id.FT_review) ;
         ts2.setIndicator("리뷰") ;
@@ -135,7 +151,6 @@ public class FT_InfoActivity extends AppCompatActivity {
 
         FT_info_review = (ListView) findViewById(R.id.FT_info_review);
         reviewList = new ArrayList<FT_ReviewList>();
-
         try {
             JSONArray reviewarr = new JSONArray(FT_info_reviewlist);
 
@@ -155,11 +170,38 @@ public class FT_InfoActivity extends AppCompatActivity {
         adapter2 = new ReviewAdapter(getApplicationContext(), reviewList);
         FT_info_review.setAdapter(adapter2);
 
+        // Tab 3
+
+        TabHost.TabSpec ts3 = tabHost1.newTabSpec("Tab Spec 3") ;
+        ts3.setContent(R.id.FT_sales) ;
+        ts3.setIndicator("매출") ;
+        tabHost1.addTab(ts3) ;
+
+        FT_info_sales = (ListView) findViewById(R.id.FT_info_sales);
+        salesList = new ArrayList<SalesList>();
+
+        try {
+
+            JSONArray salesarr = new JSONArray(FT_info_saleslist);
+            String date, start, end, location, sales;
+
+            for (int i = 0; i < salesarr.length(); i++){
+                date = salesarr.getJSONObject(i).getString("date");
+                start = salesarr.getJSONObject(i).getString("begin");
+                end= salesarr.getJSONObject(i).getString("end");
+                location= salesarr.getJSONObject(i).getString("location");
+                sales= salesarr.getJSONObject(i).getString("total_price");
+                salesList.add(new SalesList(date, start, end, sales, location));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        adapter3 = new SalesAdapter(getApplicationContext(), salesList);
+        FT_info_sales.setAdapter(adapter3);
+
     }
     @Override
     public void onBackPressed() {
         finish();
     }
-
-
 }

@@ -145,7 +145,7 @@ public class SearchFTInfoActivity extends AppCompatActivity{
                 editIntent.putExtra("id", id);
                 editIntent.putExtra("introduction", intro);
                 editIntent.putExtra("phone", phone);
-
+                editIntent.putExtra("photo", photo);
                 editIntent.putExtra("MenuList", FT_menulist);
                 editIntent.putExtra("ReviewList", FT_reviewlist);
 
