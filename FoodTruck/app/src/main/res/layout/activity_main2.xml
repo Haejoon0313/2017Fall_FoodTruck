@@ -30,13 +30,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/noticeButton"
+        android:id="@+id/salesButton"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="60dp"
-        android:text="공지사항"
+        android:text="영업 관리"
         app:layout_constraintEnd_toStartOf="@+id/settingButton"
         app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"

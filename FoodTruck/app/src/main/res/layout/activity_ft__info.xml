@@ -55,20 +55,6 @@
                         app:layout_constraintEnd_toStartOf="@+id/myMenuButton"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                    <ToggleButton
-                        android:id="@+id/FT_startButton"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
-                        android:text="ToggleButton"
-                        android:textOff="영업 종료"
-                        android:textOn="영업 개시"
-                        app:layout_constraintBottom_toTopOf="@+id/FT_editButton"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
                     <TextView
                         android:id="@+id/FT_info_phone"
                         android:layout_width="0dp"

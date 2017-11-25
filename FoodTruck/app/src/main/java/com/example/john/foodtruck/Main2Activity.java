@@ -40,7 +40,7 @@ public class Main2Activity extends AppCompatActivity {
 
         Button searchButton = (Button) findViewById(R.id.searchButton);
         Button FT_mytruckButton = (Button) findViewById(R.id.FT_mytruckButton);
-        Button noticeButton = (Button) findViewById(R.id.noticeButton);
+        Button salesButton = (Button) findViewById(R.id.salesButton);
         Button settingButton = (Button) findViewById(R.id.settingButton);
 
         searchButton.setOnClickListener(new View.OnClickListener(){
@@ -68,10 +68,10 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
-        noticeButton.setOnClickListener(new View.OnClickListener(){
+        salesButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent noticeIntent = new Intent(Main2Activity.this, NoticeActivity.class);
+                Intent noticeIntent = new Intent(Main2Activity.this, SalesActivity.class);
                 Main2Activity.this.startActivity(noticeIntent);
             }
         });

@@ -27,14 +27,13 @@
         <activity android:name=".FT_CreateActivity" />
         <activity android:name=".FT_MenuModifyActivity" />
         <activity android:name=".SearchActivity" />
-        <activity android:name=".NoticeActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".favoriteActivity" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".FT_InfoActivity" />
         <activity android:name=".SearchFTInfoActivity" />
         <activity android:name=".FT_ReviewCreateActivity" />
-        <activity android:name=".FT_MenuViewActivity"></activity>
+        <activity android:name=".FT_MenuViewActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -42,7 +41,9 @@
 
         <uses-library android:name="com.google.android.maps" />
 
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SalesActivity" />
+        <activity android:name=".NoticeActivity"></activity>
     </application>
 
 </manifest>
