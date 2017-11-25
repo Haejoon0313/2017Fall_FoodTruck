@@ -1,8 +1,10 @@
 package com.example.john.foodtruck;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -31,12 +33,18 @@ public class Main2Activity extends AppCompatActivity {
     private GpsInfo gps;
     double latitude ;
     double longitude ;
+    String lat;
+    String lon;
+    String location;
+    String status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        final AlertDialog.Builder alertF = new AlertDialog.Builder(Main2Activity.this);
 
         Button searchButton = (Button) findViewById(R.id.searchButton);
         Button FT_mytruckButton = (Button) findViewById(R.id.FT_mytruckButton);
@@ -71,8 +79,37 @@ public class Main2Activity extends AppCompatActivity {
         salesButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent noticeIntent = new Intent(Main2Activity.this, SalesActivity.class);
-                Main2Activity.this.startActivity(noticeIntent);
+                gps = new GpsInfo(Main2Activity.this);
+                // GPS 사용유무 가져오기
+                latitude = gps.getLatitude();
+                longitude = gps.getLongitude();
+                if (gps.isGetLocation() && latitude>30 && latitude<45 && longitude>120 && longitude<135 ) {
+                    lat = Double.toString(latitude);
+                    lon = Double.toString(longitude);
+                    location="("+lat+","+lon+")";
+                    status = "1";
+
+                    alertF.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            new sTask().execute();
+                        }
+                    });
+                    alertF.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();     //닫기
+                        }
+                    });
+                    alertF.setMessage("영업을 시작하시겠습니까?");
+                    alertF.show();
+
+
+                } else {
+                    // GPS 를 사용할수 없으므로
+                    gps.showSettingsAlert();
+                }
+
             }
         });
 
@@ -182,8 +219,6 @@ public class Main2Activity extends AppCompatActivity {
                         intent.putExtra("latitude", latitude);
                         intent.putExtra("longitude", longitude);
 
-                        intent.putExtra("latitude", latitude);
-                        intent.putExtra("longitude", longitude);
 
                         Main2Activity.this.startActivity(intent);
                     } else {
@@ -213,6 +248,130 @@ public class Main2Activity extends AppCompatActivity {
         // server url 받기
         String serverURL = getResources().getString(R.string.serverURL);
         HttpPost httpPost = new HttpPost(serverURL + "/foodtruck_enroll");
+
+        // 객체 연결 설정 부분, 연결 최대시간 등등
+        //HttpParams params = client.getParams();
+        //HttpConnectionParams.setConnectionTimeout(params, 5000);
+        //HttpConnectionParams.setSoTimeout(params, 5000);
+
+        // Post객체 생성
+
+
+        try {
+            UrlEncodedFormEntity entity = new UrlEncodedFormEntity(registerInfo, "UTF-8");
+            httpPost.setEntity(entity);
+            //httpClient.execute(httpPost);
+
+            HttpResponse response = httpClient.execute(httpPost);
+            String responseString;
+            responseString = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
+
+            return responseString;
+
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
+    private class sTask extends AsyncTask<String, Void, String> {
+        String result;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            MyApplication myApp = (MyApplication) getApplication();
+            try {
+                result = postJsonToServerS(myApp.getcurrentID(), location, status);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(Main2Activity.this);
+
+            Intent intent;
+
+            String status = "";
+            String menulist = "";
+
+            final MyApplication myApp = (MyApplication) getApplication();
+
+            JSONObject obj = null;
+            try {
+                obj = new JSONObject(result);
+
+                status = obj.getString("status");
+
+                JSONArray menuarr  = obj.getJSONArray("menulist");
+                menulist = menuarr.toString();
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            switch (status){
+                case "0":
+                    // 영업 종료
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();     //닫기
+                        }
+                    });
+                    alert.setMessage("영업이 종료되었습니다.");
+                    alert.show();
+                    break;
+                case "1":
+                    // 영업 시작
+
+                    intent = new Intent(Main2Activity.this, SalesActivity.class);
+                    intent.putExtra("MenuList", menulist);
+
+                    Main2Activity.this.startActivity(intent);
+                    break;
+                case "-1":
+                    // 미등록 푸드트럭
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();     //닫기
+                        }
+                    });
+                    alert.setMessage("등록된 푸드트럭이 없습니다. \n나의 푸드트럭 메뉴에서 먼저 푸드트럭을 등록하여 주십시오.");
+                    alert.show();
+                    break;
+
+            }
+        }
+    }
+
+    public String postJsonToServerS(String currentID, String location, String status) throws IOException {
+
+
+        ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
+        registerInfo.add(new BasicNameValuePair("id", currentID));
+        registerInfo.add(new BasicNameValuePair("location", location));
+        registerInfo.add(new BasicNameValuePair("status", status));
+
+        // 연결 HttpClient 객체 생성
+        HttpClient httpClient= new DefaultHttpClient();
+
+        // server url 받기
+        String serverURL = getResources().getString(R.string.serverURL);
+        HttpPost httpPost = new HttpPost(serverURL + "/sale_state");
 
         // 객체 연결 설정 부분, 연결 최대시간 등등
         //HttpParams params = client.getParams();
