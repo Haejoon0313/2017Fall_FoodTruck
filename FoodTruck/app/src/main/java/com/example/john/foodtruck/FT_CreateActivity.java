@@ -39,6 +39,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FT_CreateActivity extends AppCompatActivity {
+    Bitmap encodebitmap;
     String ftName = "";
     String ftPhone = "";
     String ftArea = "";
@@ -76,7 +77,7 @@ public class FT_CreateActivity extends AppCompatActivity {
             introText.setText(myApp.getTempFTintro());
 
             byte[] encodebytearray = Base64.decode(myApp.getTempFTphoto(),Base64.DEFAULT);
-            Bitmap encodebitmap = BitmapFactory.decodeByteArray(encodebytearray,0,encodebytearray.length);
+            encodebitmap = BitmapFactory.decodeByteArray(encodebytearray,0,encodebytearray.length);
             fd_photo.setImageBitmap(encodebitmap);
         }
 
@@ -170,6 +171,7 @@ public class FT_CreateActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int which) {
                             // photo 선택 cancel 시 오류 발생
                             dialogInterface.dismiss();
+                            fd_photo.setImageBitmap(encodebitmap);
                         }
                     };
 
