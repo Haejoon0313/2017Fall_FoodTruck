@@ -75,6 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="판매자"
+            android:buttonTint="@android:color/holo_orange_light"
             android:layout_marginRight="35dp"
             tools:layout_editor_absoluteX="57dp"
             tools:layout_editor_absoluteY="369dp" />
@@ -85,6 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="구매자"
+            android:buttonTint="@android:color/holo_orange_light"
             tools:layout_editor_absoluteX="57dp"
             tools:layout_editor_absoluteY="369dp" />
     </RadioGroup>
@@ -94,6 +96,8 @@
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:text="회원가입"
+        android:background="@android:color/holo_orange_dark"
+        android:textColor="@android:color/white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rg" />

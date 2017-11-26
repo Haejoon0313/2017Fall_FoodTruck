@@ -168,6 +168,7 @@ public class FT_CreateActivity extends AppCompatActivity {
                     DialogInterface.OnClickListener cancelListener = new DialogInterface.OnClickListener(){
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
+                            // photo 선택 cancel 시 오류 발생
                             dialogInterface.dismiss();
                         }
                     };

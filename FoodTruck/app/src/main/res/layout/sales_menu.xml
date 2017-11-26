@@ -38,7 +38,9 @@
         android:layout_marginEnd="24dp"
         android:layout_marginTop="8dp"
         android:text="+"
-        android:textSize="15dp"
+        android:background="@android:color/holo_orange_dark"
+        android:textColor="@android:color/white"
+        android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,10 +48,12 @@
         android:id="@+id/minusButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginTop="8dp"
+        android:background="@android:color/holo_orange_dark"
         android:text="-"
-        android:textSize="15dp"
+        android:textColor="@android:color/white"
+        android:textSize="17dp"
         app:layout_constraintEnd_toStartOf="@+id/sellNumber"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,11 +61,11 @@
         android:id="@+id/sellNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginTop="16dp"
         android:text="0"
-        android:textSize="20dp"
         android:textColor="#000000"
+        android:textSize="20dp"
         app:layout_constraintEnd_toStartOf="@+id/plusButton"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -34,7 +34,7 @@ public class FT_ReviewCreateActivity extends AppCompatActivity {
 
     String reviewWriter = "";
     String foodtruckID = "";
-    String reviewRating = "";
+    String reviewRating = "0";
     String reviewDetail = "";
 
     @Override

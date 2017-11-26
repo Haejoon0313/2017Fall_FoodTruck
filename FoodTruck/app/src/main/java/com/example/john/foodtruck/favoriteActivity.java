@@ -10,4 +10,9 @@ public class favoriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

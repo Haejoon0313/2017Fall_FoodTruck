@@ -33,9 +33,12 @@
         android:id="@+id/FT_menuview_enroll"
         android:layout_width="0dp"
         android:layout_height="47dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="100dp"
         android:layout_marginStart="100dp"
+        android:background="@android:color/holo_orange_dark"
         android:text="메뉴 추가"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/successButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -48,6 +51,8 @@
         android:layout_marginStart="100dp"
         android:layout_marginBottom="8dp"
         android:text="수정 완료"
+        android:background="@android:color/holo_orange_dark"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

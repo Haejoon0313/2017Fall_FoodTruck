@@ -29,6 +29,7 @@
         android:numStars="5"
         android:rating="3"
         android:stepSize="1.0"
+        android:progressTint="@android:color/holo_orange_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/FT_review_writer" />
