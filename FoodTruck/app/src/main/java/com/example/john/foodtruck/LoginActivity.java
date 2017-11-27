@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         final Button registerButton = (Button) findViewById(R.id.registerButton);
 
         TextView title = (TextView) findViewById(R.id.title);
-        title.setText("로그인");
+        title.setText("FoodTruck");
 
         loginButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
