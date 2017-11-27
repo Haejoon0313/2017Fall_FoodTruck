@@ -50,7 +50,6 @@ public class RegisterActivity extends AppCompatActivity {
         Button registerBtn = (Button) findViewById(R.id.registerButton);
 
         Button backButton = (Button) findViewById(R.id.backButton);
-        Button logoutButton = (Button) findViewById(R.id.logoutButton);
 
         TextView title = (TextView) findViewById(R.id.title);
         title.setText("FoodTruck");
@@ -60,17 +59,6 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // backpress와 똑같이
-                finish();
-            }
-        });
-
-        logoutButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                final MyApplication myApp = (MyApplication) getApplication();
-                myApp.setcurrentID("");
-                Intent loginintent =  new Intent(RegisterActivity.this, LoginActivity.class);
-                RegisterActivity.this.startActivity(loginintent);
                 finish();
             }
         });
