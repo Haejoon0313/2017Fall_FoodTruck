@@ -48,12 +48,15 @@ public class SearchResultAdapter extends BaseAdapter {
         TextView ctgText = (TextView) v.findViewById(R.id.ctgText);
         TextView nameText = (TextView) v.findViewById(R.id.nameText);
         TextView phoneText = (TextView) v.findViewById(R.id.phoneText);
+        TextView distanceText = (TextView) v.findViewById(R.id.distanceText);
 
         String[] tempCtg = context.getResources().getStringArray(R.array.ctgSpinnerArray);
 
         ctgText.setText(tempCtg[Integer.parseInt(resultList.get(i).getCtg())]);
         nameText.setText(resultList.get(i).getName());
         phoneText.setText(resultList.get(i).getPhone());
+        distanceText.setText("약 "+resultList.get(i).getDistance()+" m");
+
 
         return v;
     }

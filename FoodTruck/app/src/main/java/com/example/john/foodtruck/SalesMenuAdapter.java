@@ -75,7 +75,7 @@ public class SalesMenuAdapter extends BaseAdapter {
         });
 
         FT_menu_name.setText(menuList.get(i).getName());
-        FT_menu_price.setText(menuList.get(i).getPrice()+"원");
+        FT_menu_price.setText(menuList.get(i).getPrice()+" 원");
         FT_menu_ingredients.setText(menuList.get(i).getIngredients());
         sellNumber.setText(menuList.get(i).getNums());
         //Log.d("sellNumber", menuList.get(i).getNums());

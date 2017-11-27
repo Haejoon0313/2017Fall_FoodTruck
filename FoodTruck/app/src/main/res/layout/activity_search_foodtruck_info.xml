@@ -84,6 +84,10 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="푸드트럭 정보"
+<<<<<<< HEAD
+=======
+        android:textSize="25dp"
+>>>>>>> 3ce0683bce57e350c06549fc8fb825475db9d127
         android:textColor="#000000"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@id/FTTitle"
@@ -211,6 +215,11 @@
                         android:id="@+id/FT_reviewview_enroll"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+<<<<<<< HEAD
+=======
+                        android:text="리뷰 작성"
+                        android:layout_marginTop="10dp"
+>>>>>>> 3ce0683bce57e350c06549fc8fb825475db9d127
                         android:background="@android:color/holo_orange_dark"
                         android:text="리뷰 작성"
                         android:textColor="@android:color/white"
