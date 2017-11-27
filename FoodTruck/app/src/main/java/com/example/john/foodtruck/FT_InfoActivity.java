@@ -78,7 +78,7 @@ public class FT_InfoActivity extends AppCompatActivity {
         final TextView FT_info_intro = (TextView) findViewById(R.id.FT_info_intro);
         final ImageView FT_info_photo = (ImageView) findViewById(R.id.FTImage);
 
-        Button backButton = (Button) findViewById(R.id.backButton);
+        /*Button backButton = (Button) findViewById(R.id.backButton);
         Button logoutButton = (Button) findViewById(R.id.logoutButton);
 
         TextView title = (TextView) findViewById(R.id.title);
@@ -101,7 +101,7 @@ public class FT_InfoActivity extends AppCompatActivity {
                 FT_InfoActivity.this.startActivity(loginintent);
                 finish();
             }
-        });
+        });*/
 
 
 
