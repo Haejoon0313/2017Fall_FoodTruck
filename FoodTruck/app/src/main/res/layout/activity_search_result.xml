@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    android:background="#d1d1d1"
-=======
     android:background="#FFFFFF"
->>>>>>> 3ce0683bce57e350c06549fc8fb825475db9d127
     tools:context="com.example.john.foodtruck.SearchResultActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -81,13 +77,7 @@
         android:paddingRight="5dp"
         android:paddingTop="5dp"
         android:text="결과 수"
-<<<<<<< HEAD
-        android:textSize="30dp"
-=======
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/searchResult"
->>>>>>> 3ce0683bce57e350c06549fc8fb825475db9d127
-
         app:layout_constraintBottom_toTopOf="@+id/searchResult"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -103,7 +93,6 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
