@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,13 @@ public class SearchResultActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.searchResult);
         resultCount = (TextView) findViewById(R.id.resultCount);
+
+        Button backButton = (Button) findViewById(R.id.backButton);
+        Button logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText("FoodTruck");
+
         resultList = new ArrayList<SearchResult>();
 
         try {
@@ -94,6 +102,25 @@ public class SearchResultActivity extends AppCompatActivity {
 
                 startActivity(intent);
 
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                // backpress와 똑같이
+                finish();
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final MyApplication myApp = (MyApplication) getApplication();
+                myApp.setcurrentID("");
+                Intent loginintent =  new Intent(SearchResultActivity.this, LoginActivity.class);
+                SearchResultActivity.this.startActivity(loginintent);
+                finish();
             }
         });
     }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,7 +57,7 @@ public class FT_InfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ft__info);
+                setContentView(R.layout.activity_ft__info);
 
         Intent intent = getIntent();
         final String FT_info_menulist = intent.getStringExtra("MenuList");
@@ -76,6 +77,31 @@ public class FT_InfoActivity extends AppCompatActivity {
         final TextView FT_info_ctg = (TextView) findViewById(R.id.FT_info_ctg);
         final TextView FT_info_intro = (TextView) findViewById(R.id.FT_info_intro);
         final ImageView FT_info_photo = (ImageView) findViewById(R.id.FTImage);
+
+        Button backButton = (Button) findViewById(R.id.backButton);
+        Button logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText("FoodTruck");
+
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                // backpress와 똑같이
+                finish();
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final MyApplication myApp = (MyApplication) getApplication();
+                myApp.setcurrentID("");
+                Intent loginintent =  new Intent(FT_InfoActivity.this, LoginActivity.class);
+                FT_InfoActivity.this.startActivity(loginintent);
+                finish();
+            }
+        });
 
 
 

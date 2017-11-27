@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -130,6 +131,13 @@ public class FT_CreateActivity extends AppCompatActivity {
         );
 
         Button registerBtn = (Button) findViewById(R.id.registerButton);
+
+        Button backButton = (Button) findViewById(R.id.backButton);
+        Button logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText("FoodTruck");
+
         registerBtn.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 ftName = nameText.getText().toString();
@@ -182,6 +190,25 @@ public class FT_CreateActivity extends AppCompatActivity {
                             .setNegativeButton("취소",cancelListener)
                             .show(); //여기서 보여줌~
                 }
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                // backpress와 똑같이
+                finish();
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final MyApplication myApp = (MyApplication) getApplication();
+                myApp.setcurrentID("");
+                Intent loginintent =  new Intent(FT_CreateActivity.this, LoginActivity.class);
+                FT_CreateActivity.this.startActivity(loginintent);
+                finish();
             }
         });
     }

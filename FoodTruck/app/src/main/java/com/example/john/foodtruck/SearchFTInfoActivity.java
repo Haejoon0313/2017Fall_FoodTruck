@@ -54,8 +54,14 @@ public class SearchFTInfoActivity extends AppCompatActivity{
         final String FT_menulist = intent.getStringExtra("menulist");
         final String FT_reviewlist = intent.getStringExtra("reviewlist");
 
-        TextView title = (TextView) findViewById(R.id.FTTitle);
-        title.setText(name);
+        Button backButton = (Button) findViewById(R.id.backButton);
+        Button logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText("FoodTruck");
+
+        TextView fttitle = (TextView) findViewById(R.id.FTTitle);
+        fttitle.setText(name);
 
         ImageView ftphoto=(ImageView) findViewById(R.id.ftphoto);
         byte[] encodebytearray = Base64.decode(photo,Base64.DEFAULT);
@@ -150,6 +156,25 @@ public class SearchFTInfoActivity extends AppCompatActivity{
                 editIntent.putExtra("ReviewList", FT_reviewlist);
 
                 SearchFTInfoActivity.this.startActivity(editIntent);
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                // backpress와 똑같이
+                finish();
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final MyApplication myApp = (MyApplication) getApplication();
+                myApp.setcurrentID("");
+                Intent loginintent =  new Intent(SearchFTInfoActivity.this, LoginActivity.class);
+                SearchFTInfoActivity.this.startActivity(loginintent);
+                finish();
             }
         });
     }

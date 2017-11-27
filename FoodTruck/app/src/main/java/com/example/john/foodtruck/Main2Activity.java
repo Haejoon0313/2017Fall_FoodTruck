@@ -4,11 +4,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -51,6 +53,11 @@ public class Main2Activity extends AppCompatActivity {
         Button FT_mytruckButton = (Button) findViewById(R.id.FT_mytruckButton);
         Button salesButton = (Button) findViewById(R.id.salesButton);
         Button settingButton = (Button) findViewById(R.id.settingButton);
+
+        Button logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText("FoodTruck");
 
         searchButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -119,6 +126,18 @@ public class Main2Activity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent settingIntent = new Intent(Main2Activity.this, SettingActivity.class);
                 Main2Activity.this.startActivity(settingIntent);
+            }
+        });
+
+
+        logoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final MyApplication myApp = (MyApplication) getApplication();
+                myApp.setcurrentID("");
+                Intent loginintent =  new Intent(Main2Activity.this, LoginActivity.class);
+                Main2Activity.this.startActivity(loginintent);
+                finish();
             }
         });
     }

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -48,6 +49,12 @@ public class FT_MenuModifyActivity extends AppCompatActivity {
 
 
         Button registerBtn = (Button) findViewById(R.id.registerButton);
+        Button backButton = (Button) findViewById(R.id.backButton);
+        Button logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText("FoodTruck");
+
         registerBtn.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 menuName = nameText.getText().toString();
@@ -55,6 +62,25 @@ public class FT_MenuModifyActivity extends AppCompatActivity {
                 menuIngredients = ingredientsText.getText().toString();
 
                 new rTask().execute();
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                // backpress와 똑같이
+                finish();
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final MyApplication myApp = (MyApplication) getApplication();
+                myApp.setcurrentID("");
+                Intent loginintent =  new Intent(FT_MenuModifyActivity.this, LoginActivity.class);
+                FT_MenuModifyActivity.this.startActivity(loginintent);
+                finish();
             }
         });
     }

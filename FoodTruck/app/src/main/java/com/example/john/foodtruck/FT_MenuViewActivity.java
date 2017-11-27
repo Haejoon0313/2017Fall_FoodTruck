@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -73,6 +74,12 @@ public class FT_MenuViewActivity extends AppCompatActivity {
 
         Button FT_menuenrollButton = (Button) findViewById(R.id.FT_menuview_enroll);
 
+        Button backButton = (Button) findViewById(R.id.backButton);
+        Button logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText("FoodTruck");
+
         FT_menuenrollButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,6 +131,28 @@ public class FT_MenuViewActivity extends AppCompatActivity {
                 alertDlg.setMessage("해당 메뉴를 삭제하시겠습니까?");
                 alertDlg.show();
                 return false;
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                // backpress와 똑같이
+                finish();
+                Intent editIntent = new Intent(FT_MenuViewActivity.this, Main2Activity.class);
+                FT_MenuViewActivity.this.startActivity(editIntent);
+                Toast.makeText(getApplicationContext(),"메뉴 수정이 완료되었습니다",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final MyApplication myApp = (MyApplication) getApplication();
+                myApp.setcurrentID("");
+                Intent loginintent =  new Intent(FT_MenuViewActivity.this, LoginActivity.class);
+                FT_MenuViewActivity.this.startActivity(loginintent);
+                finish();
             }
         });
     }

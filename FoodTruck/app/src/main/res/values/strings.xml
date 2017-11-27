@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FoodTruck</string>
     <string name="title_activity_search_foodtruck_info">SearchFoodtruckInfo</string>
+    <string name="title_activity_main3">Main3Activity</string>
 </resources>

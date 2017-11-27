@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -67,6 +68,12 @@ public class SalesActivity extends AppCompatActivity {
         salesmenuList = new ArrayList<SalesMenuList>();
         Button salesEndButton = (Button) findViewById(R.id.salesEndButton);
 
+        Button backButton = (Button) findViewById(R.id.backButton);
+        Button logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText("FoodTruck");
+
         try {
             JSONArray menuarr = new JSONArray(menulist);
 
@@ -114,6 +121,72 @@ public class SalesActivity extends AppCompatActivity {
                 }
             }
         });
+
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                // backpress와 똑같이
+                gps = new GpsInfo(SalesActivity.this);
+                // GPS 사용유무 가져오기
+                latitude = gps.getLatitude();
+                longitude = gps.getLongitude();
+                if (gps.isGetLocation() && latitude>30 && latitude<45 && longitude>120 && longitude<135 ) {
+                    lat = Double.toString(latitude);
+                    lon = Double.toString(longitude);
+                    location = "(" + lat + "," + lon + ")";
+
+                    status = "0";
+
+                    for (int i = 0; i < salesmenuList.size(); i++) {
+                        temp_price = Integer.parseInt(salesmenuList.get(i).getPrice());
+                        temp_nums = Integer.parseInt(salesmenuList.get(i).getNums());
+
+                        temp_total_price += (temp_price * temp_nums);
+                    }
+
+                    total_price = String.valueOf(temp_total_price);
+
+                    new sTask().execute();
+                }
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final MyApplication myApp = (MyApplication) getApplication();
+                myApp.setcurrentID("");
+                Intent loginintent =  new Intent(SalesActivity.this, LoginActivity.class);
+                SalesActivity.this.startActivity(loginintent);
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        gps = new GpsInfo(SalesActivity.this);
+        // GPS 사용유무 가져오기
+        latitude = gps.getLatitude();
+        longitude = gps.getLongitude();
+        if (gps.isGetLocation() && latitude>30 && latitude<45 && longitude>120 && longitude<135 ) {
+            lat = Double.toString(latitude);
+            lon = Double.toString(longitude);
+            location = "(" + lat + "," + lon + ")";
+
+            status = "0";
+
+            for (int i = 0; i < salesmenuList.size(); i++) {
+                temp_price = Integer.parseInt(salesmenuList.get(i).getPrice());
+                temp_nums = Integer.parseInt(salesmenuList.get(i).getNums());
+
+                temp_total_price += (temp_price * temp_nums);
+            }
+
+            total_price = String.valueOf(temp_total_price);
+
+            new sTask().execute();
+        }
     }
 
     private class sTask extends AsyncTask<String, Void, Integer> {

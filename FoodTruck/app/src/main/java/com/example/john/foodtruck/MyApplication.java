@@ -7,7 +7,7 @@ import android.app.Application;
  */
 
 public class MyApplication extends Application {
-    private String currentID;
+    private String currentID = "";
 
     private String tempFTname;
     private String tempFTphone = "-1";

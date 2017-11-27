@@ -1,67 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.john.foodtruck.Main2Activity">
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/searchButton"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
-        android:background="@android:color/holo_orange_dark"
-        android:text="검색"
-        android:textSize="25dp"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toStartOf="@+id/FT_mytruckButton"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.example.john.foodtruck.Main2Activity">
 
-    <Button
-        android:id="@+id/FT_mytruckButton"
-        android:layout_width="154dp"
-        android:layout_height="150dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="100dp"
-        android:background="@android:color/holo_orange_dark"
-        android:text="나의\n푸드트럭"
-        android:textSize="25dp"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-    <Button
-        android:id="@+id/salesButton"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
-        android:text="영업 관리"
-        android:textSize="25dp"
-        android:background="@android:color/holo_orange_dark"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toStartOf="@+id/settingButton"
-        app:layout_constraintHorizontal_bias="0.416"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchButton" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/settingButton"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="60dp"
-        android:text="설정"
-        android:textSize="25dp"
-        android:background="@android:color/holo_orange_dark"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FT_mytruckButton" />
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="8dp"
+                    android:text="title sample"
+                    android:textColor="@android:color/white"
+                    android:textSize="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/logoutButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+                <Button
+                    android:id="@+id/logoutButton"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:color/transparent"
+                    android:text="LogOut"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="100dp"
+            android:background="@android:color/holo_orange_dark"
+            android:text="검색"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toStartOf="@+id/FT_mytruckButton"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/FT_mytruckButton"
+            android:layout_width="154dp"
+            android:layout_height="150dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="100dp"
+            android:background="@android:color/holo_orange_dark"
+            android:text="나의\n푸드트럭"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/salesButton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="60dp"
+            android:background="@android:color/holo_orange_dark"
+            android:text="영업 관리"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toStartOf="@+id/settingButton"
+            app:layout_constraintHorizontal_bias="0.416"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchButton" />
+
+        <Button
+            android:id="@+id/settingButton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="60dp"
+            android:background="@android:color/holo_orange_dark"
+            android:text="설정"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/FT_mytruckButton" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.design.widget.CoordinatorLayout>

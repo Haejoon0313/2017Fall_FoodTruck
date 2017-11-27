@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -46,6 +47,9 @@ public class LoginActivity extends AppCompatActivity {
 
         final Button loginButton = (Button) findViewById(R.id.loginButton);
         final Button registerButton = (Button) findViewById(R.id.registerButton);
+
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText("로그인");
 
         loginButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {

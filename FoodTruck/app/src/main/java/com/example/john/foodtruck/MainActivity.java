@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
         Button favoriteButton = (Button) findViewById(R.id.FT_mytruckButton);
         Button noticeButton = (Button) findViewById(R.id.noticeButton);
         Button settingButton = (Button) findViewById(R.id.settingButton);
+
+        Button logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText("FoodTruck");
 
         searchButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -64,6 +70,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
                 MainActivity.this.startActivity(settingIntent);
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final MyApplication myApp = (MyApplication) getApplication();
+                myApp.setcurrentID("");
+                Intent loginintent =  new Intent(MainActivity.this, LoginActivity.class);
+                MainActivity.this.startActivity(loginintent);
+                finish();
             }
         });
     }

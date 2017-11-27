@@ -6,6 +6,64 @@
     android:layout_height="match_parent"
     tools:context="com.example.john.foodtruck.FT_MenuViewActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@android:color/transparent"
+                android:text="←"
+                android:textColor="@android:color/white"
+                android:textSize="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="title sample"
+                android:textColor="@android:color/white"
+                android:textSize="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/logoutButton"
+                app:layout_constraintStart_toEndOf="@+id/backButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/logoutButton"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+                android:text="LogOut"
+                android:textColor="@android:color/white"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.design.widget.AppBarLayout>
+
     <TextView
         android:id="@+id/menuText"
         android:layout_width="wrap_content"
@@ -17,8 +75,9 @@
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/FT_menuview_list"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout8" />
 
     <ListView
         android:id="@+id/FT_menuview_list"
@@ -33,27 +92,27 @@
         android:id="@+id/FT_menuview_enroll"
         android:layout_width="0dp"
         android:layout_height="47dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="32dp"
         android:background="@android:color/holo_orange_dark"
         android:text="메뉴 추가"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/successButton"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/successButton"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/successButton"
         android:layout_width="0dp"
         android:layout_height="47dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginStart="100dp"
         android:layout_marginBottom="8dp"
-        android:text="수정 완료"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="16dp"
         android:background="@android:color/holo_orange_dark"
+        android:text="수정 완료"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/FT_menuview_enroll" />
 </android.support.constraint.ConstraintLayout>

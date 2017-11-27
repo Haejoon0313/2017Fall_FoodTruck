@@ -67,6 +67,13 @@ public class SearchActivity extends AppCompatActivity implements OnMapReadyCallb
         setContentView(R.layout.activity_search);
         final EditText keywordText = (EditText) findViewById(R.id.keywordText);
         final Button searchButton = (Button) findViewById(R.id.searchButton);
+
+        Button backButton = (Button) findViewById(R.id.backButton);
+        Button logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText("FoodTruck");
+
         distanceSeekbar = (SeekBar) findViewById(R.id.seekBar);
         distanceText = (TextView) findViewById(R.id.distanceText);
         distanceText.setText("주변 "+initSeekbar(distanceSeekbar)+"M 검색");
@@ -88,6 +95,25 @@ public class SearchActivity extends AppCompatActivity implements OnMapReadyCallb
                 keyword = keywordText.getText().toString();
                 distance = Integer.toString(initSeekbar(distanceSeekbar));
                 new sTask().execute();
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                // backpress와 똑같이
+                finish();
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                final MyApplication myApp = (MyApplication) getApplication();
+                myApp.setcurrentID("");
+                Intent loginintent =  new Intent(SearchActivity.this, LoginActivity.class);
+                SearchActivity.this.startActivity(loginintent);
+                finish();
             }
         });
     }
