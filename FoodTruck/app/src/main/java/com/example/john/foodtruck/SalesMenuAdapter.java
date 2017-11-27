@@ -58,8 +58,10 @@ public class SalesMenuAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 // 마이너스
-                menuList.get(i).setNums(String.valueOf(Integer.parseInt(menuList.get(i).getNums()) - 1));
-                sellNumber.setText(menuList.get(i).getNums());
+                if(Integer.parseInt(menuList.get(i).getNums()) > 0){
+                    menuList.get(i).setNums(String.valueOf(Integer.parseInt(menuList.get(i).getNums()) - 1));
+                    sellNumber.setText(menuList.get(i).getNums());
+                }
                 //Log.d("minus", menuList.get(i).getNums());
             }
         });
