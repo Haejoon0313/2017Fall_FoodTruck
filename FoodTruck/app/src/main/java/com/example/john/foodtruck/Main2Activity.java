@@ -67,10 +67,8 @@ public class Main2Activity extends AppCompatActivity {
                 latitude = gps.getLatitude();
                 longitude = gps.getLongitude();
                 if (gps.isGetLocation() && latitude>30 && latitude<45 && longitude>120 && longitude<135 ) {
-                    Intent searchIntent = new Intent(Main2Activity.this, SearchActivity.class);
-                    searchIntent.putExtra("latitude", latitude);
-                    searchIntent.putExtra("longitude", longitude);
-                    Main2Activity.this.startActivity(searchIntent);
+                    new searchTask().execute();
+
                 } else {
                     // GPS 를 사용할수 없으므로
                     gps.showSettingsAlert();
@@ -441,6 +439,76 @@ public class Main2Activity extends AppCompatActivity {
         // server url 받기
         String serverURL = getResources().getString(R.string.serverURL);
         HttpPost httpPost = new HttpPost(serverURL + "/sale_list");
+
+        // 객체 연결 설정 부분, 연결 최대시간 등등
+        //HttpParams params = client.getParams();
+        //HttpConnectionParams.setConnectionTimeout(params, 5000);
+        //HttpConnectionParams.setSoTimeout(params, 5000);
+
+        // Post객체 생성
+
+
+        try {
+            UrlEncodedFormEntity entity = new UrlEncodedFormEntity(registerInfo, "UTF-8");
+            httpPost.setEntity(entity);
+            //httpClient.execute(httpPost);
+
+            HttpResponse response = httpClient.execute(httpPost);
+            String responseString;
+            responseString = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
+
+            return responseString;
+
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
+    private class searchTask extends AsyncTask<String, Void, String> {
+        String result;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                result = postJsonToServerL("("+Double.toString(latitude)+","+Double.toString(longitude)+")");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            Intent searchIntent = new Intent(Main2Activity.this, SearchActivity.class);
+            searchIntent.putExtra("latitude", latitude);
+            searchIntent.putExtra("longitude", longitude);
+            searchIntent.putExtra("keyword",result);
+            Main2Activity.this.startActivity(searchIntent);
+        }
+    }
+
+    public String postJsonToServerL(String location) throws IOException {
+
+
+        ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
+        registerInfo.add(new BasicNameValuePair("location", location));
+
+        // 연결 HttpClient 객체 생성
+        HttpClient httpClient= new DefaultHttpClient();
+
+        // server url 받기
+        String serverURL = getResources().getString(R.string.serverURL);
+        HttpPost httpPost = new HttpPost(serverURL + "/keyword_recommend");
 
         // 객체 연결 설정 부분, 연결 최대시간 등등
         //HttpParams params = client.getParams();

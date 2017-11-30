@@ -19,19 +19,28 @@
 
     <TextView
         android:id="@+id/FTTitle"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="푸드트럭 정보"
-        android:textSize="25dp"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@id/FTTitle"
+        android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ftphoto" />
+
+    <ImageView
+        android:id="@+id/locationButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="7dp"
+        app:layout_constraintLeft_toRightOf="@+id/FTTitle"
+        app:layout_constraintTop_toBottomOf="@+id/ftphoto"
+        app:srcCompat="@android:drawable/ic_menu_mylocation" />
 
     <TabHost
         android:id="@android:id/tabhost"
@@ -39,7 +48,6 @@
         android:layout_height="0dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -167,6 +175,7 @@
         </LinearLayout>
     </TabHost>
 
+<<<<<<< HEAD
     <ToggleButton
         android:id="@+id/favoriteToggle"
         android:layout_width="60dp"
@@ -179,4 +188,7 @@
         android:textOn=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+=======
+
+>>>>>>> 9c95d78f209597e96bdd82d187d055f751a3fd8e
 </android.support.constraint.ConstraintLayout>
