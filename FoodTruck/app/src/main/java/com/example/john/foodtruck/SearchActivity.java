@@ -53,11 +53,17 @@ public class SearchActivity extends AppCompatActivity implements OnMapReadyCallb
     GoogleMap mMap;
     double latitude;
     double longitude;
+
     String keyword="";
+    String keyword1="";
+    String keyword2="";
+    String keyword3="";
+
     String location = "";
     String distance="";
     String lat = "";
     String lon = "";
+    String keywordlist;
     int updatedValue = 500;
     TextView distanceText;
     SeekBar distanceSeekbar;
@@ -83,9 +89,56 @@ public class SearchActivity extends AppCompatActivity implements OnMapReadyCallb
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         Intent intent = getIntent();
-
+        keywordlist=intent.getStringExtra("keyword");
         latitude=intent.getDoubleExtra("latitude",100);
         longitude=intent.getDoubleExtra("longitude",100);
+
+        try {
+            JSONObject resultJson = new JSONObject(keywordlist);
+            keyword1 = resultJson.getString("keyword1");
+            keyword2 = resultJson.getString("keyword2");
+            keyword3 = resultJson.getString("keyword3");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        final TextView keywordText1 = (TextView) findViewById(R.id.keywordText1);
+        final TextView keywordText2 = (TextView) findViewById(R.id.keywordText2);
+        final TextView keywordText3 = (TextView) findViewById(R.id.keywordText3);
+        keywordText1.setText(keyword1);
+        keywordText2.setText(keyword2);
+        keywordText3.setText(keyword3);
+
+        keywordText1.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                lat = Double.toString(latitude);
+                lon = Double.toString(longitude);
+                location="("+lat+","+lon+")";
+                keyword = keywordText1.getText().toString();
+                distance = Integer.toString(initSeekbar(distanceSeekbar));
+                new sTask().execute();
+            }
+        });
+        keywordText2.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                lat = Double.toString(latitude);
+                lon = Double.toString(longitude);
+                location="("+lat+","+lon+")";
+                keyword = keywordText2.getText().toString();
+                distance = Integer.toString(initSeekbar(distanceSeekbar));
+                new sTask().execute();
+            }
+        });
+        keywordText3.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                lat = Double.toString(latitude);
+                lon = Double.toString(longitude);
+                location="("+lat+","+lon+")";
+                keyword = keywordText3.getText().toString();
+                distance = Integer.toString(initSeekbar(distanceSeekbar));
+                new sTask().execute();
+            }
+        });
 
         searchButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {

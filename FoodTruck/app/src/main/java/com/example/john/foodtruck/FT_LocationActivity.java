@@ -67,4 +67,8 @@ public class FT_LocationActivity extends AppCompatActivity implements OnMapReady
         mMap.moveCamera(CameraUpdateFactory.newLatLng(FTlocation));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
     }
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }
