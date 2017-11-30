@@ -5,12 +5,14 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,15 +21,27 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchFTInfoActivity extends AppCompatActivity{
     public static Activity InfoActivity;
-
+    private GpsInfo gps;
     private ListView FT_menuview_list;
     private MenuAdapter adapter2;
     private List<FT_MenuList> menuList;
@@ -35,6 +49,10 @@ public class SearchFTInfoActivity extends AppCompatActivity{
     private ListView FT_reviewview_list;
     private ReviewAdapter adapter;
     private List<FT_ReviewList> reviewList;
+
+    String id;
+    double latitude;
+    double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +64,7 @@ public class SearchFTInfoActivity extends AppCompatActivity{
         final Intent intent = getIntent();
         final String area=intent.getStringExtra("area");
         final String name=intent.getStringExtra("name");
-        final String id=intent.getStringExtra("id");
+        id=intent.getStringExtra("id");
         final String intro=intent.getStringExtra("introduction");
         final String phone=intent.getStringExtra("phone");
         final String photo=intent.getStringExtra("photo");
@@ -62,6 +80,9 @@ public class SearchFTInfoActivity extends AppCompatActivity{
 
         TextView fttitle = (TextView) findViewById(R.id.FTTitle);
         fttitle.setText(name);
+
+        ImageView locationButton = (ImageView) findViewById(R.id.locationButton);
+        locationButton.setImageResource(R.drawable.location);
 
         ImageView ftphoto=(ImageView) findViewById(R.id.ftphoto);
         byte[] encodebytearray = Base64.decode(photo,Base64.DEFAULT);
@@ -159,6 +180,22 @@ public class SearchFTInfoActivity extends AppCompatActivity{
             }
         });
 
+        locationButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                // backpress와 똑같이
+                gps = new GpsInfo(SearchFTInfoActivity.this);
+                latitude = gps.getLatitude();
+                longitude = gps.getLongitude();
+                if (gps.isGetLocation() && latitude>30 && latitude<45 && longitude>120 && longitude<135 ) {
+                    new lTask().execute();
+                } else {
+                    // GPS 를 사용할수 없으므로
+                    gps.showSettingsAlert();
+                }
+            }
+        });
+
         /*backButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -181,5 +218,79 @@ public class SearchFTInfoActivity extends AppCompatActivity{
     @Override
     public void onBackPressed() {
         finish();
+    }
+    private class lTask extends AsyncTask<String, Void, String> {
+        String lat = null;
+        String lon = null;
+        String r = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                r = postJsonToServer(id);
+                JSONObject resultphoto = new JSONObject(r);
+                lat= resultphoto.getString("lat");
+                lon= resultphoto.getString("lon");
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+        @Override
+        protected void onPostExecute(String result) {
+
+            Intent intent = new Intent(SearchFTInfoActivity.this,FT_LocationActivity.class);
+            intent.putExtra("FTlat", lat);
+            intent.putExtra("FTlon", lon);
+            intent.putExtra("lat",latitude);
+            intent.putExtra("lon",longitude);
+            startActivity(intent);
+        }
+    }
+
+    public String postJsonToServer(String id) throws IOException {
+
+        ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
+        registerInfo.add(new BasicNameValuePair("id", id));
+
+        // 연결 HttpClient 객체 생성
+        HttpClient httpClient= new DefaultHttpClient();
+
+        // server url 받기
+        String serverURL = getResources().getString(R.string.serverURL);
+        HttpPost httpPost = new HttpPost(serverURL + "/foodtruck_location");
+
+        // 객체 연결 설정 부분, 연결 최대시간 등등
+        //HttpParams params = client.getParams();
+        //HttpConnectionParams.setConnectionTimeout(params, 5000);
+        //HttpConnectionParams.setSoTimeout(params, 5000);
+
+        // Post객체 생성
+
+
+        try {
+            UrlEncodedFormEntity entity = new UrlEncodedFormEntity(registerInfo, "UTF-8");
+            httpPost.setEntity(entity);
+            //httpClient.execute(httpPost);
+
+            HttpResponse response = httpClient.execute(httpPost);
+            String responseString = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
+
+            Log.d("d",responseString);
+            return responseString;
+
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

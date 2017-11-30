@@ -134,7 +134,7 @@ public class SearchActivity extends AppCompatActivity implements OnMapReadyCallb
         marker1=mMap.addMarker(markerOptions);
         marker1.showInfoWindow();
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {

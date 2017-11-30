@@ -44,6 +44,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".SalesActivity" />
         <activity android:name=".NoticeActivity" />
+        <activity android:name=".FT_LocationActivity"></activity>
     </application>
 
 </manifest>
