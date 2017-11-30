@@ -106,6 +106,7 @@ public class FT_ReviewCreateActivity extends AppCompatActivity {
             final String phone=intent.getStringExtra("phone");
             final String photo=intent.getStringExtra("photo");
             final String FT_menulist = intent.getStringExtra("MenuList");
+            final String favorite_check = intent.getStringExtra("favorite");
 
             Intent editIntent;
             AlertDialog.Builder alert = new AlertDialog.Builder(FT_ReviewCreateActivity.this);
@@ -138,6 +139,7 @@ public class FT_ReviewCreateActivity extends AppCompatActivity {
                     editIntent.putExtra("photo", photo);
                     editIntent.putExtra("menulist", FT_menulist);
                     editIntent.putExtra("reviewlist", reviewlist);
+                    editIntent.putExtra("favorite", favorite_check);
                     infoActivity.finish();
                     finish();
 

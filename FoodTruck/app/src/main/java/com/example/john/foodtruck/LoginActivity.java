@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                 userID = idText.getText().toString();
                 userPassword = passwordText.getText().toString();
                 myApp.setcurrentID(userID);
+                myApp.setTempFTphone("-1");
                 new lTask().execute();
             }
         });

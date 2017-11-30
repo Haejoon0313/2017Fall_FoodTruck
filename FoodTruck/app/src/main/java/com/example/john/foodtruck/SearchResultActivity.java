@@ -38,6 +38,7 @@ public class SearchResultActivity extends AppCompatActivity {
     String f_id1="";
     String area1,introduction1,name1,phone1,ctg1,reviewlist1,menulist1;
     String photoText="";
+    String check_favorite = "";
     private ListView listView;
     private SearchResultAdapter adapter;
     private List<SearchResult> resultList;
@@ -151,20 +152,30 @@ public class SearchResultActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
+            MyApplication myApp = (MyApplication) getApplication();
             try {
-                r = postJsonToServer(f_id1);
-                JSONObject resultphoto = new JSONObject(r);
-                r= resultphoto.getString("photo");
+                r = postJsonToServer(f_id1, myApp.getcurrentID());
+
             } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
                 e.printStackTrace();
             }
             return r;
         }
         @Override
         protected void onPostExecute(String result) {
-            photoText=result;
+
+            JSONObject obj = null;
+
+            try {
+                obj = new JSONObject(result);
+
+                photoText = obj.getString("photo");
+                check_favorite = obj.getString("check");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
             Intent intent = new Intent(SearchResultActivity.this,SearchFTInfoActivity.class);
             intent.putExtra("area", area1);
             intent.putExtra("id", f_id1);
@@ -175,14 +186,16 @@ public class SearchResultActivity extends AppCompatActivity {
             intent.putExtra("reviewlist", reviewlist1);
             intent.putExtra("menulist", menulist1);
             intent.putExtra("photo", photoText);
+            intent.putExtra("favorite", check_favorite);
             startActivity(intent);
         }
     }
 
-    public String postJsonToServer(String f_id) throws IOException {
+    public String postJsonToServer(String f_id, String u_id) throws IOException {
 
         ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
         registerInfo.add(new BasicNameValuePair("f_id", f_id));
+        registerInfo.add(new BasicNameValuePair("u_id", u_id));
 
         // 연결 HttpClient 객체 생성
         HttpClient httpClient= new DefaultHttpClient();

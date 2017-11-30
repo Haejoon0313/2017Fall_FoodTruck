@@ -166,4 +166,17 @@
             </FrameLayout>
         </LinearLayout>
     </TabHost>
+
+    <ToggleButton
+        android:id="@+id/favoriteToggle"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/favoritebutton_off"
+        android:text="ToggleButton"
+        android:textOff=""
+        android:textOn=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
