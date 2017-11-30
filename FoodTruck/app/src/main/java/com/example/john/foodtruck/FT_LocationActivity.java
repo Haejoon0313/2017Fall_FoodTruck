@@ -60,12 +60,12 @@ public class FT_LocationActivity extends AppCompatActivity implements OnMapReady
 
         final MarkerOptions markerOptions2 = new MarkerOptions();
         markerOptions2.position(FTlocation);
-        markerOptions2.title("푸드트럭 위치");
+        markerOptions2.title("푸드트럭의 위치");
         marker2=mMap.addMarker(markerOptions2);
         marker2.showInfoWindow();
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(FTlocation));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
     }
     @Override
     public void onBackPressed() {

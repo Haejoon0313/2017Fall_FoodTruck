@@ -183,7 +183,7 @@ public class SearchActivity extends AppCompatActivity implements OnMapReadyCallb
 
         final MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(location);
-        markerOptions.title("현재 위치 주변 검색");
+        markerOptions.title("현재 위치를 기준으로 주변 검색");
         marker1=mMap.addMarker(markerOptions);
         marker1.showInfoWindow();
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
@@ -198,7 +198,7 @@ public class SearchActivity extends AppCompatActivity implements OnMapReadyCallb
                         fromScreenLocation(screenPt);
                 mMap.clear();
                 markerOptions.position(a) ;
-                markerOptions.title("변경된 위치 주변 검색");
+                markerOptions.title("변경된 위치를 기준으로 주변 검색");
                 marker1=mMap.addMarker(markerOptions);
                 marker1.showInfoWindow();
                 latitude=a.latitude;
