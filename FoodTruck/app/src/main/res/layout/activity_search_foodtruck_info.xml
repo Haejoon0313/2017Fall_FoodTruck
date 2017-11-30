@@ -175,20 +175,16 @@
         </LinearLayout>
     </TabHost>
 
-<<<<<<< HEAD
     <ToggleButton
         android:id="@+id/favoriteToggle"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/favoritebutton_off"
         android:text="ToggleButton"
         android:textOff=""
         android:textOn=""
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-=======
-
->>>>>>> 9c95d78f209597e96bdd82d187d055f751a3fd8e
+        app:layout_constraintEnd_toStartOf="@+id/FTTitle"
+        app:layout_constraintTop_toBottomOf="@+id/ftphoto" />
 </android.support.constraint.ConstraintLayout>

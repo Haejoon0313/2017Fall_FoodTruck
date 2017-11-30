@@ -22,10 +22,7 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
-<<<<<<< HEAD
 import android.widget.ToggleButton;
-=======
->>>>>>> 9c95d78f209597e96bdd82d187d055f751a3fd8e
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -56,14 +53,12 @@ public class SearchFTInfoActivity extends AppCompatActivity{
     private ReviewAdapter adapter;
     private List<FT_ReviewList> reviewList;
 
-<<<<<<< HEAD
+
     String favorite_state = "0";
     String ftID = "";
-=======
     String id;
     double latitude;
     double longitude;
->>>>>>> 9c95d78f209597e96bdd82d187d055f751a3fd8e
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -269,16 +264,11 @@ public class SearchFTInfoActivity extends AppCompatActivity{
     public void onBackPressed() {
         finish();
     }
-<<<<<<< HEAD
 
-    private class fTask extends AsyncTask<String, Void, String> {
-        String result;
-=======
     private class lTask extends AsyncTask<String, Void, String> {
         String lat = null;
         String lon = null;
         String r = null;
->>>>>>> 9c95d78f209597e96bdd82d187d055f751a3fd8e
 
         @Override
         protected void onPreExecute() {
@@ -287,7 +277,83 @@ public class SearchFTInfoActivity extends AppCompatActivity{
 
         @Override
         protected String doInBackground(String... strings) {
-<<<<<<< HEAD
+
+            try {
+                r = postJsonToServer(id);
+                JSONObject resultphoto = new JSONObject(r);
+                lat= resultphoto.getString("lat");
+                lon= resultphoto.getString("lon");
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+        @Override
+        protected void onPostExecute(String result) {
+
+            Intent intent = new Intent(SearchFTInfoActivity.this,FT_LocationActivity.class);
+            intent.putExtra("FTlat", lat);
+            intent.putExtra("FTlon", lon);
+            intent.putExtra("lat",latitude);
+            intent.putExtra("lon",longitude);
+            startActivity(intent);
+        }
+    }
+
+    public String postJsonToServer(String id) throws IOException {
+
+        ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
+        registerInfo.add(new BasicNameValuePair("id", id));
+
+        // 연결 HttpClient 객체 생성
+        HttpClient httpClient= new DefaultHttpClient();
+
+        // server url 받기
+        String serverURL = getResources().getString(R.string.serverURL);
+
+        HttpPost httpPost = new HttpPost(serverURL + "/foodtruck_location");
+
+        // 객체 연결 설정 부분, 연결 최대시간 등등
+        //HttpParams params = client.getParams();
+        //HttpConnectionParams.setConnectionTimeout(params, 5000);
+        //HttpConnectionParams.setSoTimeout(params, 5000);
+
+        // Post객체 생성
+
+
+        try {
+            UrlEncodedFormEntity entity = new UrlEncodedFormEntity(registerInfo, "UTF-8");
+            httpPost.setEntity(entity);
+            //httpClient.execute(httpPost);
+
+            HttpResponse response = httpClient.execute(httpPost);
+
+            String responseString = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
+
+            Log.d("d",responseString);
+            return responseString;
+
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private class fTask extends AsyncTask<String, Void, String> {
+        String result;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
             MyApplication myApp = (MyApplication) getApplication();
             try {
                 result = postJsonToServer(myApp.getcurrentID(), ftID, favorite_state);
@@ -337,47 +403,14 @@ public class SearchFTInfoActivity extends AppCompatActivity{
         registerInfo.add(new BasicNameValuePair("user_id", userID));
         registerInfo.add(new BasicNameValuePair("f_id", ftID));
         registerInfo.add(new BasicNameValuePair("status", status));
-=======
-            try {
-                r = postJsonToServer(id);
-                JSONObject resultphoto = new JSONObject(r);
-                lat= resultphoto.getString("lat");
-                lon= resultphoto.getString("lon");
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-        @Override
-        protected void onPostExecute(String result) {
-
-            Intent intent = new Intent(SearchFTInfoActivity.this,FT_LocationActivity.class);
-            intent.putExtra("FTlat", lat);
-            intent.putExtra("FTlon", lon);
-            intent.putExtra("lat",latitude);
-            intent.putExtra("lon",longitude);
-            startActivity(intent);
-        }
-    }
-
-    public String postJsonToServer(String id) throws IOException {
-
-        ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
-        registerInfo.add(new BasicNameValuePair("id", id));
->>>>>>> 9c95d78f209597e96bdd82d187d055f751a3fd8e
 
         // 연결 HttpClient 객체 생성
         HttpClient httpClient= new DefaultHttpClient();
 
         // server url 받기
         String serverURL = getResources().getString(R.string.serverURL);
-<<<<<<< HEAD
+
         HttpPost httpPost = new HttpPost(serverURL + "/favorite_change");
-=======
-        HttpPost httpPost = new HttpPost(serverURL + "/foodtruck_location");
->>>>>>> 9c95d78f209597e96bdd82d187d055f751a3fd8e
 
         // 객체 연결 설정 부분, 연결 최대시간 등등
         //HttpParams params = client.getParams();
@@ -391,32 +424,19 @@ public class SearchFTInfoActivity extends AppCompatActivity{
             UrlEncodedFormEntity entity = new UrlEncodedFormEntity(registerInfo, "UTF-8");
             httpPost.setEntity(entity);
             //httpClient.execute(httpPost);
-
             HttpResponse response = httpClient.execute(httpPost);
-<<<<<<< HEAD
+
             String responseString;
             responseString = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
 
             return responseString;
 
-
-=======
-            String responseString = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
-
-            Log.d("d",responseString);
-            return responseString;
-
->>>>>>> 9c95d78f209597e96bdd82d187d055f751a3fd8e
         } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-<<<<<<< HEAD
 
         return "";
-=======
-        return null;
->>>>>>> 9c95d78f209597e96bdd82d187d055f751a3fd8e
     }
 }
