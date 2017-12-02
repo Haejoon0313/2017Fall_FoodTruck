@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private GpsInfo gps;
     double latitude;
     double longitude;
+    String location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,20 @@ public class MainActivity extends AppCompatActivity {
         favoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new fTask().execute();
+                gps = new GpsInfo(MainActivity.this);
+                // GPS 사용유무 가져오기
+                latitude = gps.getLatitude();
+                longitude = gps.getLongitude();
+                if (gps.isGetLocation() && latitude>30 && latitude<45 && longitude>120 && longitude<135 ) {
+
+                    location = "("+Double.toString(latitude)+","+Double.toString(longitude)+")";
+
+                    new fTask().execute();
+
+                } else {
+                    // GPS 를 사용할수 없으므로
+                    gps.showSettingsAlert();
+                }
             }
         });
 
@@ -131,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             MyApplication myApp = (MyApplication) getApplication();
             try {
-                result = postJsonToServer(myApp.getcurrentID());
+                result = postJsonToServer(myApp.getcurrentID(), location);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -188,11 +202,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public String postJsonToServer(String currentID) throws IOException {
+    public String postJsonToServer(String currentID, String location) throws IOException {
 
 
         ArrayList<NameValuePair> registerInfo = new ArrayList<NameValuePair>();
         registerInfo.add(new BasicNameValuePair("id", currentID));
+        registerInfo.add(new BasicNameValuePair("location", location));
 
         // 연결 HttpClient 객체 생성
         HttpClient httpClient= new DefaultHttpClient();
