@@ -49,6 +49,7 @@ public class FT_CreateActivity extends AppCompatActivity {
     String currentID = "";
     String ftPhoto="";
     Bitmap photo;
+    Integer t=0;
     private ImageView fd_photo;
 
     int id_view;
@@ -71,6 +72,7 @@ public class FT_CreateActivity extends AppCompatActivity {
         final EditText phoneText = (EditText) findViewById(R.id.phoneText);
         final EditText introText = (EditText) findViewById(R.id.introText);
         fd_photo = (ImageView) findViewById(R.id.imageView);
+        fd_photo.setImageResource(android.R.drawable.ic_menu_report_image);
 
         if(!myApp.getTempFTphone().equals("-1")){
             nameText.setText(myApp.getTempFTname());
@@ -102,7 +104,6 @@ public class FT_CreateActivity extends AppCompatActivity {
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-
                     }
                 }
         );
@@ -143,13 +144,24 @@ public class FT_CreateActivity extends AppCompatActivity {
                 ftName = nameText.getText().toString();
                 ftPhone = phoneText.getText().toString();
                 ftIntro = introText.getText().toString();
-
-                ByteArrayOutputStream byteArrayOS = new ByteArrayOutputStream();
-                photo.compress(Bitmap.CompressFormat.PNG,100,byteArrayOS);
-                byte[] byteArray = byteArrayOS.toByteArray();
-                ftPhoto = Base64.encodeToString(byteArray,Base64.DEFAULT);
-
-                new rTask().execute();
+                if(t==1){
+                    ByteArrayOutputStream byteArrayOS = new ByteArrayOutputStream();
+                    photo.compress(Bitmap.CompressFormat.PNG,100,byteArrayOS);
+                    byte[] byteArray = byteArrayOS.toByteArray();
+                    ftPhoto = Base64.encodeToString(byteArray,Base64.DEFAULT);
+                    new rTask().execute();
+                }
+                else {
+                    AlertDialog.Builder alert1 = new AlertDialog.Builder(FT_CreateActivity.this);
+                    alert1.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();     //닫기
+                        }
+                    });
+                    alert1.setMessage("사진을 등록해 주십시오.");
+                    alert1.show();
+                }
             }
         });
 
@@ -271,7 +283,7 @@ public class FT_CreateActivity extends AppCompatActivity {
 
                     photo  = extras.getParcelable("data");
                     fd_photo.setImageBitmap(photo);
-
+                    t=1;
                     break;
                 }
             }

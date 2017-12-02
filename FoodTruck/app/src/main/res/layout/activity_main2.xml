@@ -57,7 +57,7 @@
             android:id="@+id/searchButton"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="100dp"
             android:background="@android:color/holo_orange_dark"
@@ -65,36 +65,36 @@
             android:textColor="@android:color/white"
             android:textSize="25dp"
             app:layout_constraintEnd_toStartOf="@+id/FT_mytruckButton"
-            app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/FT_mytruckButton"
-            android:layout_width="154dp"
+            android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="100dp"
             android:background="@android:color/holo_orange_dark"
             android:text="나의\n푸드트럭"
             android:textColor="@android:color/white"
             android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/searchButton"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/salesButton"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="40dp"
             android:background="@android:color/holo_orange_dark"
             android:text="영업 관리"
             android:textColor="@android:color/white"
             android:textSize="25dp"
             app:layout_constraintEnd_toStartOf="@+id/settingButton"
-            app:layout_constraintHorizontal_bias="0.416"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchButton" />
 
@@ -102,13 +102,15 @@
             android:id="@+id/settingButton"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
             android:background="@android:color/holo_orange_dark"
             android:text="설정"
             android:textColor="@android:color/white"
             android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/salesButton"
             app:layout_constraintTop_toBottomOf="@+id/FT_mytruckButton" />
 
     </android.support.constraint.ConstraintLayout>

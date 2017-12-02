@@ -39,8 +39,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAmfMbrcPM6vR0IgNYNSNEs4MqZ-bl8ZHI" />
 
-        <uses-library android:name="com.google.android.maps" />
-
+        <uses-library
+            android:name="com.google.android.maps"
+            android:required="false"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".SalesActivity" />
         <activity android:name=".NoticeActivity" />
