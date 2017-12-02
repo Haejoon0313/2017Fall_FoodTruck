@@ -30,6 +30,7 @@ import java.util.ArrayList;
 public class RegisterActivity extends AppCompatActivity {
     String userID= "";
     String userPassword="";
+    String userPassword2="";
     String userName="";
     String userNumber="";
     String userType="";
@@ -41,10 +42,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         final EditText idText = (EditText) findViewById(R.id.idText);
         final EditText passwordText = (EditText) findViewById(R.id.passwordText);
+        final EditText passwordText2 = (EditText) findViewById(R.id.passwordText2);
         final EditText nameText = (EditText) findViewById(R.id.nameText);
         final EditText numberText = (EditText) findViewById(R.id.numberText);
         final RadioGroup rg = (RadioGroup) findViewById(R.id.rg);
         final RadioButton sellerbutton = (RadioButton) findViewById(R.id.seller);
+
+        final AlertDialog.Builder[] builder = new AlertDialog.Builder[1];
+
         rg.check(sellerbutton.getId());
 
         Button registerBtn = (Button) findViewById(R.id.registerButton);
@@ -67,21 +72,32 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 userID = idText.getText().toString();
                 userPassword = passwordText.getText().toString();
+                userPassword2 = passwordText2.getText().toString();
                 userName = nameText.getText().toString();
                 userNumber = numberText.getText().toString();
                 int id = rg.getCheckedRadioButtonId();
                 RadioButton rb = (RadioButton) findViewById(id);
 
-
-                switch (rb.getText().toString()) {
-                    case "판매자":
-                        userType = "Seller";
-                        break;
-                    case "구매자":
-                        userType = "Purchaser";
-                        break;
+                if(userPassword.equals(userPassword2)){
+                    switch (rb.getText().toString()) {
+                        case "판매자":
+                            userType = "Seller";
+                            break;
+                        case "구매자":
+                            userType = "Purchaser";
+                            break;
+                    }
+                    new rTask().execute();
+                }else{
+                    builder[0] = new AlertDialog.Builder(RegisterActivity.this);
+                    builder[0].setMessage("비밀번호가 일치하지 않습니다.")
+                            .setNegativeButton("확인", null)
+                            .create()
+                            .show();
                 }
-                new rTask().execute();
+
+
+
             }
         });
     }
