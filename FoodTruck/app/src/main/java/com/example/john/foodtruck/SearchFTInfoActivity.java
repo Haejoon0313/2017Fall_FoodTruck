@@ -100,6 +100,12 @@ public class SearchFTInfoActivity extends AppCompatActivity{
 
         final ToggleButton favoriteToggle = (ToggleButton) findViewById(R.id.favoriteToggle);
 
+        final MyApplication myApp = (MyApplication) getApplication();
+
+        if(myApp.getUsertype().equals("seller")){
+            favoriteToggle.setVisibility(View.INVISIBLE);
+        }
+
         if(favorite_check.equals("1")){
             favoriteToggle.setChecked(true);
             favoriteToggle.setBackgroundDrawable(

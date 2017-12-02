@@ -8,6 +8,7 @@ import android.app.Application;
 
 public class MyApplication extends Application {
     private String currentID = "";
+    private String usertype = "";
 
     private String tempFTname;
     private String tempFTphone = "-1";
@@ -24,6 +25,16 @@ public class MyApplication extends Application {
     // 타 class에서 변경한 valuable을 MyApplication 에 저장
     public void setcurrentID(String newID){
         this.currentID = newID;
+    }
+
+    // 타 class에서 MyApplication class를 통해 해당 variable 값을 참조
+    public String getUsertype(){
+        return usertype;
+    }
+
+    // 타 class에서 변경한 valuable을 MyApplication 에 저장
+    public void setUsertype(String usertype){
+        this.usertype = usertype;
     }
 
     public String getTempFTname(){

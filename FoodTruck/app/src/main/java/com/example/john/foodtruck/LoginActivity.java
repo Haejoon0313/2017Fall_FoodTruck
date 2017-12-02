@@ -113,10 +113,12 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Integer result) {
             AlertDialog.Builder builder;
+            final MyApplication myApp = (MyApplication) getApplication();
             Intent intent;
             switch (result){
                 case 0 :
                     //myApp.setcurrentID(userID);
+                    myApp.setUsertype("buyer");
                     intent = new Intent(LoginActivity.this, MainActivity.class);
                     LoginActivity.this.startActivity(intent);
                     finish();
@@ -144,6 +146,7 @@ public class LoginActivity extends AppCompatActivity {
                     break;
                 case 4 :
                     //myApp.setcurrentID(userID);
+                    myApp.setUsertype("seller");
                     intent = new Intent(LoginActivity.this, Main2Activity.class);
                     LoginActivity.this.startActivity(intent);
                     finish();
