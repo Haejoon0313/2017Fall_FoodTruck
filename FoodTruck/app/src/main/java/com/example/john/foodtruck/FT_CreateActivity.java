@@ -78,10 +78,11 @@ public class FT_CreateActivity extends AppCompatActivity {
             nameText.setText(myApp.getTempFTname());
             phoneText.setText(myApp.getTempFTphone());
             introText.setText(myApp.getTempFTintro());
-
             byte[] encodebytearray = Base64.decode(myApp.getTempFTphoto(),Base64.DEFAULT);
             encodebitmap = BitmapFactory.decodeByteArray(encodebytearray,0,encodebytearray.length);
+            photo=encodebitmap;
             fd_photo.setImageBitmap(encodebitmap);
+            t=1;
         }
 
         currentID = myApp.getcurrentID();
